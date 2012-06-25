@@ -1,10 +1,12 @@
 # Se realizan los calculos y se envian los datos a los templates(vistas)
  
 from django.http import HttpResponse
+import rpy2.robjects as robjects
 
 def index(request):
     """ Index - Portada de la aplicacion """
-    return HttpResponse("Hello, world. You're at the poll index.")
+    pi = robjects.r['pi']
+    return HttpResponse(pi[0])
 
 # @param poll_id: Id de la proyeccion realizada 
 def results(request, proyeccion_id):
