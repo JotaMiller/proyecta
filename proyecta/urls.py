@@ -22,5 +22,6 @@ urlpatterns = patterns('',
     url(r'^accounts/login/$',  login),
     url(r'^accounts/logout/$', logout),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/henux/Trabajos/proyecta/assets'}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': '/home/henux/Trabajos/proyecta/static'}),
 
 )
