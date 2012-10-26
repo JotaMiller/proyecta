@@ -1,6 +1,9 @@
 # Se realizan los calculos y se envian los datos a los templates(vistas)
-from django.template import Context, loader
+from django.template import Context, loader, RequestContext
+from django.shortcuts import render_to_response
+#from django.template import  
 from django.http import HttpResponse
+
 from django.contrib.auth.decorators import login_required
 from forms import ConsultaForm
 import time
@@ -21,6 +24,8 @@ def index(request):
     """
     Index - Portada de la aplicacion
     """
+   
+    
     grdevices = importr('grDevices')
     forecast = importr('forecast')
     r = robjects.r
@@ -97,7 +102,7 @@ def index(request):
     sucursales = Sucursal.objects.all()
     
     t = loader.get_template('proyeccion/index.html')
-    c = Context({
+    c = RequestContext(request, {
         'form': form,
         'reportes': REPORTES,
         'ventas': ventas,
@@ -110,7 +115,7 @@ def index(request):
 #        'venta_uni': venta_uni,
 #        'salida': salida,
     })
-    return HttpResponse(t.render(c))
+    return render_to_response('proyeccion/index.html',c)
     
 def total_ventas(producto):
     producto = Producto.objects.get(2)

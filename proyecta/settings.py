@@ -4,6 +4,9 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+#PROJECT_PATH =  os.path.abspath(os.path.dirname(__file__))
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -14,9 +17,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'proyecta',                      # Or path to database file if using sqlite3.
-        'USER': 'admin',                      # Not used with sqlite3.
-        'PASSWORD': 'admin',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': 'password',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -50,7 +53,8 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = 'home/henux/Trabajos/proyecto/assets/'
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'assets')
+
 
 #APP_ROOT =  os.path.abspath(os.path.dirname(__file__))
 #
@@ -67,7 +71,7 @@ MEDIA_URL = 'http://localhost:8000/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'home/henux/Trabajos/proyecta/static/'
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -119,7 +123,11 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/henux/Trabajos/proyecta/templates',
+    #'/home/jotamiller/Trabajos/proyecta/templates',
+    
+    #uso de rutas relativas y no absolutas 
+    os.path.join(PROJECT_PATH, 'templates'),
+    
 )
 
 INSTALLED_APPS = (
@@ -135,7 +143,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'django_extensions',
-    'proyeccion'
+    'proyeccion',
+    'minichat',
+    'gravatar',
 )
 
 # A sample logging configuration. The only tangible logging
