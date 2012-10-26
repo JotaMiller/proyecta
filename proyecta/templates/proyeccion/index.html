@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="." method="POSt" class="form">
+	<fieldset>
+		<div class="widget">
+			<div class="title"><img src="/assets/images/icons/dark/list.png" alt="" class="titleIcon" /><h6>Ingrese los parametros de consulta</h6>
+			</div>
+			<div class="formRow">
+				<label>Sucursal:</label>
+				<div class="formRight">
+					<select name="sucursal" id="id_sucursal">
+						{% for sucursal in sucursales %}
+						<option value="{{ sucursal.id }}">{{ sucursal.nombre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="formRow">
+				<label>Producto:</label>
+				<div class="formRight">
+					<select name="producto" id="id_producto">
+						{% for producto in productos %}
+						<option value="{{ producto.id }}">{{ producto.nombre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="formRow">
+				<label>Fecha Inicio:</label>
+				<div class="formRight">
+					<input type="text" class="datepicker" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="formRow">
+				<label>fecha Término:</label>
+				<div class="formRight">
+					<input type="text" class="datepicker" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<a href="#" title="Generar Reporte y mostrarlo debajo" class="wButton orangewB m10 tipS"><span>Generar Reporte</span></a>
+		<a href="#" title="Generar reporte y exportarlo a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
+
+	</fieldset>
+</form>
+
+
+
+{% endblock content %}
+

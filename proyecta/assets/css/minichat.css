@@ -1,0 +1,75 @@
+/*
+ * Hoja de estilos para Minichat
+ * 
+ */
+
+#minichat{
+	bottom: 0px;
+	font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+	font-size: 11px;
+	position: fixed;
+	z-index: 100000;
+	
+	background: url(../images/backgrounds/topnavBg.png) repeat-x;
+	display: block;
+	color: #EEE;
+	margin: 0 0 0 -2px;
+	padding: 3px 0;
+	position: fixed;
+	width: 100%;
+	
+
+}
+
+#minichat .open{
+	display: block !important;
+}
+#minichat #lista_admin{
+	
+}
+#minichat #lista_admin h2{
+	font-size: 12px;
+	text-align: center;
+}
+
+#minichat .descripcion p{
+	font-size: 10px;
+	text-align: center;
+	line-height: 11px;
+	font-style: italic;
+}
+
+#minichat .lista{
+	background: #FFFFFF;
+	height: 160px;
+	overflow: auto;
+}
+#minichat .mensajes{
+	background: #FFFFFF;
+	height: 160px;
+}
+#minichat #lista_admin .ventana{
+	background: url(../images/backgrounds/bodyBg.png) repeat-y;
+	position: fixed;
+	right: 50px;
+	bottom: 30px;
+	width: 200px;
+	height: 230px;
+	border-radius: 5px 5px 0 0; 
+	border: 1px solid #293138;
+}
+
+#minichat .lista ul li{
+	border-bottom: solid lightgray 1px;
+	height: 35px;
+	padding-left: 10px;
+}
+
+#minichat .lista ul li a{
+	display: block;
+	height: 100%;
+	padding-top: 10px;
+}
+#minichat .lista ul li:hover{
+	background: lightgray;
+}
