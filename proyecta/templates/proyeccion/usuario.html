@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if usuario.is_staff %}
+	es staff
+{% else %}
+	No tiene permisos para ingresar a ésta sección
+{% endif %}
+
+{% endblock content %}

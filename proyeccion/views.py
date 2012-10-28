@@ -150,9 +150,9 @@ def usuarios(request):
     return render_to_response('proyeccion/usuarios.html',c)
 
 @login_required
-def usuario(request):
+def usuario(request, id_usuario):
     usuario     =   request.user
-    usuarios    =   User.objects.all()
+    usuarios    =   User.objects.get( id=id_usuario )
     
     c = RequestContext(request, {
         'usuario': usuario,
