@@ -3,6 +3,6 @@
 *.pyo
 graficos/*.*
 henux/*
-media/avatar/*./
+media/avatar/*.*
 media/logos/*.*
 
