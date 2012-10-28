@@ -243,7 +243,8 @@ ul.userDropdown li a:hover { border-right: none; border-left: none; }
 
 /* === Left navigation classes === */
 
-.logo { border-top: 1px solid #3b4751; margin: 3px 1px 0 1px; padding: 20px 39px; }
+.logo { border-top: 1px solid #3b4751; margin: 33px 1px 0 1px; }
+.logo img{ width: 210px; height: auto; }
 
 .nav { border-top: 1px solid #1c252b; }
 .nav li { position: relative; }

@@ -15,8 +15,8 @@ from rpy2.robjects.packages import importr
 from proyeccion.models import Venta
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
-from proyeccion.models import UserProfile
 from proyeccion.models import Empresa
+from proyeccion.models import User
 
 import random
 import time
@@ -26,8 +26,9 @@ def index(request):
     """
     Index - Portada de la aplicacion
     """
+    usuario = request.user
+    perfil = ""
     empresa = Empresa.objects.all()
-    
     ventas = Venta.objects.all()
     productos = Producto.objects.all()
     sucursales = Sucursal.objects.all()
@@ -113,7 +114,9 @@ def index(request):
         'sucursales': sucursales,
         'grafico': span,
         't_ventas': t_ventas,
-        'empresa': empresa
+        'empresa': empresa,
+        'usuario': request.user,
+        'perfil': perfil
 #        'datos_ventas': datos_ventas,
 #        'datos_productos': datos_productos,
 #        'venta_uni': venta_uni,
@@ -135,3 +138,25 @@ def convert_ts(time_series, start_year=2000, start_pd=1, freq=12):
                           start=robjects.r.c(start_year,start_pd), frequency=freq)
      return r_ts
  
+@login_required
+def usuarios(request):
+    usuario     =   request.user
+    usuarios    =   User.objects.all()
+    
+    c = RequestContext(request, {
+        'usuario': usuario,
+        'usuarios': usuarios
+    })
+    return render_to_response('proyeccion/usuarios.html',c)
+
+@login_required
+def usuario(request):
+    usuario     =   request.user
+    usuarios    =   User.objects.all()
+    
+    c = RequestContext(request, {
+        'usuario': usuario,
+        'usuarios': usuarios
+    })
+    return render_to_response('proyeccion/usuario.html',c)
+          

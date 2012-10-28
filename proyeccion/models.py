@@ -3,13 +3,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-#Perfil de usurio
-class UserProfile(models.Model):
-    user        =   models.OneToOneField(User)
-    empresa     =   models.ForeignKey("Empresa")
-    avatar      =   models.ImageField(upload_to='avatar')
-    cargo       =   models.CharField( max_length = 100 )
-
+# Perfil de usuario
+#class Perfil(models.Model):
+#    user        =   models.ForeignKey(User, unique=True)
+#    direccion   =   models.CharField(max_length=250, blank=True)
+#    telefono    =   models.PositiveIntegerField(null=True, blank=True)
+#    avatar      =   models.ImageField( upload_to = "avatar" )
+#    empresa     =   models.ForeignKey('Empresa')
+    
+    #def __str__(self):
+     #   return self.direccion
+    
 #Clase producto
 class Producto(models.Model):
     nombre      =   models.CharField( max_length = 100 )
@@ -45,6 +49,9 @@ class Sucursal(models.Model):
     
 #Clase Empresa
 class Empresa(models.Model):
+    """
+    Clase encargada a guardar las empresas registradas en el sistema
+    """
     nombre      =   models.CharField( max_length = 100 )
     rut         =   models.CharField( max_length = 20 )
     logo        =   models.ImageField( upload_to='logos' )
@@ -63,7 +70,9 @@ class Tiempo(models.Model):
     mes         =   models.IntegerField()
     trimestre   =   models.CharField( max_length = 20 )
     ano         =   models.IntegerField()
-    
-    
 
 
+User.add_to_class('direccion', models.CharField( max_length = 100,null=True,blank=True))
+User.add_to_class('telefono', models.CharField( max_length = 100, null=True,blank=True))
+User.add_to_class('avatar', models.ImageField( upload_to = "avatar",null=True,blank=True))
+User.add_to_class('empresa', models.ForeignKey(Empresa,null=True,blank=True))

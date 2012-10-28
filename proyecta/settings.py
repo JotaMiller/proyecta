@@ -114,6 +114,9 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+#Uso de un perfil personalizado
+#AUTH_PROFILE_MODULE = 'proyeccion.Perfil'
+
 ROOT_URLCONF = 'proyecta.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
