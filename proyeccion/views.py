@@ -1,12 +1,11 @@
 # Se realizan los calculos y se envian los datos a los templates(vistas)
 from django.template import Context, loader, RequestContext
-from django.shortcuts import render_to_response
-#from django.template import  
+from django.shortcuts import render_to_response 
 from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
 from forms import ConsultaForm
-import time
+
 from datetime import datetime
 
 from rpy2 import robjects
@@ -16,15 +15,22 @@ from rpy2.robjects.packages import importr
 from proyeccion.models import Venta
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
+from proyeccion.models import UserProfile
+from proyeccion.models import Empresa
 
 import random
+import time
 
 @login_required
 def index(request):
     """
     Index - Portada de la aplicacion
     """
-   
+    empresa = Empresa.objects.all()
+    
+    ventas = Venta.objects.all()
+    productos = Producto.objects.all()
+    sucursales = Sucursal.objects.all()
     
     grdevices = importr('grDevices')
     forecast = importr('forecast')
@@ -39,7 +45,7 @@ def index(request):
     
     if request.method == 'POST':
         id_producto =   request.POST['producto']
-        t_ventas = total_ventas(id_producto)
+        #t_ventas = total_ventas(id_producto)
         
         ventas = (72,79,77,59,61,80,72,53,60,67,60,63,
               67,68,67,72,54,74,59,69,80,56,77,78,
@@ -97,9 +103,6 @@ def index(request):
         (3, 'otro',),
     )
     
-    ventas = Venta.objects.all()
-    productos = Producto.objects.all()
-    sucursales = Sucursal.objects.all()
     
     t = loader.get_template('proyeccion/index.html')
     c = RequestContext(request, {
@@ -109,7 +112,8 @@ def index(request):
         'productos': productos,
         'sucursales': sucursales,
         'grafico': span,
-        't_ventas': t_ventas
+        't_ventas': t_ventas,
+        'empresa': empresa
 #        'datos_ventas': datos_ventas,
 #        'datos_productos': datos_productos,
 #        'venta_uni': venta_uni,

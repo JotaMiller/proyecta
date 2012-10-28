@@ -1,6 +1,8 @@
 *~
 *.pyc
 *.pyo
-graficos/*
+graficos/*.*
 henux/*
+media/avatar/*./
+media/logos/*.*
 

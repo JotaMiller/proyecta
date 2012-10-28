@@ -9,6 +9,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^grappelli/', include('grappelli.urls')),
     # Examples:
     # url(r'^$', 'proyecta.views.home', name='home'),
     # url(r'^proyecta/', include('proyecta.foo.urls')),
@@ -23,9 +24,10 @@ urlpatterns = patterns('',
     url(r'^proyeccion/$', 'proyeccion.views.index'),
 #    url(r'^proyeccion/contact/$', 'proyeccion.views.contact'),
 #    url(r'^proyeccion/(?P<proyeccion_id>\d+)/results/$', 'proyeccion.views.results'),
-    url(r'^login/$',  login),
-    url(r'^logout/$', logout),#(request[, next_page, template_name, redirect_field_name])
+    url(r'^accounts/login/$',  login),
+    url(r'^logout/$', logout,{'next_page': '/'}),#(request[, next_page, template_name, redirect_field_name])
     url(r'^assets/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(PROJECT_PATH, 'assets') }),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(PROJECT_PATH, 'static') }),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': os.path.join(PROJECT_PATH, 'media') }),
 
 )

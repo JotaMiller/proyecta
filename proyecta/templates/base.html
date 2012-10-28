@@ -114,7 +114,7 @@
 			<div class="topNav">
 				<div class="wrapper">
 					<div class="welcome">
-						<a href="#" title="">{% gravatar_img_for_user 'henux' 20 %}</a><span>Bienvenido {{ user.username}} <i>({{ user.email }})</i>! </span>
+						<a href="#" title="">{% gravatar_img_for_email user.email 20 %}</a><span>Bienvenido {{ user.username}} <i>({{ user.email }})</i>! </span>
 					</div>
 					<div class="userNav">
 						<ul>
