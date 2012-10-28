@@ -149,7 +149,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'proyeccion',
     'minichat',
-    'gravatar',
 )
 
 # A sample logging configuration. The only tangible logging
