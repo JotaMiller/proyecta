@@ -1,7 +1,20 @@
 {% extends "base.html" %}
+
+{% block area_titulo %}
+	<div class="titleArea">
+		<div class="wrapper">
+			<div class="pageTitle">
+				<h5>Lista de Usuarios</h5>
+				<span>sección en la cual puede ver la lista de usuarios actualmente registrados en el sitio</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+{% endblock %}
+
 {% block content %}
 
-{% if usuario.is_staff %}
+{% if user.is_staff %}
 		<div class="widget">
             <div class="title"><img src="/assets/images/icons/dark/frames.png" alt="" class="titleIcon" />
             <h6>Lista de Usuarios registrados</h6></div>
@@ -24,7 +37,7 @@
                         <td>{{ usuario.username }}</td>
                         <td>{{ usuario.email }}</td>
                         <td>{{ usuario.is_active }}</td>
-                        <td><a href="#"><img src="/assets/images/icons/dark/pencil.png" /></a></td>
+                        <td><a href="/usuario/{{ usuario.id }}"><img src="/assets/images/icons/dark/pencil.png" /></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

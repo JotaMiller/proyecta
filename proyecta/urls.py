@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     # Enlaces para la aplicacion proyecta
     url(r'^proyeccion/$', 'proyeccion.views.index'),
     url(r'^usuarios/$', 'proyeccion.views.usuarios'),
+    url(r'^usuario/(?P<id_usuario>\d+)/$', 'proyeccion.views.usuario'),
 #    url(r'^proyeccion/contact/$', 'proyeccion.views.contact'),
 #    url(r'^proyeccion/(?P<proyeccion_id>\d+)/results/$', 'proyeccion.views.results'),
     url(r'^accounts/login/$',  login),

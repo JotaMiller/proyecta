@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
 
@@ -15,16 +16,14 @@ for producto in productos:
 for sucursal in sucursales:
     sucursal_obj = (sucursal.id, sucursal.nombre)
     LISTA_SUCURSALES.append(sucursal_obj)
-
-
-TIPOS_GRAFICOS = (
-    ('torta', 'Torta'),
-    ('barra', 'Barra'),
-    ('otro', 'otro'),
-)
-class ConsultaForm(forms.Form):
-    sucursal        =   forms.ChoiceField(choices=LISTA_SUCURSALES)
-    producto        =   forms.ChoiceField(choices=LISTA_PRODUCTOS)
-    fecha_inicio    =   forms.DateField() 
-    fecha_termino   =   forms.DateField()
-    tipo_grafico    =   forms.MultipleChoiceField(choices=TIPOS_GRAFICOS)
+    
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 
+                  'last_name', 
+                  'email',
+                  'avatar',
+                  'telefono',
+                  'empresa'
+                  )

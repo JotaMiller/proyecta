@@ -2,9 +2,10 @@
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response 
 from django.http import HttpResponse
+from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
-from forms import ConsultaForm
+from forms import UserForm
 
 from datetime import datetime
 
@@ -26,9 +27,11 @@ def index(request):
     """
     Index - Portada de la aplicacion
     """
-    usuario = request.user
-    perfil = ""
-    empresa = Empresa.objects.all()
+    user = request.user
+    if user.empresa:
+        empresa = Empresa.objects.get(id=user.empresa.id)
+    else:
+        empresa = ({"logo":"logos/sin_empresa.png"})
     ventas = Venta.objects.all()
     productos = Producto.objects.all()
     sucursales = Sucursal.objects.all()
@@ -37,8 +40,7 @@ def index(request):
     forecast = importr('forecast')
     r = robjects.r
     span = time.time()
-    form = ConsultaForm(initial={'fecha_inicio': '14-11-1986',
-                                 'fecha_termino': '20-02-2012'})
+    #form = ConsultaForm(initial={'fecha_inicio': '14-11-1986','fecha_termino': '20-02-2012'})
     
     query = request.POST.get('id_sucursal', '')
     
@@ -107,7 +109,6 @@ def index(request):
     
     t = loader.get_template('proyeccion/index.html')
     c = RequestContext(request, {
-        'form': form,
         'reportes': REPORTES,
         'ventas': ventas,
         'productos': productos,
@@ -115,8 +116,7 @@ def index(request):
         'grafico': span,
         't_ventas': t_ventas,
         'empresa': empresa,
-        'usuario': request.user,
-        'perfil': perfil
+        'usuario': request.user
 #        'datos_ventas': datos_ventas,
 #        'datos_productos': datos_productos,
 #        'venta_uni': venta_uni,
@@ -140,23 +140,51 @@ def convert_ts(time_series, start_year=2000, start_pd=1, freq=12):
  
 @login_required
 def usuarios(request):
-    usuario     =   request.user
+    user        =   request.user
     usuarios    =   User.objects.all()
+    empresa     =   Empresa.objects.get( id = user.empresa.id )
     
     c = RequestContext(request, {
-        'usuario': usuario,
-        'usuarios': usuarios
+        'user': user,
+        'usuarios': usuarios,
+        'empresa': empresa
     })
     return render_to_response('proyeccion/usuarios.html',c)
 
 @login_required
 def usuario(request, id_usuario):
-    usuario     =   request.user
-    usuarios    =   User.objects.get( id=id_usuario )
+    user    =   request.user
+    usuario =   User.objects.get( id=id_usuario )
+    if user.empresa:
+        empresa = Empresa.objects.get(id=user.empresa.id)
+    else:
+        empresa = ({"logo":"logos/sin_empresa.png"})
+    
+    if request.method == 'POST':
+        # formulario enviado
+        form = UserForm(request.POST,request.FILES, instance=usuario)
+
+        if form.is_valid():
+            # formulario validado correctamente
+            form.save()
+            c = RequestContext(request, {
+                'user': user,
+                'usuario': usuario,
+                'form': form
+            })
+            messages.success(request, 'El usuario ha sido actualizado correctamente.')
+            return render_to_response('proyeccion/usuario.html',c)
+        else:
+            messages.error(request, 'Error al intentar editar el usuario, Favor contacte con un administrador.')
+    else:
+        # formulario inicial
+        form = UserForm(instance=usuario)
     
     c = RequestContext(request, {
+        'user': user,
         'usuario': usuario,
-        'usuarios': usuarios
+        'form': form,
+        'empresa': empresa
     })
     return render_to_response('proyeccion/usuario.html',c)
           

@@ -103,6 +103,19 @@
 						</li>
 					</ul>
 				</li>
+				{% if user.is_staff %}
+				<li class="forms">
+					<a href="#" title="" class="exp"><span>Administracion</span><strong>2</strong></a>
+					<ul class="sub">
+						<li>
+							<a href="/usuarios" title="">Usuarios</a>
+						</li>
+						<li>
+							<a href="/#" title="">Empresas</a>
+						</li>
+					</ul>
+				</li>
+				{% endif %}
 			</ul>
 		</div>
 
@@ -113,10 +126,13 @@
 			<div class="topNav">
 				<div class="wrapper">
 					<div class="welcome">
-						<a href="#" title=""><img src="/media/{{ perfil.avatar }}" width="25px" height="25px" /></a><span>Bienvenido {{ user.username}} <i>({{ user.email }})</i>! </span>
+						<a href="/usuario/{{ usuario.id }}" title=""><img src="/media/{{ user.avatar }}" width="25px" height="25px" /></a><span>Bienvenido {{ user.username}} <i>({{ user.email }})</i>! </span>
 					</div>
 					<div class="userNav">
 						<ul>
+							<li>
+								<a href="/usuario/{{ usuario.id }}" title=""><img src="/assets/images/icons/topnav/profile.png" alt="" /><span>Ver Perfil</span></a>
+							</li>
 							<li>
 								<a href="/logout" title=""><img src="/assets/images/icons/topnav/logout.png" alt="" /><span>Cerrar sesion</span></a>
 							</li>
@@ -127,16 +143,9 @@
 			</div>
 
 			<!-- Title area -->
-			<div class="titleArea">
-				<div class="wrapper">
-					<div class="pageTitle">
-						<h5>Proyecciones</h5>
-						<span>Ingrese los parametros para realizar la proyección</span>
-					</div>
-					
-					<div class="clear"></div>
-				</div>
-			</div>
+			{% block area_titulo %}
+			
+			{% endblock %}
 
 			<div class="line"> </div>
 

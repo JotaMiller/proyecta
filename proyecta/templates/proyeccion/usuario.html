@@ -1,10 +1,83 @@
 {% extends "base.html" %}
-{% block content %}
 
-{% if usuario.is_staff %}
-	es staff
-{% else %}
-	No tiene permisos para ingresar a ésta sección
-{% endif %}
+{% block area_titulo %}
+	<div class="titleArea">
+		<div class="wrapper">
+			<div class="pageTitle">
+				<div class="titleIcon"><img src="/media/{{usuario.avatar}}" width="100px" /></div>
+			</div>
+			<div class="pageTitle">
+				<h5>{{ usuario.first_name }}</h5>
+				<span>Perfil del usuario {{usuario.username}}.</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+{% endblock %}
+
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="nNote nInformation hideit">
+	            <p>{{ message }}</p>
+	        </div>
+        {% endfor %}
+	{% endif %}
+	 
+	<form action="." method="post" class="form" enctype="multipart/form-data">
+		<fieldset>
+			<div class="widget">
+				<div class="title"><img src="/assets/images/icons/dark/list.png" alt="" class="titleIcon" /><h6>Datos de usuario ({{ usuario.username }})</h6>
+				</div>
+		        {{ form.id }}
+		        <div class="formRow">
+					<label>Nombre:</label>
+					<div class="formRight">
+						{{ form.first_name }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>Apellidos:</label>
+					<div class="formRight">
+						{{ form.last_name }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>E-mail:</label>
+					<div class="formRight">
+						{{ form.email }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>Avatar:</label>
+					<div class="formRight">
+						{{ form.avatar }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				{# if user.is_staff #}
+				<div class="formRow">
+					<label>Empresa:</label>
+					<div class="formRight">
+						{{ form.empresa }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				{# endif #}
+				<div class="formRow">
+					<label>Telefono:</label>
+					<div class="formRight">
+						{{ form.telefono }}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+	    	<input type="submit" value="Guardar cambios">
+	    </fieldset>
+	</form>
 
 {% endblock content %}
