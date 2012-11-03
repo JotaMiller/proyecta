@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.contrib import messages
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from forms import UserForm
 
@@ -21,25 +22,47 @@ from proyeccion.models import User
 
 import random
 import time
-
+import os
 @login_required
 def index(request):
     """
     Index - Portada de la aplicacion
     """
+    #PROJECT_PATH = os.path.relpath(os.path.dirname(__file__),'../../')
+
     user = request.user
     if user.empresa:
         empresa = Empresa.objects.get(id=user.empresa.id)
     else:
         empresa = ({"logo":"logos/sin_empresa.png"})
-    ventas = Venta.objects.all()
-    productos = Producto.objects.all()
-    sucursales = Sucursal.objects.all()
+    
+    # se listan solo las sucursales asociadas a la empresa del usuario
+    sucursales = Sucursal.objects.filter( empresa_id = user.empresa.id )
+    
+    ids_sucursales = []
+    for sucursal in sucursales:
+        ids_sucursales.append(sucursal.id)
+    
+    # se listan solo las ventas realizadas en las sucursal
+    # con sus productos relacionados
+    ventas = Venta.objects.filter( sucursal__in = ids_sucursales )
+    
+    id_venta = []
+    for venta in ventas:
+        id_venta.append(venta.id)
+    
+    # productos relacionados con las ventas de cada sucursal
+    productos = Producto.objects.filter( venta_id__in = id_venta )
+    
+    
     
     grdevices = importr('grDevices')
     forecast = importr('forecast')
     r = robjects.r
-    span = time.time()
+    
+    grafico = False
+    
+    
     #form = ConsultaForm(initial={'fecha_inicio': '14-11-1986','fecha_termino': '20-02-2012'})
     
     query = request.POST.get('id_sucursal', '')
@@ -47,9 +70,20 @@ def index(request):
     t_ventas= 1,
     
     if request.method == 'POST':
-        id_producto =   request.POST['producto']
+         #Se obtienen los datos para realizar los calculos 
+        id_producto     =   request.POST['producto']
+        id_sucursal     =   request.POST['sucursal']
+        fecha_inicio    =   request.POST['fecha_inicio']
+        fecha_termino   =   request.POST['fecha_termino']
         #t_ventas = total_ventas(id_producto)
         
+        # se envia el nombre a la plantilla para ser mostrada
+        # se utiliza el nombre de usuario y la fecha actual en formato unix
+        grafico = user.username+'_' + str(time.time()) + '.png'
+        
+        # Se genera la ruta en la cual se guardara el grafico
+        span = settings.PROJECT_PATH + '/media/graficos/' + grafico
+    
         ventas = (72,79,77,59,61,80,72,53,60,67,60,63,
               67,68,67,72,54,74,59,69,80,56,77,78,
               54,59,51,62,76,60,68,62,67,78,67,58,
@@ -65,7 +99,7 @@ def index(request):
             m2 <- HoltWinters(yfit)
             p2 <- predict(m2, n.ahead = 36)
             
-            path <- paste('/home/henux/Trabajos/proyecta/assets/graficos/',span,'.png')
+            path <- paste(span)
             
             png(path, width=600, height=600)
             
@@ -81,12 +115,10 @@ def index(request):
         ''')
         
         calcular_ventas = r['calcular']
-        res = calcular_ventas(salida,span)
+        res             = calcular_ventas(salida,span)
 #        dato = request.POST['sucursal']
-#        
-#        id_producto = request.POST['producto']
-#        fecha_inicio = request.POST['fecha_inicio']
-#        fecha_termino = request.POST['fecha_termino']
+#       
+       
 #        
 #        datos_ventas = Venta.objects.filter(productos= id_producto, fecha__range=('1990-01-01', '2020-01-01'))
 #        
@@ -113,10 +145,12 @@ def index(request):
         'ventas': ventas,
         'productos': productos,
         'sucursales': sucursales,
-        'grafico': span,
+        'grafico': grafico,
         't_ventas': t_ventas,
         'empresa': empresa,
-        'usuario': request.user
+        'usuario': request.user,
+        'id_ventas': id_venta,
+        'ids_sucursales': ids_sucursales
 #        'datos_ventas': datos_ventas,
 #        'datos_productos': datos_productos,
 #        'venta_uni': venta_uni,

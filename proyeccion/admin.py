@@ -9,27 +9,27 @@ from django.contrib import admin
 #    model = Sucursal
 #    extra = 2
     
-#class TipoProductoAdmin(admin.ModelAdmin):
-#    list_display = ('nombre', 'descripcion')
+class ProductoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'tipo', 'precio','stock', 'fabricante')
     
-#class ProductoAdmin(admin.ModelAdmin):
-#    list_display = ('nombre', 'tipo', 'precio', 'stock')
+class EmpresaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'rut', 'telefono')
     
-#class EmpresaAdmin(admin.ModelAdmin):
+class SucursalAdmin(admin.ModelAdmin):
 #    inlines = [SucursalInLine]
-#    list_display = ('nombre', 'rut')
+    list_display = ('nombre', 'direccion', 'zona', 'localidad', 'provincia')
     
-#class PedidoAdmin(admin.ModelAdmin):
-#    list_display = ('id', 'product_manager', 'fecha','cantidad')
+class VentaAdmin(admin.ModelAdmin):
+    list_display = ( 'sucursal', 'cantidad_vendida','total_venta')
 
-#class ProveedorAdmin(admin.ModelAdmin):
-#    list_display = ('id','tipo', 'nombre', 'numero', 'direccion')
+class TiempoAdmin(admin.ModelAdmin):
+    list_display = ('fecha','mes', 'ano')
     
 #class VentaAdmin(admin.ModelAdmin):
 #    list_display = ('sucursal', 'fecha')
 
-admin.site.register(Empresa)
-admin.site.register(Producto)
-admin.site.register(Sucursal)
-admin.site.register(Venta)
-admin.site.register(Tiempo)
+admin.site.register(Empresa, EmpresaAdmin)
+admin.site.register(Producto, ProductoAdmin)
+admin.site.register(Sucursal, SucursalAdmin)
+admin.site.register(Venta, VentaAdmin)
+admin.site.register(Tiempo, TiempoAdmin)

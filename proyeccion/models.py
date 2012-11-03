@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
         
 #Clase producto
 class Producto(models.Model):
+    """
+    productos que fueron vendidos y con los cuales se realizaran los
+    calculos estadisticos
+    """
+    venta       =   models.ForeignKey("Venta")
     nombre      =   models.CharField( max_length = 100 )
     tipo        =   models.CharField( max_length = 100 )
     precio      =   models.IntegerField()
@@ -17,14 +22,23 @@ class Producto(models.Model):
 
 #Clase Ventas
 class Venta(models.Model):
-    producto       =   models.ForeignKey("Producto")
-    tiempo              =   models.ForeignKey("Tiempo")
+    """
+    Ventas realizadas
+    """
+    #producto            =   models.ForeignKey("Producto")
+    #tiempo              =   models.ForeignKey("Tiempo")
     sucursal            =   models.ForeignKey("Sucursal")
     cantidad_vendida    =   models.IntegerField()
     total_venta         =   models.IntegerField()
+    
+    def __str__(self):
+        return str(self.sucursal)
 
 #Clase Sucursal
 class Sucursal(models.Model):
+    """
+    Lista de sucursales asociadas a una empresa
+    """
     empresa     =   models.ForeignKey("Empresa")
     nombre      =   models.CharField( max_length = 100 )
     direccion   =   models.CharField( max_length = 200 )
@@ -51,7 +65,8 @@ class Empresa(models.Model):
 
 #Clase tiempo
 class Tiempo(models.Model):
-
+    
+    venta       =   models.ForeignKey("Venta")
     fecha       =   models.DateField()
     dia_semana  =   models.CharField( max_length = 20 )
     dia_mes     =   models.IntegerField()
@@ -59,6 +74,9 @@ class Tiempo(models.Model):
     mes         =   models.IntegerField()
     trimestre   =   models.CharField( max_length = 20 )
     ano         =   models.IntegerField()
+    
+    def __str__(self):
+        return str(self.fecha)
 
 
 User.add_to_class('direccion', models.CharField( max_length = 100,null=True,blank=True))
