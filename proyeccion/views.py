@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 # Se realizan los calculos y se envian los datos a los templates(vistas)
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response 
@@ -18,11 +19,13 @@ from proyeccion.models import Venta
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
 from proyeccion.models import Empresa
+from proyeccion.models import Tiempo
 from proyeccion.models import User
 
 import random
 import time
 import os
+
 @login_required
 def index(request):
     """
@@ -33,11 +36,11 @@ def index(request):
     user = request.user
     if user.empresa:
         empresa = Empresa.objects.get(id=user.empresa.id)
+        sucursales = Sucursal.objects.filter( empresa_id = empresa.id )
     else:
-        empresa = ({"logo":"logos/sin_empresa.png"})
-    
-    # se listan solo las sucursales asociadas a la empresa del usuario
-    sucursales = Sucursal.objects.filter( empresa_id = user.empresa.id )
+        empresa = {"logo":"logos/sin_empresa.png", "id": "0"}
+        sucursales = Sucursal.objects.filter( empresa_id = empresa['id'] )
+
     
     ids_sucursales = []
     for sucursal in sucursales:
@@ -54,17 +57,14 @@ def index(request):
     # productos relacionados con las ventas de cada sucursal
     productos = Producto.objects.filter( venta_id__in = id_venta )
     
-    
-    
+
     grdevices = importr('grDevices')
     forecast = importr('forecast')
     r = robjects.r
     
     grafico = False
-    
-    
-    #form = ConsultaForm(initial={'fecha_inicio': '14-11-1986','fecha_termino': '20-02-2012'})
-    
+    ventas2 = False
+      
     query = request.POST.get('id_sucursal', '')
     
     t_ventas= 1,
@@ -84,6 +84,8 @@ def index(request):
         # Se genera la ruta en la cual se guardara el grafico
         span = settings.PROJECT_PATH + '/media/graficos/' + grafico
     
+        ventas2 = total_ventas(1, fecha_inicio, fecha_termino)
+        
         ventas = (72,79,77,59,61,80,72,53,60,67,60,63,
               67,68,67,72,54,74,59,69,80,56,77,78,
               54,59,51,62,76,60,68,62,67,78,67,58,
@@ -143,6 +145,7 @@ def index(request):
     c = RequestContext(request, {
         'reportes': REPORTES,
         'ventas': ventas,
+        'ventas2': ventas2,
         'productos': productos,
         'sucursales': sucursales,
         'grafico': grafico,
@@ -158,10 +161,35 @@ def index(request):
     })
     return render_to_response('proyeccion/index.html',c)
     
-def total_ventas(producto):
-    producto = Producto.objects.get(2)
-    producto.venta.all()
-    return producto
+def total_ventas(producto, fecha_inicio, fecha_termino):
+    """
+    Funcion que devuelve las ventas realizadas de un determinado
+    producto en un periodo de tiempo, solo devuelve el monto de las ventas
+    
+    las ventas son devueltas en periodos de meses
+    """
+    fecha_inicio = datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
+    fecha_termino = datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
+    fecha_inicio = datetime.strptime(fecha_inicio,"%Y-%m-%d") 
+    fecha_termino = datetime.strptime(fecha_termino,"%Y-%m-%d") 
+    
+    
+    tiempo = Tiempo.objects.filter( fecha__range = (fecha_inicio, fecha_termino)).order_by('fecha')
+    ventas = []
+    
+    cont_ano    =   fecha_inicio.year
+
+    while ( cont_ano <= fecha_termino.year ):
+        cont_mes    =   1
+        while ( cont_mes <= 31 ):
+        #TODO: falta iteracion para recorrer meses
+            cont_mes = cont_mes + 1
+        cont_ano = cont_ano + 1
+        
+    for venta in tiempo:
+        ventas.append(venta.fecha)
+        
+    return ventas
 
 def convert_ts(time_series, start_year=2000, start_pd=1, freq=12):
      """
@@ -192,7 +220,7 @@ def usuario(request, id_usuario):
     if user.empresa:
         empresa = Empresa.objects.get(id=user.empresa.id)
     else:
-        empresa = ({"logo":"logos/sin_empresa.png"})
+        empresa = {"logo":"logos/sin_empresa.png"}
     
     if request.method == 'POST':
         # formulario enviado

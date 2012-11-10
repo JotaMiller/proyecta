@@ -31,6 +31,8 @@ Rpy2 - Conector para python con R-project
     R-project
     Rpy2
     python-django-extensions
+    python-psycopg2
+    grappelli
 
 4) Actualiza la base de datos con los modelos de la aplicacion:
     python manage.py syncdb

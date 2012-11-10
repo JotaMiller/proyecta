@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block area_titulo %}
 	<div class="titleArea">
 		<div class="wrapper">
@@ -67,5 +68,12 @@
 {% if grafico %}
 	<img src="/media/graficos/{{ grafico }}" />
 {% endif %}
+
+{% if ventas2 %}
+{% for venta in ventas2 %}
+	<div>{{ venta }}</div>
+{% endfor %}
+{% endif %}
+
 {% endblock content %}
 
