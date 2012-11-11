@@ -1,9 +1,7 @@
-*~
-*.pyc
-*.pyo
-graficos/*.*
-henux/*
-media/avatar/*.*
-media/logos/*.*
-media/graficos/*.*
-
+*/*~
+*/*.pyc
+*/*.pyo
+proyecta/media/avatar/*.*
+proyecta/media/logos/*.*
+proyecta/media/graficos/*.*
+*.png

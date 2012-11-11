@@ -71,7 +71,7 @@
 
 {% if ventas2 %}
 {% for venta in ventas2 %}
-	<div>{{ venta }}</div>
+	<div>{{ venta.ano }}-{{ venta.mes }}: {{ venta.monto }}</div>
 {% endfor %}
 {% endif %}
 
