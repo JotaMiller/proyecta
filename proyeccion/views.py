@@ -1,5 +1,13 @@
 # -*- encoding: utf-8 -*-
 # Se realizan los calculos y se envian los datos a los templates(vistas)
+from reportlab.lib.enums import TA_JUSTIFY
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.pdfgen import canvas
+ 
+
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response 
 from django.http import HttpResponse
@@ -70,76 +78,70 @@ def index(request):
     t_ventas= 1,
     
     if request.method == 'POST':
-         #Se obtienen los datos para realizar los calculos 
+        #Se obtienen los datos para realizar los calculos 
         id_producto     =   request.POST['producto']
         id_sucursal     =   request.POST['sucursal']
         fecha_inicio    =   request.POST['fecha_inicio']
         fecha_termino   =   request.POST['fecha_termino']
-        #t_ventas = total_ventas(id_producto)
+        
+        #Fecha utilizada para ser transformada y sepatara por año, mes y dia
+        fecha           =   datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        fecha           =   datetime.strptime(fecha,"%Y-%m-%d")
+        
+        #Fecha utilizada para ser transformada y sepatara por año, mes y dia
+        f_termino       =   datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        f_termino       =   datetime.strptime(f_termino,"%Y-%m-%d")
         
         # se envia el nombre a la plantilla para ser mostrada
         # se utiliza el nombre de usuario y la fecha actual en formato unix
         grafico = user.username+'_' + str(time.time()) + '.png'
         
         # Se genera la ruta en la cual se guardara el grafico
-        span = settings.PROJECT_PATH + '/media/graficos/' + grafico
+        path_grafico = settings.PROJECT_PATH + '/media/graficos/' + grafico
     
         detalle_ventas = total_ventas(id_producto, fecha_inicio, fecha_termino)
         
         ventas = detalle_ventas[0]
 
-        salida = convert_ts(ventas, 2008, 1,12)
+        ventas_ts = convert_ts(ventas, fecha.year, fecha.month,12)
         r('''
-        calcular <- function(ventas,span, verbose=FALSE){
-            gasdem <- ts(data=ventas,start=2006, frequency=12)
-            yfit <- window(gasdem, end=c(2010,12))
+        calcular <- function(ventas_ts,path_grafico,inicio_periodo,fecha_inicio, fecha_termino, verbose=FALSE){
+            
+            #gasdem <- ts(data=ventas_ts,start=2010, frequency=12)
+            yfit <- window(ventas_ts, start=fecha_inicio, end=c(fecha_termino,12))
         
             m2 <- HoltWinters(yfit)
-            p2 <- predict(m2, n.ahead = 36)
             
-            path <- paste(span)
+            # Prediccion de las ventas, Se establece a 24 meses
+            p2 <- predict(m2, n.ahead = 24)
+            
+            path <- paste(path_grafico)
             
             png(path, width=600, height=600)
             
-            plot(gasdem, col="black", ylim = range(c(gasdem, p2)), lwd =1, pch = 20, type ="o", xlab="Periodo", ylab="Cantidad de productos", main="Proyeccion de ventas")
+            plot(ventas_ts, col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 15, type ="o", xlab="Periodo", ylab="Cantidad de productos ( Millones )", main="Proyección de ventas")
+            
             lines(fitted(m2)[,1], col = "blue", lwd =2)
             lines(p2, col="red", lwd=2)
+            
             grid()
             
-            abline(v=(2010+11/12), col="red")
+            # Linea divisora
+            abline(v=(2012+11/12), col="red")
             dev.off()
         }
         
         ''')
-        
+        # Funcion directamente de R quien se encarga de realizar los calculos
         calcular_ventas = r['calcular']
-        res             = calcular_ventas(salida,span)
-#        dato = request.POST['sucursal']
-#       
-       
-#        
-#        datos_ventas = Venta.objects.filter(productos= id_producto, fecha__range=('1990-01-01', '2020-01-01'))
-#        
-#        venta_uni = Venta.objects.dates('fecha', 'year')
-##        for venta in datos_ventas:
-##            venta_uni += (Venta.objects.dates('fecha','day'), )
-#        
-##        for item in datos_ventas:
-##            item_producto = item.productos.all()
-##            datos_productos.append(item_producto.all().values('precio', 'stock'))
-#            #productos.append(item.productos.all())  
-    
+        
+        # Se ejecuta la funcion de calculos de ventas
+        # el grafico se guarda en formato png en el directorio graficos
+        respuesta       = calcular_ventas(ventas_ts,path_grafico, fecha.month, fecha.year, f_termino.year)
 
-    REPORTES = (
-        (1, 'Torta',),
-        (2, 'Barra',),
-        (3, 'otro',),
-    )
-    
     
     t = loader.get_template('proyeccion/index.html')
     c = RequestContext(request, {
-        'reportes': REPORTES,
         'ventas': ventas,
         'ventas2': ventas2,
         'productos': productos,
@@ -150,10 +152,7 @@ def index(request):
         'usuario': request.user,
         'id_ventas': id_venta,
         'ids_sucursales': ids_sucursales
-#        'datos_ventas': datos_ventas,
-#        'datos_productos': datos_productos,
-#        'venta_uni': venta_uni,
-#        'salida': salida,
+
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -190,10 +189,12 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
             for fecha_venta in fecha_ventas:
                 productos = Producto.objects.filter( venta = fecha_venta.venta )
                 
-                for producto in productos:
-                    if producto.id == id_producto:
-                        #ventas.append([producto.id, id_producto])
-                        venta_total_mes = venta_total_mes + fecha_venta.venta.total_venta
+                #TODO: se filtra por productos ventidos en determinado tiempo
+                # Borrar comentario...
+                
+                #for producto in productos:
+                #    if producto.id == id_producto:
+                venta_total_mes = venta_total_mes + (fecha_venta.venta.total_venta / 1000000)
                 
             ventas_detalle.append({'monto': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano})
             ventas_ts.append(venta_total_mes)
@@ -262,3 +263,24 @@ def usuario(request, id_usuario):
     })
     return render_to_response('proyeccion/usuario.html',c)
           
+def exportar_PDF(request):
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+    
+    grafico = "/home/jotamiller/Trabajos/proyecta/proyecta/media/graficos/admin_1352685801.59.png"
+
+    c = canvas.Canvas(response)
+    c.setLineWidth(.3)
+    c.setFont('Helvetica', 12)
+    
+    # Cabecera
+    c.drawString(10,703,'EMPRESA:')
+    c.line(120,700,580,700)
+    c.drawString(120,703,"NOMBRE EMPRESA")
+    
+    # Grafico
+    c.drawImage(grafico, 10, 200, 400, 400, None, True)
+    
+    c.showPage()
+    c.save()
+    return response

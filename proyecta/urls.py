@@ -22,8 +22,11 @@ urlpatterns = patterns('',
     url(r'^$', 'proyeccion.views.index'),
     # Enlaces para la aplicacion proyecta
     url(r'^proyeccion/$', 'proyeccion.views.index'),
+    # Gestion de usuarios
     url(r'^usuarios/$', 'proyeccion.views.usuarios'),
     url(r'^usuario/(?P<id_usuario>\d+)/$', 'proyeccion.views.usuario'),
+    # Exportar a PDF
+    url(r'^exportar_PDF/$','proyeccion.views.exportar_PDF'),
 #    url(r'^proyeccion/contact/$', 'proyeccion.views.contact'),
 #    url(r'^proyeccion/(?P<proyeccion_id>\d+)/results/$', 'proyeccion.views.results'),
     url(r'^accounts/login/$',  login),
