@@ -166,6 +166,7 @@ def index(request):
         venta_maxima = int(venta_maxima)
         # Se envian los periodos de proyeccion para la gerenacion del grafico
         periodos = { 'inicio': 1, 'termino': periodo }
+        messages.success(request, 'La proyección se realizó correctamente, la puede ver en la parte inferior de la página.')
     
     t = loader.get_template('proyeccion/index.html')
     c = RequestContext(request, {
