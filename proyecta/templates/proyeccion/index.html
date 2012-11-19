@@ -66,14 +66,56 @@
 </form>
 
 {% if grafico %}
-	<img src="/media/graficos/{{ grafico }}" />
+	<!-- <img src="/media/graficos/{{ grafico }}" /> -->
 {% endif %}
 
-{% if ventas2 %}
-{% for venta in ventas2 %}
-	<div>{{ venta.ano }}-{{ venta.mes }}: {{ venta.monto }}</div>
-{% endfor %}
-{% endif %}
+<script>
+	$(function () {
+    	var producto = [];
+    
+    	{% for venta in cant_venta  %}
+	        producto.push([ {{ forloop.counter }}, {{ venta }} ]);
+    	{% endfor %}
 
+    var plot = $.plot($(".chart"),
+           [ { data: producto, label: "Producto"} ], {
+               series: {
+                   lines: { show: true },
+                   points: { show: true }
+               },
+               grid: { hoverable: true, clickable: true },
+               yaxis: { min: 1, max: {{ venta_maxima }} },
+			   xaxis: { min: {{ periodos.inicio }}, max: {{ periodos.termino }} }
+             });
+	});
+</script>
+{% if grafico %}
+<!-- Lines chart -->
+	<div class="widget chartWrapper">
+    	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
+        <div class="body"><div class="chart"></div></div>
+    </div>
+ <!-- Reporte y detalle ventas -->   
+    <div class="widget">
+            <div class="title"><img src="/assets/images/icons/dark/frames.png" alt="" class="titleIcon" />
+            <h6>Detalle de las ventas por periodos</h6></div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="sTable" id="res1">
+                <thead>
+                    <tr>
+                        <td class="sortCol"><div>Periodo<span></span></div></td>
+                        <td class="sortCol"><div>Cantidad Ventas<span></span></div></td>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for venta in cant_venta %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ venta|floatformat:"0" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endif %}
 {% endblock content %}
 

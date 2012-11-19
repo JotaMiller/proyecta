@@ -72,7 +72,10 @@ def index(request):
     
     grafico = False
     ventas2 = False
-      
+    respuesta = ""
+    cant_venta = []
+    periodos = {}
+    venta_maxima = 0
     query = request.POST.get('id_sucursal', '')
     
     t_ventas= 1,
@@ -102,33 +105,37 @@ def index(request):
         detalle_ventas = total_ventas(id_producto, fecha_inicio, fecha_termino)
         
         ventas = detalle_ventas[0]
-
+        
         ventas_ts = convert_ts(ventas, fecha.year, fecha.month,12)
+        
+        print ventas_ts
         r('''
         calcular <- function(ventas_ts,path_grafico,inicio_periodo,fecha_inicio, fecha_termino, verbose=FALSE){
             
-            #gasdem <- ts(data=ventas_ts,start=2010, frequency=12)
             yfit <- window(ventas_ts, start=fecha_inicio, end=c(fecha_termino,12))
         
             m2 <- HoltWinters(yfit)
             
-            # Prediccion de las ventas, Se establece a 24 meses
-            p2 <- predict(m2, n.ahead = 24)
+            # Prediccion de las ventas, Se establece a 12 meses
+            p2 <- predict(m2, n.ahead = 48)
             
             path <- paste(path_grafico)
             
             png(path, width=600, height=600)
             
-            plot(ventas_ts, col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 15, type ="o", xlab="Periodo", ylab="Cantidad de productos ( Millones )", main="Proyección de ventas")
+            plot(ventas_ts, col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 20, type ="o", xlab="Periodo", ylab="Cantidad de productos", main="Proyección de ventas")
             
-            lines(fitted(m2)[,1], col = "blue", lwd =2)
+             lines(fitted(m2)[,1], col = "blue", lwd =2)
             lines(p2, col="red", lwd=2)
             
+            # Muestra la grilla para el grafico
             grid()
             
-            # Linea divisora
-            abline(v=(2012+11/12), col="red")
+            # Linea divisora para mostrar la diferencia entre la proyeccion y lo real
+            abline(v=(fecha_termino+11/12), col="red")
             dev.off()
+            
+            return(p2)
         }
         
         ''')
@@ -138,12 +145,34 @@ def index(request):
         # Se ejecuta la funcion de calculos de ventas
         # el grafico se guarda en formato png en el directorio graficos
         respuesta       = calcular_ventas(ventas_ts,path_grafico, fecha.month, fecha.year, f_termino.year)
-
+        
+        # se prepara la lista con las ventas anteriores y las proyectadas
+        periodo = 0
+        venta_maxima = 0
+        for t_venta_1 in ventas:
+            cant_venta.append( t_venta_1)
+            
+            periodo = periodo + 1
+            if venta_maxima < t_venta_1:
+                venta_maxima = t_venta_1
+            
+        for t_venta_2 in respuesta:
+            cant_venta.append(t_venta_2)
+            periodo = periodo + 1
+            
+            if venta_maxima < t_venta_2:
+                venta_maxima = t_venta_2
+        
+        venta_maxima = int(venta_maxima)
+        # Se envian los periodos de proyeccion para la gerenacion del grafico
+        periodos = { 'inicio': 1, 'termino': periodo }
     
     t = loader.get_template('proyeccion/index.html')
     c = RequestContext(request, {
         'ventas': ventas,
-        'ventas2': ventas2,
+        'cant_venta': cant_venta,
+        'periodos': periodos,
+        'venta_maxima': venta_maxima,
         'productos': productos,
         'sucursales': sucursales,
         'grafico': grafico,
@@ -151,8 +180,7 @@ def index(request):
         'empresa': empresa,
         'usuario': request.user,
         'id_ventas': id_venta,
-        'ids_sucursales': ids_sucursales
-
+        'ids_sucursales': ids_sucursales,
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -183,7 +211,7 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
             final_mes = fecha_termino.month
         while ( cont_mes <= final_mes ):
         #TODO: falta iteracion para recorrer meses
-            fecha_ventas = Tiempo.objects.filter( fecha__month = cont_mes )
+            fecha_ventas = Tiempo.objects.filter( fecha__month = cont_mes ).filter( fecha__year = cont_ano )
             
             venta_total_mes = 0
             for fecha_venta in fecha_ventas:
@@ -192,11 +220,12 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
                 #TODO: se filtra por productos ventidos en determinado tiempo
                 # Borrar comentario...
                 
-                #for producto in productos:
+                for producto in productos:
                 #    if producto.id == id_producto:
-                venta_total_mes = venta_total_mes + (fecha_venta.venta.total_venta / 1000000)
+                    #venta_total_mes = venta_total_mes + fecha_venta.venta.total_venta
+                    venta_total_mes = venta_total_mes + producto.stock 
                 
-            ventas_detalle.append({'monto': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano})
+            ventas_detalle.append({'cantidad': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano})
             ventas_ts.append(venta_total_mes)
             cont_mes = cont_mes + 1
             

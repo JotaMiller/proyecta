@@ -1,20 +1,22 @@
 	$(function () {
     var sin = [], cos = [];
+    var producto = [];
+    
     for (var i = 0; i < 21; i += 0.5) {
         sin.push([i, Math.sin(i)]);
         cos.push([i, Math.cos(i)]);
     }
 
-    var plot = $.plot($(".chart"),
-           [ { data: sin, label: "sin(x)"}, { data: cos, label: "cos(x)" } ], {
-               series: {
-                   lines: { show: true },
-                   points: { show: true }
-               },
-               grid: { hoverable: true, clickable: true },
-               yaxis: { min: -1.1, max: 1.1 },
-			   xaxis: { min: 0, max: 20 }
-             });
+    // var plot = $.plot($(".chart"),
+    //        [ { data: sin, label: "Producto(x)"} ], {
+    //            series: {
+    //                lines: { show: true },
+    //                points: { show: true }
+    //            },
+    //            grid: { hoverable: true, clickable: true },
+    //            yaxis: { min: -1.1, max: 1.1 },
+			 //   xaxis: { min: 0, max: 20 }
+    //          });
 
     function showTooltip(x, y, contents) {
         $('<div id="tooltip" class="tooltip">' + contents + '</div>').css( {
