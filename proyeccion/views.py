@@ -117,7 +117,7 @@ def index(request):
             m2 <- HoltWinters(yfit)
             
             # Prediccion de las ventas, Se establece a 12 meses
-            p2 <- predict(m2, n.ahead = 48)
+            p2 <- predict(m2, n.ahead = 12)
             
             path <- paste(path_grafico)
             
