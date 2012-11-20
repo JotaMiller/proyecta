@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+</head>    
+<body>
+<style type="text/css">
+
+
+</style>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td><img src="{{ logo }}"  width="200" height="auto" /></td>
+			<td><h1>Empresa: {{ empresa.nombre }}</h1>
+			    <p>Producto Manager: <u>{{ usuario.first_name }} {{ usuario.last_name }}</u></p>
+			    <p>Fecha del Reporte: <u>{{ fecha }}</u></p>
+			    <p>Periodo utilizado: <u>Periodo</u></p>
+			    <p>Periodo a proyectar: <u>12 Meses</u></p>
+			</td>
+		</tr>
+		
+	</table>
+	<h2>Grafico estadístico que muestra las ventas más la proyección a 12 meses</h2>
+	
+	<h2>A continuación se lista el detalle de ventas por productos:</h2>
+		
+	
+    
+    <div class="numerador">
+    	<pdf:pagenumber>
+    </div>
+</body>
+</html>

@@ -6,7 +6,13 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
- 
+
+# requerido para la generacion de PDFs
+import ho.pisa as pisa
+import cStringIO as StringIO
+import cgi
+from django.template.loader import render_to_string
+
 
 from django.template import Context, loader, RequestContext
 from django.shortcuts import render_to_response 
@@ -314,3 +320,32 @@ def exportar_PDF(request):
     c.showPage()
     c.save()
     return response
+
+def generar_pdf(html):
+    # Función para generar el archivo PDF y devolverlo mediante HttpResponse
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+
+def reporte_pdf(request):
+    # Vista que muestra el reporte generado
+ 
+    libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
+    usuario =   request.user
+    fecha = datetime.today()
+    empresa     =   Empresa.objects.get( id = usuario.empresa.id )
+    path_logo = settings.PROJECT_PATH + '/media/' + str(empresa.logo)
+    
+    html = render_to_string('reporte_pdf.html', 
+                            {
+                             'pagesize':'A4', 
+                             'libro':libro, 
+                             'usuario': usuario,
+                             'fecha': fecha,
+                             'empresa': empresa,
+                             'logo': path_logo,
+                             }, context_instance=RequestContext(request))
+    return generar_pdf(html)
+
