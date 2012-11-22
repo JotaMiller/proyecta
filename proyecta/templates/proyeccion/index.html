@@ -23,6 +23,9 @@
 	function submitform(){
 	    document.forms["form"].submit();
 	}
+	function submitform_pdf(){
+	    document.forms["form_pdf"].submit();
+	}
 </script>
 <form action="." id="form" method="POST" class="form">
 	<fieldset>
@@ -67,8 +70,7 @@
 			</div>
 		</div>
 		<a href="javascript:submitform()" title="Generar Reporte y mostrarlo debajo" class="wButton orangewB m10 tipS"><span>Generar Reporte</span></a>
-		<a href="/reporte_pdf" target="_blank" title="Generar reporte y exportarlo a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
-
+		
 	</fieldset>
 </form>
 
@@ -97,31 +99,47 @@
 	});
 </script>
 {% if grafico %}
-<!-- Lines chart -->
-	<div class="widget chartWrapper">
-    	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
-        <div class="body"><div class="chart"></div></div>
-    </div>
- <!-- Reporte y detalle ventas -->   
-    <div class="widget">
-            <div class="title"><img src="/assets/images/icons/dark/full2.png" alt="" class="titleIcon" /><h6>Detalle de Ventas por Periodos</h6></div>                          
-            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
-                <thead>
-                    <tr>
-                       	<th>Periodo</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                	{% for venta in cant_venta %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ venta|floatformat:"0" }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="widgets">
+	<div class="oneThree">
+	 <!-- Reporte y detalle ventas -->   
+	    <div class="widget">
+	            <div class="title"><img src="/assets/images/icons/dark/full2.png" alt="" class="titleIcon" /><h6>Detalle de Ventas por Periodos</h6></div>                          
+	            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+	                <thead>
+	                    <tr>
+	                       	<th>Periodo</th>
+	                        <th>Cantidad</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                	{% for venta in cant_venta %}
+	                    <tr>
+	                        <td>{{ forloop.counter }}</td>
+	                        <td>{{ venta|floatformat:"0" }}</td>
+	                    </tr>
+	                    {% endfor %}
+	                </tbody>
+	            </table>
+	       </div>
+	</div>
+	
+	<div class="twoOne">
+	 <!-- Lines chart -->
+		<div class="widget chartWrapper">
+	    	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
+	        <div class="body"><div class="chart"></div></div>
+	    </div>
+	    <div class="widget">
+	    	<div class="title"><h6>Acciones</h6></div>
+	    	
+	    	<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
+				<input type="hidden" name="cant_ventas" value="{{ cant_venta }}" id="cant_ventas"/>
+				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
+	    	</form>
+
+	    </div>
+	</div>
+</div>
 {% endif %}
 {% endblock content %}
 

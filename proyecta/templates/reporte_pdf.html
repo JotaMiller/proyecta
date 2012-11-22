@@ -13,7 +13,7 @@
 		<tr>
 			<td><img src="{{ logo }}"  width="200" height="auto" /></td>
 			<td><h1>Empresa: {{ empresa.nombre }}</h1>
-			    <p>Producto Manager: <u>{{ usuario.first_name }} {{ usuario.last_name }}</u></p>
+			    <p>Product Manager: <u>{{ usuario.first_name }} {{ usuario.last_name }}</u></p>
 			    <p>Fecha del Reporte: <u>{{ fecha }}</u></p>
 			    <p>Periodo utilizado: <u>Periodo</u></p>
 			    <p>Periodo a proyectar: <u>12 Meses</u></p>
@@ -24,8 +24,17 @@
 	<h2>Grafico estadístico que muestra las ventas más la proyección a 12 meses</h2>
 	
 	<h2>A continuación se lista el detalle de ventas por productos:</h2>
+	<table>
+		{% for can_venta in cant_ventas %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ can_venta }}</td>
+		</tr>
+		{% endfor %}
+	</table>
 		
-	
+			
+		
     
     <div class="numerador">
     	<pdf:pagenumber>

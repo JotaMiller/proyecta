@@ -299,27 +299,6 @@ def usuario(request, id_usuario):
     })
     return render_to_response('proyeccion/usuario.html',c)
           
-def exportar_PDF(request):
-    response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
-    
-    grafico = "/home/jotamiller/Trabajos/proyecta/proyecta/media/graficos/admin_1352685801.59.png"
-
-    c = canvas.Canvas(response)
-    c.setLineWidth(.3)
-    c.setFont('Helvetica', 12)
-    
-    # Cabecera
-    c.drawString(10,703,'EMPRESA:')
-    c.line(120,700,580,700)
-    c.drawString(120,703,"NOMBRE EMPRESA")
-    
-    # Grafico
-    c.drawImage(grafico, 10, 200, 400, 400, None, True)
-    
-    c.showPage()
-    c.save()
-    return response
 
 def generar_pdf(html):
     # Función para generar el archivo PDF y devolverlo mediante HttpResponse
@@ -331,21 +310,30 @@ def generar_pdf(html):
 
 def reporte_pdf(request):
     # Vista que muestra el reporte generado
- 
-    libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
-    usuario =   request.user
-    fecha = datetime.today()
-    empresa     =   Empresa.objects.get( id = usuario.empresa.id )
-    path_logo = settings.PROJECT_PATH + '/media/' + str(empresa.logo)
-    
-    html = render_to_string('reporte_pdf.html', 
-                            {
-                             'pagesize':'A4', 
-                             'libro':libro, 
-                             'usuario': usuario,
-                             'fecha': fecha,
-                             'empresa': empresa,
-                             'logo': path_logo,
-                             }, context_instance=RequestContext(request))
-    return generar_pdf(html)
+    if request.method == 'POST':
+        #Se obtienen los datos para realizar los calculos 
+        cant_ventas     =   request.POST['cant_ventas']
+        for cantidad in cant_ventas:
+            cant_ventas.append(cantidad)
+        
+        
+        libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
+        usuario =   request.user
+        fecha = datetime.today()
+        empresa     =   Empresa.objects.get( id = usuario.empresa.id )
+        path_logo = settings.PROJECT_PATH + '/media/' + str(empresa.logo)
+        
+        
+            
+        html = render_to_string('reporte_pdf.html', 
+                                {
+                                 'pagesize':'A4', 
+                                 'libro':libro, 
+                                 'usuario': usuario,
+                                 'fecha': fecha,
+                                 'empresa': empresa,
+                                 'logo': path_logo,
+                                 'cant_ventas': cant_ventas,
+                                 }, context_instance=RequestContext(request))
+        return generar_pdf(html)
 
