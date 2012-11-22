@@ -133,7 +133,10 @@
 	    	<div class="title"><h6>Acciones</h6></div>
 	    	
 	    	<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
-				<input type="hidden" name="cant_ventas" value="{{ cant_venta }}" id="cant_ventas"/>
+	    		{% for valor in cant_venta %}
+				<input type="hidden" name="cant_ventas" value="{{ valor|floatformat:"0" }}"/>
+				{% endfor %}
+				<input type="hidden" name="grafico" value="{{ grafico }}" />
 				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
 	    	</form>
 

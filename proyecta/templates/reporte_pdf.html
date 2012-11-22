@@ -6,10 +6,14 @@
 </head>    
 <body>
 <style type="text/css">
-
+ tr{
+ 	border-bottom: 1px solid #f9f9f9;
+ 	
+ }
 
 </style>
 	<table border="0" cellspacing="5" cellpadding="5">
+		
 		<tr>
 			<td><img src="{{ logo }}"  width="200" height="auto" /></td>
 			<td><h1>Empresa: {{ empresa.nombre }}</h1>
@@ -20,24 +24,28 @@
 			</td>
 		</tr>
 		
+		
 	</table>
 	<h2>Grafico estadístico que muestra las ventas más la proyección a 12 meses</h2>
-	
+		<img src="{{ grafico }}" > 
 	<h2>A continuación se lista el detalle de ventas por productos:</h2>
 	<table>
-		{% for can_venta in cant_ventas %}
-		<tr>
-			<td>{{ forloop.counter }}</td>
-			<td>{{ can_venta }}</td>
-		</tr>
-		{% endfor %}
+		<thead>
+			<tr>
+				<th>Temporada / Periodo</th>
+				<th>Productos</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for can_venta in cant_ventas %}
+			<tr>
+				<td height="30px">{{ forloop.counter }}</td>
+				<td>{{ can_venta }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		
 	</table>
 		
-			
-		
-    
-    <div class="numerador">
-    	<pdf:pagenumber>
-    </div>
 </body>
 </html>

@@ -188,6 +188,7 @@ def index(request):
         'usuario': request.user,
         'id_ventas': id_venta,
         'ids_sucursales': ids_sucursales,
+        'grafico': path_grafico,
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -312,10 +313,9 @@ def reporte_pdf(request):
     # Vista que muestra el reporte generado
     if request.method == 'POST':
         #Se obtienen los datos para realizar los calculos 
-        cant_ventas     =   request.POST['cant_ventas']
-        for cantidad in cant_ventas:
-            cant_ventas.append(cantidad)
-        
+        cant_ventas     =   request.POST.getlist('cant_ventas')
+        grafico         =   request.POST['grafico']
+    
         
         libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
         usuario =   request.user
@@ -334,6 +334,7 @@ def reporte_pdf(request):
                                  'empresa': empresa,
                                  'logo': path_logo,
                                  'cant_ventas': cant_ventas,
+                                 'grafico': grafico,
                                  }, context_instance=RequestContext(request))
         return generar_pdf(html)
 
