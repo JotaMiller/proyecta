@@ -1,0 +1,750 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"periodo",
+				"periodo_inicio"
+			],
+			[
+				"inii",
+				"inicio_ano"
+			],
+			[
+				"inicio",
+				"inicio_ano"
+			],
+			[
+				"inicio_",
+				"inicio_mes"
+			],
+			[
+				"inico",
+				"inicio_ano"
+			],
+			[
+				"can",
+				"cant_venta"
+			],
+			[
+				"perio",
+				"periodos_fechas"
+			],
+			[
+				"time",
+				"timetuple"
+			],
+			[
+				"fecha",
+				"fecha_time"
+			],
+			[
+				"fech",
+				"fecha_time"
+			],
+			[
+				"con_",
+				"cont_mes"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"tipo",
+				"tipo_documento"
+			],
+			[
+				"mae",
+				"margin-left"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"influ",
+				"influencia5"
+			],
+			[
+				"inf",
+				"influencia5"
+			],
+			[
+				"infl",
+				"influencia3"
+			],
+			[
+				"hook_",
+				"hook_view	hook_view"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"row",
+				"rows"
+			],
+			[
+				"resp",
+				"resp"
+			],
+			[
+				"formulario_c",
+				"formulario_consulta_oirs_form"
+			],
+			[
+				"formula",
+				"formulario_oirs_form"
+			],
+			[
+				"formulario_con",
+				"formulario_consulta_oirs_form_submit"
+			],
+			[
+				"f",
+				"form"
+			],
+			[
+				"consul",
+				"Consultas"
+			],
+			[
+				"form_s",
+				"form_state"
+			],
+			[
+				"dat",
+				"datos"
+			],
+			[
+				"drupal_set",
+				"drupal_set_message	drupal_set_message"
+			],
+			[
+				"consula",
+				"consulta_sug_rec"
+			],
+			[
+				"discapa",
+				"discapacidad"
+			],
+			[
+				"nivel",
+				"nivel_educacional"
+			],
+			[
+				"fono",
+				"fono_ciudad"
+			],
+			[
+				"pais",
+				"fono_pais"
+			],
+			[
+				"ni",
+				"nivel"
+			],
+			[
+				"edi",
+				"edit-comuna"
+			],
+			[
+				"defa",
+				"default_region"
+			],
+			[
+				"reg",
+				"region"
+			],
+			[
+				"arg",
+				"arguments"
+			],
+			[
+				"region",
+				"region_seleccionada"
+			],
+			[
+				"_get",
+				"_get_comuna"
+			],
+			[
+				"cod",
+				"cod_pais"
+			],
+			[
+				"formulario",
+				"formulario_oirs"
+			],
+			[
+				"email",
+				"email_at"
+			],
+			[
+				"siz",
+				"size"
+			],
+			[
+				"text",
+				"textfield"
+			],
+			[
+				"formario_",
+				"formulario_oirs_form"
+			],
+			[
+				"isnu",
+				"is_numeric"
+			],
+			[
+				"valida",
+				"hook_validate"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"para",
+				"param_comuna"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"sub",
+				"submit"
+			],
+			[
+				"ro",
+				"row"
+			],
+			[
+				"max",
+				"maxlength"
+			],
+			[
+				"form",
+				"form-item"
+			],
+			[
+				"sufi",
+				"suffix"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"drupal_add_",
+				"drupal_add_css	drupal_add_css"
+			],
+			[
+				"hook",
+				"hook_load	hook_load"
+			],
+			[
+				"ho",
+				"hook_menu	hook_menu"
+			],
+			[
+				"ADMIN",
+				"ADMIN_ROL_FUNCION"
+			],
+			[
+				"fi",
+				"filtro"
+			],
+			[
+				"es",
+				"Estado"
+			],
+			[
+				"ADM",
+				"ADMIN_TFUNCIONES"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "proyeccion/views.py",
+			"settings":
+			{
+				"buffer_size": 14637,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/templates/proyeccion/index.html",
+			"settings":
+			{
+				"buffer_size": 4511,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/CoffeeScript/CoffeeScript.sublime-build",
+	"command_palette":
+	{
+		"height": 285.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"html",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"",
+				"HTML: Encode Special Characters"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/views.py",
+		"/home/jotamiller/Trabajos/proyecta/mis_modelos.png",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/models.py",
+		"/home/jotamiller/Escritorio/Funciones JS",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.css",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.module",
+		"/tmp/fz3temp-1/pagina1_1_2.js",
+		"/tmp/fz3temp-1/pagina1_1_3.js",
+		"/opt/lampp/htdocs/Symfony/README.md",
+		"/tmp/fz3temp-1/formulario_oirs.css",
+		"/home/jotamiller/Descargas/Windows XP Pro SP3 - Activated/Installation Instructions.txt",
+		"/tmp/fz3temp-1/administracion.css",
+		"/tmp/fz3temp-1/index.js",
+		"/tmp/fz3temp-1/pagina1_1_4.js",
+		"/tmp/fz3temp-1/pagina1_1_4_ficha.js",
+		"/tmp/fz3temp-1/pagina1_1_4_ficha.php",
+		"/home/jotamiller/Escritorio/report-designer/report-designer.sh",
+		"/opt/lampp/etc/php.ini",
+		"/tmp/fz3temp-1/index_aplicaciones.js",
+		"/tmp/fz3temp-1/formulario_oirs.module",
+		"/home/jotamiller/Escritorio/crown/js/charts/chart.js",
+		"/tmp/fz3temp-1/pagina_ficha.css",
+		"/tmp/fz3temp-1/clases_interfaces.css",
+		"/host/Users/pc/Documents/SUBDERE/Chileindica/Modulo Preinversion/Modulo Preinversion.sql",
+		"/tmp/fz3temp-1/pagina1_1_2_ficha.php",
+		"/tmp/fz3temp-1/instrumentos.php",
+		"/tmp/fz3temp-1/settings.php",
+		"/tmp/fz3temp-1/.htaccess",
+		"/tmp/fz3temp-1/.htaccess 2",
+		"/tmp/fz3temp-1/index 2.htm",
+		"/tmp/fz3temp-1/index.htm",
+		"/tmp/fz3temp-1/index.php",
+		"/tmp/fz3temp-1/pagina1_1_3_ficha.php",
+		"/tmp/fz3temp-1/pagina1_3_1.php",
+		"/tmp/fz3temp-1/clases_interfaces.php",
+		"/tmp/fz3temp-1/pagina1_2_3.php",
+		"/tmp/fz3temp-1/pagina1_1_2.php",
+		"/tmp/fz3temp-1/pagina1_2_1.js",
+		"/tmp/fz3temp-1/pagina1_2_3.js",
+		"/tmp/fz3temp-1/pagina1_3_1.js",
+		"/tmp/fz3temp-1/pagina1_2_2.js",
+		"/tmp/fz3temp-1/pagina1_2_2.php",
+		"/tmp/fz3temp-1/pagina1_2_1.php",
+		"/tmp/fz3temp-1/pagina1_1_4.php",
+		"/tmp/fz3temp-1/pagina1_1_3.php",
+		"/tmp/fz3temp-1/pagina1_1_3 2.php",
+		"/tmp/fz3temp-1/pagina1_1_2 2.php",
+		"/tmp/fz3temp-1/pagina1_1_4_documentacion.php",
+		"/tmp/fz3temp-1/administracion 2.css",
+		"/tmp/fz3temp-1/pagina1_1_4_ficha_grabar.php",
+		"/tmp/fz3temp-1/pagina1_1_2_ficha.js",
+		"/tmp/fz3temp-1/procesos_comunes.js",
+		"/tmp/fz3temp-1/plantillas.php",
+		"/tmp/fz3temp-1/selecciona_fuente.php",
+		"/tmp/fz3temp-1/pagina1_1_4 2.js",
+		"/tmp/fz3temp-1/busca_instrumento.php",
+		"/home/jotamiller/Escritorio/maquina_desarrollo.sh",
+		"/tmp/fz3temp-1/subir_archivo.php",
+		"/tmp/fz3temp-1/busca_provincia.htm",
+		"/tmp/fz3temp-1/busca_comuna.htm",
+		"/tmp/fz3temp-1/selecciona_grupo_beneficiario.php",
+		"/tmp/fz3temp-1/arbol_busca_comuna.php",
+		"/tmp/fz3temp-1/arbol_busca_actor.php",
+		"/tmp/fz3temp-1/plantillas 2.php",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.js",
+		"/tmp/fz3temp-1/busca_localidad.htm",
+		"/home/jotamiller/Escritorio/crown/charts.html",
+		"/home/jotamiller/Escritorio/crown/table_sortable_resizable.html",
+		"/home/jotamiller/Escritorio/crown/table_dynamic.html",
+		"/home/jotamiller/Escritorio/telefono maji.txt",
+		"/home/jotamiller/Escritorio/crown/js/charts/hBar.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/chart.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/custom.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/bar.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/updating.js",
+		"/home/jotamiller/Escritorio/prueba.coffee",
+		"/home/jotamiller/Escritorio/ws_call.module",
+		"/home/jotamiller/Escritorio/capacitaciones.module",
+		"/home/jotamiller/Escritorio/Crear usuarios MYSQL.sql",
+		"/home/jotamiller/Escritorio/Respaldo Serviciocivil tema/tema_servicio_civil/css/tema-servicio-civil-style.css",
+		"/home/jotamiller/Escritorio/views_slideshow/README.txt",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/hierarchical_select/API.txt",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/ahah_helper/README.txt",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/ahah_helper/TODO.txt",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/ahah_helper/ahah_helper_demo.install",
+		"/tmp/fz3temp-1/clases.php",
+		"/tmp/fz3temp-1/clases_preinversion.php",
+		"/tmp/fz3temp-1/pagina1_1_4_asignar.php",
+		"/tmp/fz3temp-1/pagina1_1_4_grilla3.php",
+		"/tmp/fz3temp-1/pagina1_1_4_grilla1.php",
+		"/home/jotamiller/Escritorio/examples/ahah_example/dependent_dropdown.inc",
+		"/home/jotamiller/Escritorio/examples/ahah_example/ahah_example.module",
+		"/home/jotamiller/Escritorio/hs_tutorial/hs_tutorial.module",
+		"/host/Users/pc/Desktop/VPN ServicioCivil.txt",
+		"/home/jotamiller/Escritorio/ip servicio civil",
+		"/tmp/fz3temp-1/intellego_pais.module",
+		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP 2.php",
+		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP.php",
+		"/home/jotamiller/Escritorio/respaldo_pagina1_1_4.php.",
+		"/home/jotamiller/Escritorio/pagina1_1_4.php",
+		"/home/jotamiller/Escritorio/Crear usuarios MYSQL",
+		"/tmp/fz3temp-1/chileindicaSOAP.php",
+		"/home/jotamiller/Escritorio/examples/ahah_example/simplest_ahah.inc",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.info",
+		"/home/jotamiller/.cache/.fr-pboIXl/download link.txt",
+		"/home/jotamiller/Escritorio/examples/form_example/form_example_elements.inc",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/lib/changelog",
+		"/home/jotamiller/Descargas/soapUI-x32-4.5.1.sh",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/captcha/captcha.module",
+		"/home/jotamiller/Escritorio/examples/form_example/form_example_tutorial.inc",
+		"/home/jotamiller/Escritorio/examples/form_example/form_example.module",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/recaptcha/README.txt",
+		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/captcha/README.txt",
+		"/home/jotamiller/Escritorio/examples/form_example/form_example.info",
+		"/opt/lampp/htdocs/drupal6/sites/default/settings.php",
+		"/opt/lampp/htdocs/drupal6/.htaccess",
+		"/tmp/fz3temp-1/<div class=\"contenido\">",
+		"/host/Users/pc/Documents/SUBDERE/Chileindica/Modulo Preinversion/estados y codigos.txt",
+		"/usr/share/applications/sublime.desktop",
+		"/usr/share/applications/defaults.list"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"periodos_fechas",
+			"datetime_on",
+			"periodo",
+			"total_ve",
+			"detalle_",
+			"total_ventas",
+			"path_gra",
+			"/****************************************************************************************************/\n//Obtencion de la direccion de la aplicacion (URL)\n/*****************************************************************************************************/\nfunction ApplicationURL()\n{\n	//Rescata la url de la base sin el servidor\n	//ej:     /appl/rrhh/dotacion.nsf/\n	var url= document.URL.toLowerCase();	\n\n	var start = url.indexOf('://')+3;\n	var end = url.indexOf('.nsf')+4;\n\n	url=url.substring(start,end);\n	start=url.indexOf('/');\n		\n	url=url.substring(start,url.length)+\"/\";\n	return(url)\n}\n\n/*****************************************************************************************************/\n//Refresco de documentos\n/*****************************************************************************************************/\nfunction Refresh()\n{\n	_doClick('$Refresh',this,null);\n}\n\nfunction OpenerRefresh()\n{\n	window.opener._doClick('$Refresh',this,null) \n}\n\n/*****************************************************************************************************/\n//Volver a la pagina inicial\n/*****************************************************************************************************/\nfunction home(URL)\n{\n	if (URL== undefined) \n		URL=ApplicationURL();\n	else if (URL==\"\")\n		URL=ApplicationURL();\n\n	top.location.href=URL;\n}\n\n/******************************************************************************************************/\n// OCULTA VISTA SI NO TIENE DOCUMENTOS Y NO MUESTRA \"NO DOCUMENTS FOUND\"\n/******************************************************************************************************/\nfunction dspVwEmpty()\n{\n	//Despliege de los elementos en la vista\n	var ConVista = document.getElementById(\"DivVwDsp\");\n	if(ConVista.innerHTML.indexOf(\"No documents found\") != -1)\n	{\n		document.getElementById(\"DivVwDsp\").style.display=\"none\";\n		document.getElementById(\"DivVwNoDsp\").style.display=\"block\";\n		\n	//	if (document.forms[0].Form.value=='frmGas') document.getElementById(\"DivVwTotComDsp\").style.display=\"none\";\n	}\n	else\n	{\n		document.getElementById(\"DivVwDsp\").style.display=\"block\";\n		document.getElementById(\"DivVwNoDsp\").style.display=\"none\";\n		\n		/*\n		if (document.forms[0].Form.value=='frmGas') document.getElementById(\"DivVwTotComDsp\").style.display=\"block\";\n\n		if (document.forms[0].Form.value=='frmVwTmplDef')\n			document.getElementById(\"DivVwTotDsp\").style.display=\"none\";\n		else\n			document.getElementById(\"DivVwTotDsp\").style.display=\"block\";*/\n	}\n	return true;\n}\n\n\nfunction login()\n{\n	top.location.href=ApplicationURL()+\"?Login\"\n}\n\nfunction logout()\n{\n	top.location.href=ApplicationURL()+\"?LogOut\"\n}\n\n/*****************************************************************************************************/\n//Carga de pagina, formularios navegadores, frame, etc a un frame especifico\n/*****************************************************************************************************/\nfunction LoadIFrame(iframeName, url) \n{\n	if (top[iframeName])\n	{\n    		top[iframeName].location = url;\n    		return true;\n	}\n  	else \n		return false;\n}\n\nfunction FrameMenu(arg)\n{\n	LoadIFrame('frmSetShow',ApplicationURL()+arg);\n}\n\nfunction FrameTrabajo(arg)\n{\n	LoadIFrame('Show',ApplicationURL()+arg);\n}\n\n/*****************************************************************************************************/\n//Funciones tipicas con documentos\n/*****************************************************************************************************/\nfunction Grabar()\n{\n	//Se debe crear un campo \"Return\" en el form \n	window.status=\"Grabando Documento...\"\n	guardando(document.forms[0], true);\n}\n\nfunction Eliminar() \n{\n	//Se debe crear un campo \"Doctype\" en el form \n	if (confirm(\"\\u00BF Est\\u00E1 seguro que desea Eliminar este Documento ?\")) \n	{\n		window.status=\"Eliminando Documento...\";\n		document.forms[0].Doctype.value = \"Borrar\";\n		document.forms[0].submit();\n	}\n}\n\nfunction Imprimir() \n{\n	//Se debe crear una vista Imprimir\n	if (confirm(\"\\u00BF Est\\u00E1 seguro que desea Imprimir ?\")) \n			FrameTrabajo('Imprimir/'+document.forms[0].DocId.value+'?OpenDocument')\n}\n\nfunction Buscar()\n{\n	//Se debe crear un campo \"Return\" en el form y form$$ con vistas asociadas\n	window.status=\"Buscando...\"\n	document.forms[0].submit()\n	window.status=\"\"\n}\n\nfunction Editar()\n{\n	//Se debe crear un campo \"DocId\" en el form \n	FrameTrabajo('0/'+document.forms[0].DocId.value+'?EditDocument')\n}\n\nfunction Volver(a,d)\n{\n	//Se debe crear un campo \"volver\" en el form \n	if (a==undefined) a=\"\";\n	if (d==undefined) d=\"\";\n	FrameTrabajo(a+document.forms[0].volver.value+d);\n}\n\nfunction Cancelar()\n{\n	Atras();\n}\n\nfunction Atras()\n{\n	history.go(-1);\n}\n\nfunction getBack() \n{\n	if (window.name ==  \"\" )\n		history.back()\n	else\n		window.close();\n}\n\n/*****************************************************************************************************/\n//Funciones de restriccion de ingreso de datos\n/*****************************************************************************************************/\nfunction toNumber(texto)\n{\n	if (texto==\"\")\n		return (0);\n	else \n		return (parseFloat(texto));\n}\n\nfunction IngresarSoloNumeros(Codigo)\n{\n	//evento onKeyDown --> return IngresarSoloNumeros(event.keyCode);\n	switch (Codigo)\n	{\n		//back:tab:Fin:Inicio:Left:Rigth:Sup\n		case 8:case 9:case 35:case 36:case 37:case 39:case 46:\n		//0123456789\n		case 48: case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:\n		case 96:case 97:case 98:case 99:case 100:case 101:case 102:case 103:case 104:case 105:\n			return true\n			break;			\n		default :\n				return false;\n	}\n}\n\nfunction IngresarSoloCaracteres(Codigo)\n{\n	//evento onKeyDown --> return IngresarSoloCaracteres(event.keyCode);\n	alert(Codigo);\n	switch (Codigo)\n	{\n		//back:Fin:Inicio:Left:Rigth:Sup\n		case 96:case 97:case 98:case 99:case 100:case 101:case 102:case 103:case 104:case 105:case 106:case 107:case 111:\n			return false;\n			break;\n		case 8:case 9:case 35:case 36:case 37:case 39:case 46:case 192:\n			return true\n			break;			\n		default :\n			var minusculas = \" abcbefghijklmn\\u00F1opqrstuvwxyz\"\n			var mayusculas = \" ABCDEFGHIJKLMN\\u00D1OPQRSTUVWXYZ\"\n\n			var Caracter = String.fromCharCode (Codigo);\n			\n			return !((minusculas.indexOf(Caracter) == -1) && (mayusculas.indexOf(Caracter) == -1)) \n/*			if ((minusculas.indexOf(Caracter) == -1) && (mayusculas.indexOf(Caracter) == -1)) \n				return false;\n			else\n				return true;*/\n	}\n}\n\n/*****************************************************************************************************/\n//Funciones de validacion de Datos\n/*****************************************************************************************************/\nfunction guardando(f, v)\n{\n// f--> Formulario a validar\n//v--> se debe validar (true, false)\n	if ( v )\n	{\n		if ( validateRequiredFields( f ) )\n		{ \n			f.submit();\n			//LWFDocumentSave(false);\n		}\n	} \n	else \n	{\n		f.submit();\n		//LWFDocumentSave(false)\n	}\n}\n\nfunction validateRequiredFields(arr, f )\n{\n/* \n	Split apart the arguments in to a 2 dimensional array!\n	format - Failure Alert Label # Required (true|false)\n\n	En la propiedad del campo a validar \"Atributos HTML\"\n	se debe especificar \"id=\\\"Texto a mostrar#true\\\"\"\n*/\n\n	var l=f.elements.length;\n	ant='';\n	for (var i=0;i < l; i++)\n	{\n		e = f.elements[i];\n		a = e.id.split(\"#\");\n\n		//checks input types - :\"text\", \"select-one\", \"select-multiple\",\"textarea\",[\"checkbox\", \"radio\"]\n		if (a[1] == \"true\") \n		{\n			switch (e.type) \n			{\n				case \"text\":\n						if ( trim(e.value) == \"\" )\n						{\n							AgregaArrValidaciones(arr, a[0]);\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Ingrese Informacion\");\n							//e.focus();\n							//return false;\n						}\n						break;\n				case \"textarea\":\n						if ( trim(e.value) == \"\" )\n						{\n							AgregaArrValidaciones(arr, a[0]);\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Ingrese Informacion\");\n							//e.focus();\n							//return false;\n						}\n						break;\n				case \"select-one\":\n						if ( e.selectedIndex == 0 )\n						{\n							AgregaArrValidaciones(arr, a[0]);\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n							//e.focus();\n							//return false;\n						}\n						break;\n				case \"select-multiple\":\n						if (e.selectedIndex == -1)\n						{\n							AgregaArrValidaciones(arr, a[0]);\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n							//e.focus();\n							//return false;\n						}\n						break;\n				case \"checkbox\":\n						hasChecked = false;\n						p = eval(\"e.form.\" + e.name);\n						for (var r=0; r < p.length; r++)\n						{\n							if ( p[r].checked )\n							{\n								hasChecked = true;\n							}\n						}\n						if (!hasChecked) \n						{\n							AgregaArrValidaciones(arr, a[0]);\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n							//e.focus();\n							//return hasChecked;\n						}\n						break;\n				case \"radio\":\n						hasChecked = false;\n						p = eval(\"e.form.\" + e.name);\n						var nuevo=a[0];\n						for (var r=0; r < p.length; r++)\n						{\n							if ( p[r].checked )\n							{\n								hasChecked = true;\n							}\n						}\n\n						if (!hasChecked) \n						{\n							if (nuevo!=ant){\n								AgregaArrValidaciones(arr, a[0]);\n								ant=nuevo;\n							}\n							//alert(a[0] + \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n							//e.focus();\n							//return hasChecked;\n						}\n						break;\n				default:\n						break;\n			}\n		}\n	}\n	//return true;\n}\n\n//Verifica datos ingresados para estados \n//VerificaCampo\nfunction verificaEstado(Text, field1)\n{\n	f1  = field1;\n	largo1 = f1.length;\n	if (largo1== 0)\n	{\n		alert(\"Debe ingresar \" + Text + \", para continuar.\");\n     	return false;\n    	}\n     return true;\n}\n\n// ************ Verifica si el valor de un campo numerico es valido***********************\nfunction ValidaNumero(field) \n{\n	var valid = \"0123456789\"\n	var ok = \"si\";\n	var temp;\n	for (var i=0; i<field.value.length; i++) \n	{\n		temp = \"\" + field.value.substring(i, i+1);\n		if (valid.indexOf(temp) == \"-1\") ok = \"no\";\n	}\n	\n	if (ok == \"no\") \n	{\n		alert(\"Solo n\\u00FAmeros positivos son aceptados\");\n		field.value = 0\n		field.focus();\n		field.select();\n		return false;\n	}\n	return true;	\n}\n\n/*function ValidaNumero(field)\n{\n	var numero = \"0123456789\"\n	var signo =   \"-0123456789\"\n	var ok = \"si\";\n	var temp;\n	\n	temp = \"\" + field.value.substring(0, 1);\n	if (signo.indexOf(temp) == \"-1\") ok = \"no\";\n     if (field.value.length == 1)\n	{\n		if (temp == \"-\") ok = \"no\";\n   		if (temp == \",\" || temp == \".\")  ok = \"si\";\n	}\n	else\n	{\n		for (var i=1; i<field.value.length; i++)\n		{\n		     temp = field.value.substring(i, i+1);\n			if (numero.indexOf(temp) == \"-1\") ok = \"no\";\n	   		if (temp == \",\" || temp == \".\")  ok = \"si\";\n		}\n	}\n	if (ok == \"no\")\n	{\n		alert(\"Valor incorrecto\");\n		field.focus();\n		field.select();\n   }\n}\n*/\n\nfunction ValidaNumero1(field)\n{\n	field.value=trim(field.value);\n\n	if (isNaN(field.value))\n	{\n    		alert(\"Ingrese valores num\\u00E9ricos por favor.\");    \n    		field.value = 0;\n    		field.focus();\n    		field.select();    		\n    		return false;\n  	}\n    	return true;\n}\n\nfunction ValidaNumeroPositivo(field)\n{\n	field.value=trim(field.value);\n\n	if (isNaN(field.value))\n	{\n    		alert(\"Ingrese valores num\\u00E9ricos por favor.\");    \n    		field.value = 0;\n    		field.focus();\n    		field.select();    		\n    		return false;\n  	}\n  	else\n  	{\n  		if (field.value < 0)\n  		{\n	    		alert(\"Ingrese valores num\\u00E9ricos positivos.\");    \n    			field.value = 0;\n    			field.focus();\n    			field.select();    			\n    			return false;\n  		}\n  	}\n    	return true;\n}\n\nfunction ValidaRango(field, inf, sup)\n{\n	field.value=trim(field.value);\n\n	if (isNaN(field.value))\n	{\n    		alert(\"Ingrese valores num\\u00E9ricos por favor.\");    \n    		field.value = 0;\n    		field.focus();\n    		field.select();    		\n    		return false;\n  	}\n  	else\n  	{\n	  	if (field.value < 0)\n  		{\n	    		alert(\"Ingrese valores num\\u00E9ricos positivos.\");    \n    			field.value = 0;\n    			field.focus();\n    			field.select();    			\n    			return false;\n  		}\n  		else\n  		{\n  			if (parseInt(field.value) != parseFloat(field.value))\n  			{\n	    			alert(\"Ingrese valores enteros.\");    \n    				field.value = 0;\n	    			field.focus();\n    				field.select();    			\n    				return false;\n	  		}\n  			else\n  			{\n  				if (field.value < inf || sup < field.value)\n  				{\n		    			alert(\"Ingrese valores entre \" + inf + \" y \" + sup);    \n	    				field.value = 0;\n    					field.focus();\n    					field.select();\n	    				return false;  				\n  				}\n  			}\n  		}\n  	}\n    	return true;\n}\n\n//function Porcentaje(n)\n//	//Transforma el numero con separador decimal , a . si no reconoce al primero\n//	if (isNaN(n.value))\n//		n.value=n.value\n//	Else\n//		If (0<>Instr(n,\",\"))\n//			Porcentaje= numero(Strleft(n,\",\") & \".\" & Strright(n,\",\"))\n//		Elseif (0<>Instr(n,\".\"))\n//			Porcentaje= numero(Strleft(n,\".\") & \",\" & Strright(n,\".\"))\n//		End If\n//	End If	\n//End Function\n\nfunction ValidarDatosLista(entry,len)\n{\n\n	var temp = cambiar(entry,\"\\n\",\";\"); // cambia los enter por ;\n	temp = cambiar(temp,\"\\r\",\"\"); // cambio los espacio en blanco por vacio\n	\n	if (temp == \"\")\n		return(false);	\n			\n	while (temp != \"\")\n	{\n		pos = temp.indexOf(\";\");\n		if (pos == -1)\n		{\n			data = trim(temp);\n			temp = \"\";\n		}\n		else\n		{\n			data = trim(temp.substring(0, pos));\n			temp = temp.substring(pos+1, temp.length);\n		}\n\n		if (data.length != len)\n			return(false);	\n	}\n	return(true);\n}\n\nfunction decimal (campo, codigo, enteros, decimales)\n{\n	largo=enteros+decimales+1;\n	lv = campo.value.length;\n	switch (codigo)\n	{\n		case 8:case 37:case 39:case 46:break;\n		//back:Left:Rigth:Sup\n		default :\n			if (campo.value.length < largo)\n			{\n				switch (codigo)\n				{\n					case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:case96:\n					//1:2:3:4:5:6:7:8:9:0\n						if (lv == enteros)	campo.value=campo.value + \",\";\n						break;\n					default :\n						return false\n				}\n			}\n			else\n				return false				\n	}\n}\n\n// ************ Valida ingreso solo letras ***********************\nfunction validarNumFono( teclaCodigo )\n{\n	var teclaReal = String.fromCharCode (teclaCodigo);\n\n	if ( (teclaCodigo < 48 || teclaCodigo > 58) && teclaCodigo != 32 && teclaCodigo != 45 && teclaCodigo != 46   )\n     	return 0 ;\n	else \n     	return 1;\n}\n\n// ************ Valida ingreso solo letras ***********************\nfunction validarSoloTexto( teclaCodigo )\n{\n	var teclaReal = String.fromCharCode (teclaCodigo);\n\n	if ( ( teclaCodigo != 32 && teclaCodigo < 65  ) || ( teclaCodigo > 90 && teclaCodigo < 97 ) || teclaCodigo > 123  )\n     	return 0 ;\n	else \n     	return 1;\n}\n\nfunction ValidaFecha(field) \n{\n	// Checks for the following valid date formats:\n	// MM/DD/YY   MM/DD/YYYY   MM-DD-YY   MM-DD-YYYY\n	// Also separates date into month, day, and year variables\n	if (field.value == \"\") \n	{\n		return true;\n	}\n	var datePat = /^(\\d{1,2})(\\/|-)(\\d{1,2})\\2(\\d{2}|\\d{4})$/;\n\n	// To require a 4 digit year entry, use this line instead:\n	// var datePat = /^(\\d{1,2})(\\/|-)(\\d{1,2})\\2(\\d{4})$/;\n	dateStr = field.value\n	var matchArray = dateStr.match(datePat); // is the format ok?\n	if (matchArray == null) \n	{\n		alert(\"La Fecha est\\u00E1 incorrecta\")\n		field.focus();\n		field.select();\n		return false;\n	}\n	month = matchArray[3]; // parse date into variables\n	day = matchArray[1];\n	year = matchArray[4];\n	if (month < 1 || month > 12) \n	{ // check month range\n		alert(\"El Mes debe estar entre 1 y 12.\");\n		field.focus();\n		field.select();\n		return false;\n	}\n	if (day < 1 || day > 31) \n	{\n		alert(\"El D\\u00EDa debe estar entre 1 y 31\");\n		field.focus();\n		field.select();\n		return false;\n	}\n	if ((month==4 || month==6 || month==9 || month==11) && day==31) \n	{\n		alert(month+\"' no tiene 31 d\\u00EDas\")\n		return false\n	}\n	if (month == 2) { // check for february 29th\n		var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));\n		if (day>29 || (day==29 && !isleap)) \n		{\n			alert(\"'Febrero \" + year + \"' no tiene \" + day + \" d\\u00EDas\");\n			field.focus();\n			field.select();\n			return false;\n		}\n	}\n	if (year < 1000) \n	{ // check for year\n		alert(\"El A\\u00F1o debe ser ingresado con 4 d\\u00EDgitos\");\n		field.focus();\n		field.select();\n		return false;\n	}\n	if (year < 1900 | year > 2100) \n	{ \n		alert(\"El A\\u00F1o est\\u00E1 fuera de rango\");\n		field.focus();\n		field.select();\n		return false;\n	}\n	return true;  // date is valid\n}\n\n// ************ Valida ingreso del Rut ***********************\nfunction checkRutField(fldRut)\n{\n	rut=fldRut.value;\n	if (rut != \"\")\n	{\n		//Elimina los puntos y espacios en blancos y lineas 12.345.678-9 --> 123456789\n		rut=rut.replace(/[\\-., ]*/g,\"\");\n		var tmpstr=rut;\n\n		// [VARM-]\n		largo = rut.length;\n		if ( largo < 2 )\n		{\n			alert(\"Debe ingresar el rut completo.\");\n			fldRut.focus();\n			fldRut.select();\n			return false;\n		}\n		\n		for (i=0; i < largo ; i++ )\n		{\n			caracter=rut.charAt(i)\n			if ( caracter != \"0\" && caracter != \"1\" && caracter !=\"2\" && caracter != \"3\" && caracter != \"4\" && caracter !=\"5\" && caracter != \"6\" && caracter != \"7\" && caracter !=\"8\" && caracter != \"9\" && caracter !=\"k\" && caracter != \"K\" )\n			{\n				alert(\"El valor ingresado no corresponde a un R.U.T valido.\");\n				fldRut.focus();\n				fldRut.select();\n				return false;\n			}\n		}\n		\n		//Invierte el rut con digito 123456789 --> 987654321\n		var invertido = \"\";\n		largo = rut.length;\n		for ( i=0; i<largo; i++ )\n			invertido = rut.charAt(i)+invertido;		\n			\n		//Formatea 123456789 --> 9-876.543.21\n		rut = invertido.charAt(0)+\"-\";\n		cnt = 0;\n		for ( i=1; i<largo; i++)\n		{\n			if ( cnt == 3 )\n			{\n				rut = rut + '.'+ invertido.charAt(i);\n				cnt = 1;\n			}\n			else\n			{\n				rut = rut + invertido.charAt(i);\n				cnt++;\n			}\n		}\n		\n		//Reinvierte el rut con digito 9-876.543.21 --> 12.345.678-9\n		var invertido = \"\";\n		largo = rut.length;\n		for ( i=0; i<largo; i++ )\n			invertido = rut.charAt(i)+invertido;\n			\n		fldRut.value = invertido;\n		if ( checkDV(tmpstr,fldRut) )\n			return true;\n	}\n	return false;\n}\n\nfunction checkDV(rut, fldRut )\n{\n	largo = rut.length;\n\n	var dvr = '0';\n	suma = 0;\n	mul = 2;\n	for (i= largo -2 ; i >= 0; i--)\n	{\n		suma = suma + rut.charAt(i) * mul;\n		if (mul == 7)\n			mul = 2;\n		else\n			mul++;\n	}\n	\n	res = suma % 11;\n	if (res==1)\n		var dvr = 'k';\n	else if (res==0)\n		var dvr = '0';\n	else\n		dvr = (11-res) + \"\";\n	\n	dv=rut.charAt(largo-1);\n	if ( dvr != dv.toLowerCase() )\n	{\n		alert(\"El rut es incorrecto.\");\n		fldRut.focus();\n		fldRut.value = \"\";\n		return false;\n	}\n	return true;\n}\n\n//Verifica que el rut sea ingresado en el formato correcto \nfunction checkDV2(field)\n{\n//	field = ncrut;\n//	crut  = ncrut.value;\n//	largo = crut.length;\n\n	crut  = field.value;\n	largo = field.length;\n	if ( largo==0 )\n	{\n		field.focus(); \n		return false;\n	}\n	if ( largo < 2 )\n	{\n		alert(\"Ingresar un Rut completo.\");\n		field.focus(); \n		field.select();     \n		return false;\n	}\n\n	if ( largo > 2 )\n		rut = crut.substring(0, largo - 1);\n	else\n		rut = crut.charAt(0);\n\n	dv = crut.charAt(largo-1);\n\n//	if (checkCDV( dv, ncrut ))\n	if (checkCDV2( dv, field ))\n		sss=\"ww\"\n	else\n		return false;\n\n	if ( rut == null || dv == null )\n		return 0;\n\n	var dvr = '0';\n	suma = 0;\n	mul  = 2;\n	for (i= rut.length -2 ; i >= 0; i--)\n	{\n		suma = suma + rut.charAt(i) * mul;\n		if (mul == 7)\n			mul = 2;\n		else    \n			mul++;\n	}\n\n	res = suma % 11;\n	if (res==1)\n		dvr = 'k';\n	else if (res==0)\n		dvr = '0';\n		else\n		{\n			dvi = 11-res;\n			dvr = dvi + \"\";\n		}\n\n	if ( dvr != dv.toLowerCase() )\n	{\n		alert(\"El Rut que ha ingresado es incorrecto.\\nIngrese el Rut sin puntos y separe del d\\u00EDgito verificador con gui\\u00F3n.\");\n		field.focus(); \n		field.select(); \n		return false;\n	}\n	return true;\n}\n\nfunction VerificarRut( NumRut, DigitoRut )\n{\n	//Devuelve \"True\" si est\\u00E1 OK o \"False\" si hay ERROR;\n	//var strNumRut = NumRut.toString();\n\n	var DigVerif = \"\" ;\n	var Mult = 2;\n	var Suma = 0;\n	var i = 1;\n\n	for( a=NumRut.length-1; a>=0; a--)\n	{\n		Suma = Suma + parseInt(NumRut.charAt(a)) * Mult ;\n		if ( Mult == 7 )\n		    Mult = 2;\n		else\n		    Mult = Mult +1;\n	}\n\n	Resultado = 11 - ( Suma % 11);\n\n	if ( Resultado == 10 ) \n		DigVerif = \"K\";\n	else if ( Resultado == 11 )\n		DigVerif = \"0\";\n	else     \n		DigVerif = Resultado;\n\n	if ( DigVerif == DigitoRut ) \n		return ( true );\n	else\n		return ( false );	\n}\n\n/*****************************************************************************************************/\n//Cambia de Color un Objeto (Boton)\n/*****************************************************************************************************/\n\nfunction setBackColor(obj,fondo,letra)\n{\n	obj.style.backgroundColor=fondo;\n	obj.style.color=letra;\n}\nfunction setBackColorOut(obj,fondo,letra)\n{\n	obj.style.backgroundColor=fondo;\n	obj.style.color=letra;\n}\n\n/*****************************************************************************************************/\n//Manejo de tipo de datos Radio Button\n/*****************************************************************************************************/\nfunction getSelectedRadioValue(buttonGroup) {\n   // returns the value of the selected radio button or \"\" if no button is selected\ntry{\n   var i = getSelectedRadio(buttonGroup);\n   if (i == -1) {\n      return \"\";\n   } else {\n      if (buttonGroup[i]) { // Make sure the button group is an array (not just one button)\n         return buttonGroup[i].value;\n      } else { // The button group is just the one button, and it is checked\n         return buttonGroup.value;\n      }\n   }\n} catch(er) {};\n} // Ends the \"getSelectedRadioValue\" function\n\nfunction getSelectedRadio(buttonGroup) {\n   // returns the array number of the selected radio button or -1 if no button is selected\n   try {\n   if (buttonGroup[0]) { // if the button group is an array (one button is not an array)\n      for (var i=0; i<buttonGroup.length; i++) {\n         if (buttonGroup[i].checked) {\n            return i\n         }\n      }\n   } else {\n      if (buttonGroup.checked) { return 0; } // if the one button is checked, return zero\n   }\n   // if we get to this point, no radio button is selected\n   return -1;\n} catch(er) {};\n} // Ends the \"getSelectedRadio\" function\n\n//Setea Checked enumerados\nfunction FalseCheckedFromTo(CheckedPrefix, From, To)\n{\n	var i=0;\n\n	for (i=From;i<=To;i++)	\n		fldCheckedFalse(CheckedPrefix+ i);\n}\n\nfunction fldCheckedFalse(CheckedName)\n{\n	var Checked=document.getElementsByName(CheckedName);\n\n	if (Checked[0])\n	{\n		for (var i=0;i<Checked.length;i++)	\n		{\n			Checked[i].checked =false;\n		}\n	}\n	else\n	{\n		Checked.checked =false\n	}	\n}\n\n\n/*****************************************************************************************************/\n//Manejo de tipo de datos Checkbox\n/*****************************************************************************************************/\n\nfunction getSelectedCheckbox(buttonGroup) {\n   // Go through all the check boxes. return an array of all the ones\n   // that are selected (their position numbers). if no boxes were checked,\n   // returned array will be empty (length will be zero)\n   var retArr = new Array();\n   var lastElement = 0;\n   if (buttonGroup[0]) { // if the button group is an array (one check box is not an array)\n         for (var i=0; i<buttonGroup.length; i++) {\n         if (buttonGroup[i].checked) {\n	            retArr.length = lastElement;\n            retArr[lastElement] = i;\n            lastElement++;\n         }\n      }\n   } else { // There is only one check box (it's not an array)\n      if (buttonGroup.checked) { // if the one check box is checked\n	         retArr.length = lastElement;\n         retArr[lastElement] = 0; // return zero as the only array value\n      }\n   }\n   return retArr;\n} // Ends the \"getSelectedCheckbox\" function\n\nfunction getSelectedCheckboxValue(buttonGroup) {\n   // return an array of values selected in the check box group. if no boxes\n   // were checked, returned array will be empty (length will be zero)\n   var retArr = new Array(); // set up empty array for the return values\n   var selectedItems = getSelectedCheckbox(buttonGroup);\n   if (selectedItems.length != 0) { // if there was something selected\n      retArr.length = selectedItems.length;\n      for (var i=0; i<selectedItems.length; i++) {\n         if (buttonGroup[selectedItems[i]]) { // Make sure it's an array\n            retArr[i] = buttonGroup[selectedItems[i]].value;\n         } else { // It's not an array (there's just one check box and it's selected)\n            retArr[i] = buttonGroup.value;// return that value\n         }\n      }\n   }\n   return retArr;\n} // Ends the \"getSelectedCheckBoxValue\" function\n\n/*****************************************************************************************************/\n//Manejo de tipo de datos ComboBox\n/*****************************************************************************************************/\nfunction getSelectedComboBoxValue(CB)\n{\n	var indice = CB.selectedIndex;\n	return (CB.options[indice].text);	  \n} // Ends the \"getSelectedCheckBoxValue\" function\n\n/*****************************************************************************************************/\n//Seleccion de elementos selecionados Cuadro de lista\n/*****************************************************************************************************/\nfunction getSelected(opt)\n{\n	var selected = new String();\n	\n	for (var intLoop = 0; intLoop < opt.length; intLoop++) \n	{\n		if ((opt[intLoop].selected) || (opt[intLoop].checked))\n		{\n		selected = selected + opt[intLoop].text + \";\"\n      	}\n	}\n	return selected;\n}\n\n/*****************************************************************************************************/\n//Funciones varias\n/*****************************************************************************************************/\nfunction trim(str)\n{\n   return str.replace(/^\\s*|\\s*$/g,\"\");\n}\n/*\nVer \n	Expresiones regulares\n	Objeto RegExp\n	Patrones de Busqueda\n\n\n/patron de busqueda/\npatron de busqueda en un string --> ^\\s*|\\s*$\nexisten 2 ramas en el patron de busqueda (O logico --> | )\n	1)^\\s\n	2)*\\s*$\n\nEl significado es:\n	^ --> Simboliza el comienzo de la cadena\n	\\s --> Conjunto de caracteres que definen espacios en blanco (el espacio, el tabulador y el retorno de carro)	\n	* --> Cero o m\\u00E1s veces\n	$ --> Simboliza el final de una cadena\n	g  --> No para cuando encuentra una coincidencia sino que sigue evaluando el resto de la cadena. Es \\u00FAtil cuando no queremos buscar sino reemplazar. \n	\nVer el Link JavaScript - HTML\nEj:\n/[0-9]/\nPatron de busqueda en los que se busca los caracteres del '0' al '9' dentro de la cadena\n*/\n\nfunction cambiar(entry,out,add)\n{\n	temp = \"\" + entry; // temporary holder\n\n	while (temp.indexOf(out)>-1)\n	{\n		pos = temp.indexOf(out);\n		temp = \"\" + (temp.substring(0, pos) + add + \n		temp.substring((pos + out.length), temp.length));\n	}\n	return(temp)	\n}\n\n/*Bolqueo de Teclas*/\nfunction right(e)\n{\n	/* Uso en evento LOAD\n	document.onmousedown=right;\n	if (document.layers) window.captureEvents(Event.MOUSEDOWN);\n	window.onmousedown=right;\n	*/\n	if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)) \n	{\n		alert('Lo sentimos!\\nEl boton derecho ha sido inhabilitado');\n		return false;\n	}\n	else \n		if (navigator.appName == 'Microsoft Internet Explorer' && (event.button == 2 || event.button == 3)) \n		{\n			alert('Lo sentimos!\\nEl boton derecho ha sido inhabilitado');\n			return false;\n		}\n	return true;\n}\n\n/*// Para desabilitar el boton derecho del mouse\nfunction derecha(e) \n{\n	if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2))\n	{\n		alert('Lo sentimos !\\n\\nEl boton derecho ha sido inhabilitado');\n		return false;\n	}\n	else if (navigator.appName == 'Microsoft Internet Explorer' && (event.button == 2))\n	{\n		alert('Lo sentimos !\\n\\n El boton derecho ha sido inhabilitado');\n	}\n}*/\n\n/*function LockF5()\n{\n	var tecla=window.event.keyCode;\n	\n  	if (tecla==116) \n	{\n		event.keyCode=0;\n		event.returnValue=false;\n	}\n	return tecla;\n }*/\n\nfunction LockF5(arg)\n{\n	var tecla=window.event.keyCode;\n	\n  	if (tecla==116) \n	{\n		var doc=document.forms[0];\n		\n		if (doc.DocId != undefined)\n		{\n			if (arg == undefined) arg=\"OpenDocument\";\n			location.href=ApplicationURL()+\"/0/\"+doc.DocId.value+\"?\"+arg;			\n		}\n		else\n		{\n			if (arg == undefined) \n				arg=\"\";\n			else\n				arg=\"&\"+arg;\n				\n			var frmName=doc.name;\n\n			frmName=frmName.substring(1, frmName.length);\n			location.href=ApplicationURL()+frmName+\"?OpenForm\"+arg;\n		}\n		\n		event.keyCode=0;\n		event.returnValue=false;\n	}\n	return tecla;\n}\n\n/*function submitOnEnter(e)\n{\n	for( i=1; i <= 255; i++ )\n	{\n		if (window.Event)\n		{			// NS4\n			if (e.which == i)\n			{\n				//alert('Use el bot\\u00F3n NS'); //document.forms[0].submit();\n				return false;\n			}\n		}\n		else\n		{								// IE4\n			if (event.keyCode == i)\n			{\n				// alert('Use el Bot\\u00F3n IE'); //document.forms[0].submit();\n				return false;\n			}\n		}\n	}\n}*/\n\nfunction submitOnEnter(e) \n{\n	/*\n	var doc = document.forms[0];\n\n	doc.MovRec.focus();\n	doc.onkeydown = submitOnEnter;\n	*/\n	if (window.Event)\n	{\n		// NS4\n		if (e.which ==13 )\n		{\n			return false;\n		}\n	}\n	else\n	{\n		// IE4\n		if (event.keyCode == 13)\n		{\n			return false;\n		}\n	}\n}\n\n/*****************************************************************************************************/\n//Mensaje que se despliega en el titulo\n/*****************************************************************************************************/\nvar refresco=null;\nfunction titulo(txt) \n{\n	document.title=txt;\n  	txt=txt.substring(1,txt.length)+txt.charAt(0); \n  	refresco=setTimeout(\"titulo('\"+txt+\"')\",200);\n}\n\n/*****************************************************************************************************/\n//Mensaje que se despliega en la barra de Status\n/*****************************************************************************************************/\nvar speed = 100; \nvar pause = 3000;\nvar timerID = null\nvar bannerRunning = false;\nvar ar = new Array();\n\nar[0] = \" Esta Aplicaci\\u00F3n fue desarrollada por el equipo Notes\"\nar[1] = \" Para el area de \"\nar[2] = \" Base\"\n\nvar currentMessage = 0;\nvar offset = 0;\n\nfunction startBanner(mensajes)\n{\n	stopBanner();\n	showBanner();\n}\n\nfunction stopBanner()\n{\n	if (bannerRunning)\n		clearTimeout(timerID);\n	bannerRunning = false;\n}\n\nfunction showBanner() \n{\n	var text = ar[currentMessage];\n	if (offset < text.length)\n	{\n		if (text.charAt(offset) == \" \")\n			offset++ ;\n\n		var partialMessage = text.substring(0, offset + 1) ;\n		window.status = partialMessage;\n		offset++; // IE sometimes has trouble with \"++offset\"\n		timerID = setTimeout(\"showBanner()\", speed);\n		bannerRunning = true;\n	}\n	else \n	{\n		offset = 0;\n		currentMessage++;\n\n		if (currentMessage == ar.length)\n			currentMessage = 0;\n\n		timerID = setTimeout(\"showBanner()\", pause);\n		bannerRunning = true;\n	}\n}\n\n\n/*****************************************************************************************************/\n//Muestra un reloj que sigue al mouse\n/*****************************************************************************************************/\n//Funcion principal	\nfunction showReloj() \n{\n	dCol='100000';//date colour.\n	fCol='200000';//face colour.\n	sCol='300000';//seconds colour.\n	mCol='400000';//minutes colour.\n	hCol='500000';//hours colour.\n	ClockHeight=40;\n	ClockWidth=40;\n	ClockFromMouseY=0;\n	ClockFromMouseX=100;\n\n	//Alter nothing below! Alignments will be lost!\n	d=new Array(\"DOMINGO\",\"LUNES\",\"MARTES\",\"MIERCOLES\",\"JUEVES\",\"VIERNES\",\"SABADO\");\n	m=new Array(\"ENERO\",\"FEBRERO\",\"MARZO\",\"ABRIL\",\"MAYO\",\"JUNIO\",\"JULIO\",\"AGOSTO\",\"SEPTIEMBRE\",\"OCTUBRE\",\"NOVIEMBRE\",\"DICIEMBRE\");\n	date=new Date();\n	day=date.getDate();\n	year=date.getYear();\n	\n	if (year < 2000) year=year+1900;\n	\n	TodaysDate=\" \"+d[date.getDay()]+\" \"+day+\" \"+m[date.getMonth()]+\" \"+year;\n	D=TodaysDate.split('');\n	H='...';\n	H=H.split('');\n	M='....';\n	M=M.split('');\n	S='.....';\n	S=S.split('');\n	Face='1 2 3 4 5 6 7 8 9 10 11 12';\n	font='Arial';\n	size=1;\n	speed=0.6;\n	ns=(document.layers);\n	ie=(document.all);\n	Face=Face.split(' ');\n	n=Face.length;\n	a=size*10;\n	ymouse=0;\n	xmouse=0;\n	scrll=0;\n	\n	props=\"<font face=\"+font+\" size=\"+size+\" color=\"+fCol+\"><B>\";\n	props2=\"<font face=\"+font+\" size=\"+size+\" color=\"+dCol+\"><B>\";\n	\n	Split=360/n;\n	Dsplit=360/D.length;\n	HandHeight=ClockHeight/4.5\n	HandWidth=ClockWidth/4.5\n	HandY=-7;\n	HandX=-2.5;\n	scrll=0;\n	step=0.06;\n	currStep=0;\n	\n	y=new Array();\n	x=new Array();\n	Y=new Array();\n	X=new Array();	\n	for (i=0; i < n; i++)\n	{\n		y[i]=0;\n		x[i]=0;\n		Y[i]=0;\n		X[i]=0\n	}\n	\n	Dy=new Array();\n	Dx=new Array();\n	DY=new Array();\n	DX=new Array();\n	for (i=0; i < D.length; i++)\n	{\n		Dy[i]=0;\n		Dx[i]=0;\n		DY[i]=0;\n		DX[i]=0\n	}\n	\n	if (ns)\n	{\n		for (i=0; i < D.length; i++)\n			document.write('<layer name=\"nsDate'+i+'\" top=0 left=0 height='+a+' width='+a+'><center>'+props2+D[i]+'</font></center></layer>');\n		for (i=0; i < n; i++)\n			document.write('<layer name=\"nsFace'+i+'\" top=0 left=0 height='+a+' width='+a+'><center>'+props+Face[i]+'</font></center></layer>');\n		for (i=0; i < S.length; i++)\n			document.write('<layer name=nsSeconds'+i+' top=0 left=0 width=15 height=15><font face=Arial size=3 color='+sCol+'><center><b>'+S[i]+'</b></center></font></layer>');\n		for (i=0; i < M.length; i++)\n			document.write('<layer name=nsMinutes'+i+' top=0 left=0 width=15 height=15><font face=Arial size=3 color='+mCol+'><center><b>'+M[i]+'</b></center></font></layer>');\n		for (i=0; i < H.length; i++)\n			document.write('<layer name=nsHours'+i+' top=0 left=0 width=15 height=15><font face=Arial size=3 color='+hCol+'><center><b>'+H[i]+'</b></center></font></layer>');\n	}\n\n	if (ie)\n	{\n		document.write('<div id=\"Od\" style=\"position:absolute;top:0px;left:0px\"><div style=\"position:relative\">');\n		for (i=0; i < D.length; i++)\n			document.write('<div id=\"ieDate\" style=\"position:absolute;top:0px;left:0;height:'+a+';width:'+a+';text-align:center\">'+props2+D[i]+'</B></font></div>');\n		document.write('</div></div>');\n		\n		document.write('<div id=\"Of\" style=\"position:absolute;top:0px;left:0px\"><div style=\"position:relative\">');\n		for (i=0; i < n; i++)\n			document.write('<div id=\"ieFace\" style=\"position:absolute;top:0px;left:0;height:'+a+';width:'+a+';text-align:center\">'+props+Face[i]+'</B></font></div>');\n		document.write('</div></div>');\n\n		document.write('<div id=\"Oh\" style=\"position:absolute;top:0px;left:0px\"><div style=\"position:relative\">');\n		for (i=0; i < H.length; i++)\n			document.write('<div id=\"ieHours\" style=\"position:absolute;width:16px;height:16px;font-family:Arial;font-size:16px;color:'+hCol+';text-align:center;font-weight:bold\">'+H[i]+'</div>');\n		document.write('</div></div>');\n\n		document.write('<div id=\"Om\" style=\"position:absolute;top:0px;left:0px\"><div style=\"position:relative\">');\n		for (i=0; i < M.length; i++)\n			document.write('<div id=\"ieMinutes\" style=\"position:absolute;width:16px;height:16px;font-family:Arial;font-size:16px;color:'+mCol+';text-align:center;font-weight:bold\">'+M[i]+'</div>');\n		document.write('</div></div>')\n\n		document.write('<div id=\"Os\" style=\"position:absolute;top:0px;left:0px\"><div style=\"position:relative\">');\n		for (i=0; i < S.length; i++)\n			document.write('<div id=\"ieSeconds\" style=\"position:absolute;width:16px;height:16px;font-family:Arial;font-size:16px;color:'+sCol+';text-align:center;font-weight:bold\">'+S[i]+'</div>');\n		document.write('</div></div>')\n	}\n\n	(ns)?window.captureEvents(Event.MOUSEMOVE):0;\n	(ns)?window.onMouseMove=Mouse:document.onmousemove=Mouse;	\n	if (ns||ie)window.onload=Delay;\n}\n\nfunction Mouse(evnt)\n{\n	ymouse = (ns)?evnt.pageY+ClockFromMouseY-(window.pageYOffset):event.y+ClockFromMouseY;\n	xmouse = (ns)?evnt.pageX+ClockFromMouseX:event.x+ClockFromMouseX;\n}	\n\nfunction ClockAndAssign()\n{\n	time = new Date ();\n	secs = time.getSeconds();\n	sec = -1.57 + Math.PI * secs/30;\n	mins = time.getMinutes();\n	min = -1.57 + Math.PI * mins/30;\n	hr = time.getHours();\n	hrs = -1.575 + Math.PI * hr/6+Math.PI*parseInt(time.getMinutes())/360;\n	\n	if (ie)\n	{\n		Od.style.top=window.document.body.scrollTop;\n		Of.style.top=window.document.body.scrollTop;\n		Oh.style.top=window.document.body.scrollTop;\n		Om.style.top=window.document.body.scrollTop;\n		Os.style.top=window.document.body.scrollTop;\n	}\n	\n	for (i=0; i < n; i++)\n	{\n		var F=(ns)?document.layers['nsFace'+i]:ieFace[i].style;\n		F.top=y[i] + ClockHeight*Math.sin(-1.0471 + i*Split*Math.PI/180)+scrll;\n		F.left=x[i] + ClockWidth*Math.cos(-1.0471 + i*Split*Math.PI/180);\n	}\n\n	for (i=0; i < H.length; i++)\n	{\n		var HL=(ns)?document.layers['nsHours'+i]:ieHours[i].style;\n		HL.top=y[i]+HandY+(i*HandHeight)*Math.sin(hrs)+scrll;\n		HL.left=x[i]+HandX+(i*HandWidth)*Math.cos(hrs);\n	}\n\n	for (i=0; i < M.length; i++)\n	{\n		var ML=(ns)?document.layers['nsMinutes'+i]:ieMinutes[i].style;\n		ML.top=y[i]+HandY+(i*HandHeight)*Math.sin(min)+scrll;\n		ML.left=x[i]+HandX+(i*HandWidth)*Math.cos(min);\n	}\n\n	for (i=0; i < S.length; i++)\n	{\n		var SL=(ns)?document.layers['nsSeconds'+i]:ieSeconds[i].style;\n		SL.top=y[i]+HandY+(i*HandHeight)*Math.sin(sec)+scrll;\n		SL.left=x[i]+HandX+(i*HandWidth)*Math.cos(sec);\n	}\n\n	for (i=0; i < D.length; i++)\n	{\n		var DL=(ns)?document.layers['nsDate'+i]:ieDate[i].style;\n		DL.top=Dy[i] + ClockHeight*1.5*Math.sin(currStep+i*Dsplit*Math.PI/180)+scrll;\n		DL.left=Dx[i] + ClockWidth*1.5*Math.cos(currStep+i*Dsplit*Math.PI/180);\n	}\n\n	currStep-=step;\n}\n\nfunction Delay()\n{\n	scrll=(ns)?window.pageYOffset:0;\n	Dy[0]=Math.round(DY[0]+=((ymouse)-DY[0])*speed);\n	Dx[0]=Math.round(DX[0]+=((xmouse)-DX[0])*speed);\n		\n	for (i=1; i < D.length; i++)\n	{\n		Dy[i]=Math.round(DY[i]+=(Dy[i-1]-DY[i])*speed);\n		Dx[i]=Math.round(DX[i]+=(Dx[i-1]-DX[i])*speed);\n	}\n	\n	y[0]=Math.round(Y[0]+=((ymouse)-Y[0])*speed);\n	x[0]=Math.round(X[0]+=((xmouse)-X[0])*speed);\n	\n	for (i=1; i < n; i++)\n	{\n		y[i]=Math.round(Y[i]+=(y[i-1]-Y[i])*speed);\n		x[i]=Math.round(X[i]+=(x[i-1]-X[i])*speed);\n	}\n	ClockAndAssign();\n	setTimeout('Delay()',20);\n}\n\n/*****************************************************************************************************/\n//Carga y Manejo de Imagenes para el Menu\n/*****************************************************************************************************/\nfunction MM_swapImgRestore()\n{ //v3.0\n	var i,x,a=document.MM_sr;\n	for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++)\n		x.src=x.oSrc;\n}\n\nfunction MM_preloadImages() \n{ //v3.0\n	var d=document; \n	if(d.images)\n	{\n		if(!d.MM_p) \n			d.MM_p=new Array();\n		var i,j=d.MM_p.length,a=MM_preloadImages.arguments; \n		for(i=0; i<a.length; i++)\n			if (a[i].indexOf(\"#\")!=0)\n			{\n				d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];\n			}\n	}\n}\n\nfunction MM_findObj(n, d) \n{ //v4.01\n	var p,i,x;  \n	if(!d) \n		d=document; \n	if((p=n.indexOf(\"?\"))>0&&parent.frames.length) \n	{\n		d=parent.frames[n.substring(p+1)].document; \n		n=n.substring(0,p);\n	}\n	if(!(x=d[n])&&d.all) \n		x=d.all[n]; \n	for (i=0;!x&&i<d.forms.length;i++) \n		x=d.forms[i][n];\n	for(i=0;!x&&d.layers&&i<d.layers.length;i++)\n		x=MM_findObj(n,d.layers[i].document);\n	if(!x && d.getElementById)\n		x=d.getElementById(n); \n	return x;\n}\n\nfunction MM_swapImage()\n{ //v3.0\n	var i,j=0,x,a=MM_swapImage.arguments; \n	document.MM_sr=new Array; \n	for(i=0;i<(a.length-2);i+=3)\n		if ((x=MM_findObj(a[i]))!=null)\n		{\n			document.MM_sr[j++]=x; \n			if(!x.oSrc) \n				x.oSrc=x.src; \n			x.src=a[i+2];\n		}\n}\n\n/*****************************************************************************************************/\n//funcionalidades particulares de la Base de Datos\n/*****************************************************************************************************/\n\n/*function Init()\n{\n	ID  = document.forms[0].DocId.value;\n	DB = document.URL;\n	i = DB.length;\n	while (i>=3) \n	{\n		ext = DB.substr(i-3,3).toLowerCase();\n		if (ext == \"nsf\") \n		{\n			DB = DB.substr(0,i);\n			break;\n		}\n		i--;\n	}\n}*/\n\n//Documento Atachados\nfunction Attach() \n{\n     document.forms[0].FlagReturn.value=1;\n     document.forms[0].submit();\n     return true;\n}\n\n/*function Seleccionar()\n{\n	var beg = 0;\n	var ast1=\"\\u00E7\";\n	var ast2=\"\\u00AC\";\n\n	var Ids = \"\";\n	var Nombres = \"\";\n	var HaySelec=false;\n\n	for(var i=0; i<document.forms[0].elements.length; i++) \n	{\n	\n		if(document.forms[0].elements[i].name=\"CheckCV\")\n		{\n			var  varLNG = document.forms[0].elements[i].value;\n			var end1 = varLNG.indexOf( ast1 );\n			var end2 = varLNG.indexOf( ast2 );\n		\n			if(document.forms[0].elements[i].checked)\n			{\n				if (Ids== \"\")\n					Ids = varLNG.substring(beg,end1)\n				else\n					Ids = Ids+\";\"+varLNG.substring(beg,end1);\n				if (Nombres== \"\")\n					Nombres = varLNG.substring(end1+1,end2)\n				else\n					Nombres = Nombres+\";\"+varLNG.substring(end1+1,end2);\n					HaySelec = true;\n			}\n		}\n	}\n		\n	if(HaySelec)\n	{\n		window.opener.document.forms[0].IdsPost.value=Ids;\n		window.opener.document.forms[0].NombPost.value=Nombres;\n		window.opener._doClick('$Refresh', this, '_self');\n		self.close();\n	}	\n}*/\n\n/*****************************************************************************************************/\n//funcionalidades de apertura de ventanas\n/*****************************************************************************************************/\nfunction abreform(direccion)\n{\n//	var w = 480, h = 340;\n	var w = 1024, h = 768;\n	if (document.all || document.layers)\n	{	\n		w = screen.availWidth;\n		h = screen.availHeight;\n	}\n	var popW = 600, popH = 210;\n	var leftPos = (w-popW)/2, topPos = (h-popH)/2;\n	window.open(direccion,'popup','titlebar=0,resizable=0,menubar=0,status=0,width=' + popW + ',height=' + popH+ ',top=' + topPos + ',left=' + leftPos);\n}\n\nfunction NewWin(url,name,xpos,ypos,width,height)\n{\n	newWin=window.open(url, name,\n				\"screenX=\"+xpos+\",screenY=\"+ypos+\",WIDTH=\"+width+\",HEIGHT=\"+height+ \n           		\",location=0,resizable=0,status=0,titlebar=0,directories=0,toolbar=0,menubar=0,scrollbars=0,status=0\"\n       								);\n       newWin.focus();\n       onscreen=true; \n}\n\nfunction PoPupCenter(url,popW,popH,scroll)\n{\n	var w=screen.availWidth;\n	var h=screen.availHeight;\n\n	var leftPos = (w-popW)/2;\n	var topPos = (h-popH)/2;\n	\n	var atrib='titlebar=no,resizable=no,menubar=no,toolbar=no,scrollbars='+scroll+',status=no,width=' + popW + ',height=' + popH + ',top=' + topPos + ',left=' + leftPos;\n	var winname='PoPup'+(document.forms[0].DocId==undefined?\"\":document.forms[0].DocId.value);\n	\n	return window.open(url,winname,atrib);\n}\n\nfunction PoPupCenterScroll(url,popW,popH)\n{\n	\n	var w=screen.availWidth;\n	var h=screen.availHeight;\n\n	var leftPos = (w-popW)/2;\n	var topPos = (h-popH)/2;\n	\n	var atrib='titlebar=no,resizable=no,menubar=no,toolbar=no,scrollbars=yes,status=no,width=' + popW + ',height=' + popH + ',top=' + topPos + ',left=' + leftPos;\n	var winname='PoPup'+(document.forms[0].DocId==undefined?\"\":document.forms[0].DocId.value);\n	\n	return window.open(url,winname,atrib);\n}\n\n/*****************************************************************************************************/\n//funcionalidades con string\n/*****************************************************************************************************/\nfunction enter()\n{\n	return String.fromCharCode(13);\n}\n\nfunction Left(str, subStr)\n{\n	n=str.length\n	for (var i=0; i<str.length; i++)\n	{      \n     	if (str.substring(i,i+subStr.length) == subStr)\n		{\n         		n=i\n      	}\n   	}\n   	\n	if (n <= 0)\n		return \"\";\n	else if (n > String(str).length)\n		return str;\n	else\n	 	return String(str).substring(0,n);\n}\n\nfunction Right(str, subStr)\n{\n	n=str.length\n	for (var i=0; i<str.length; i++)\n	{      \n     	if (str.substring(i,i+subStr.length) == subStr)\n		{\n			n=n-(i+subStr.length)\n      	}\n   	}\n   	\n	if (n <= 0)\n     	return \"\";\n   	else if (n > String(str).length)\n     	return str;\n    else\n	{\n     	var iLen = String(str).length;\n     	return String(str).substring(iLen, iLen - n);\n	}\n}\n\n//Verifica si un estring se encuentra dentro de un campo multivalor\nfunction StrInFldMultVal(str,fld)\n{\n	for (i=0;i<fld.length;i++)\n		if(fld.options[i].text == str)\n			return true;\n\n	return false;\n}\n\nfunction StrInFldMultValSplit(str,fld)\n{\n	arr=fld.value.split(',');\n	for (i=0;i<arr.length;i++)\n		if(trim(arr[i]) == str)\n			return true;\n\n	return false;\n}\n\n/*****************************************************************************************************/\n//funcionalidades con Divisiones\n/*****************************************************************************************************/\n//Muestra divisiones enumerados\nfunction ShowDivFromTo(DivPrefix, From, To)\n{\n	for (var i=From;i<=To;i++) //{alert('Show='+DivPrefix + i);\n		document.getElementById(DivPrefix + i).style.display=\"block\"; //}\n}\n\n//Oculta divisiones enumerados\nfunction HideDivFromTo(DivPrefix, From, To)\n{\n	for (var i=From;i<=To;i++) //{alert('Hide='+DivPrefix + i);\n		document.getElementById(DivPrefix + i).style.display=\"none\"; //}\n}\n\n//Muestra y Oculta un conjunto de Divisiones\nfunction ToggleShowHideDivs(HideDivs, ShowDivs)\n{\n	for (x = 0; x < ShowDivs.length; x++)\n		document.getElementById(ShowDivs[x]).style.display=\"block\";\n		\n	for (x = 0; x < HideDivs.length; x++)\n		document.getElementById(HideDivs[x]).style.display=\"none\";\n}\n\n/*****************************************************************************************************/\n//funcionalidades con Campos\n/*****************************************************************************************************/\n//Muestra y Oculta un conjunto de Campos\nfunction ShowHideFields(HideFields, ShowFields)\n{\n	for (x = 0; x < ShowFields.length; x++)\n		document.getElementById(ShowFields[x]).style.display=\"block\";\n\n	for (x = 0; x < HideFields.length; x++)\n		document.getElementById(HideFields[x]).style.display=\"none\";\n}\n\nfunction copyfields(fieldsArraySource, fieldsArrayTarget)\n{\n	for (x = 0; x < fieldsArraySource.length; x++)\n	{\n		var ffield = document.getElementsByName(fieldsArraySource[x]).item(0);\n		var sfield = document.getElementsByName(fieldsArrayTarget[x]).item(0);\n\n		if (ffield.nodeName==\"SELECT\")\n			sfield.selectedIndex = ffield.selectedIndex;\n		else if (ffield.nodeName==\"INPUT\")\n			sfield.value = ffield.value;\n	}\n}\n\n//Seteo de campos definidos en un arreglo\nfunction SetFields(fieldsArray)\n{\n\n	for (var x = 0; x < fieldsArray.length; x++)\n	{\n		var e=document.getElementsByName(fieldsArray[x])[0];\n		switch (e.type) \n		{\n			case \"text\":\n					e.value='';\n					break;\n			case \"textarea\":\n					e.value='';\n					break;\n			case \"select-one\":\n					e.selectedIndex = 0;\n					break;\n			case \"select-multiple\":\n					e.selectedIndex =-1;\n					break;\n			case \"checkbox\":\n					p = eval(\"e.form.\" + e.name);\n					for (var r=0; r < p.length; r++)\n						p[r].checked=false;\n					break;\n			case \"radio\":\n					p = eval(\"e.form.\" + e.name);\n					for (var r=0; r < p.length; r++)\n						p[r].checked=false;\n					break;\n			default:\n					break;\n		}		\n	}	\n	\n	fldEnabled(fieldsArray);\n}\n\nfunction fldValida(fieldsArray)\n{\n	//fieldsArray[x]='Nombre Visual#Nombre Campo'\n	for (var x = 0; x < fieldsArray.length; x++)\n	{	\n		a = fieldsArray[x].split(\"#\");\n		var e=document.getElementsByName(a[1])[0];\n		switch (e.type) \n		{\n			case \"text\":\n					if ( trim(e.value) == \"\" )\n					{\n						alert( a[0]+ \" es un dato requerido.\\n\\nPor Favor, Ingrese Informacion\");\n						e.focus();\n						return false;\n					}\n					break;\n			case \"textarea\":\n					if ( trim(e.value) == \"\" )\n					{\n						alert(a[0]+ \" es un dato requerido.\\n\\nPor Favor, Ingrese Informacion\");\n						e.focus();\n						return false;\n					}\n					break;\n			case \"select-one\":\n					if ( e.selectedIndex == 0 )\n					{\n					\n						var valor=trim(e.options[e.selectedIndex].text);\n						if (valor == '' || valor == 'Seleccionar Marca' || valor == 'Seleccionar Modelo')\n						{\n							alert(a[0]+ \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n							e.focus();\n							return false;\n						}\n					}\n					break;\n			case \"select-multiple\":\n					if (e.selectedIndex == -1)\n					{\n						alert(a[0]+ \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n						e.focus();\n						return false;\n					}\n					break;\n			case \"checkbox\":\n					hasChecked = false;\n					p = eval(\"e.form.\" + e.name);\n					for (var r=0; r < p.length; r++)\n					{\n						if ( p[r].checked )\n						{\n							hasChecked = true;\n						}\n					}\n					if (!hasChecked) \n					{\n						alert(a[0]+ \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n						e.focus();\n						return hasChecked;\n					}\n					break;\n			case \"radio\":\n					hasChecked = false;\n					p = eval(\"e.form.\" + e.name);\n						for (var r=0; r < p.length; r++)\n					{\n						if ( p[r].checked )\n						{\n							hasChecked = true;\n						}\n					}\n						if (!hasChecked) \n					{\n						alert(a[0]+ \" es un dato requerido.\\n\\nPor Favor, Seleccione una Entrada\");\n						e.focus();\n						return hasChecked;\n					}\n					break;\n			default:\n					break;\n		}\n	}\n	return true;\n}\n\nfunction fldFocus(strfld)\n{\n	document.getElementById(strfld)[0].focus();\n}\n\nfunction fldDisabled(fieldsArraySource)\n{\n	for (x = 0; x < fieldsArraySource.length; x++)\n	{\n		var sfield = document.getElementsByName(fieldsArraySource[x]).item(0);\n		sfield.setAttribute('disabled', true); \n	}\n	\n}\n\nfunction fldEnabled(fieldsArraySource)\n{\n	for (x = 0; x < fieldsArraySource.length; x++)\n	{\n		var sfield = document.getElementsByName(fieldsArraySource[x]).item(0);\n		sfield.setAttribute('disabled', false); \n	}\n}\n\n\nfunction fldCleanDialogList(fldDiaLis)\n{\n	while (fldDiaLis.length != 0)\n		fldDiaLis.options[0] = null;\n}\nfunction manda(campo){\nwindow.opener.document.DerivaA.value=campo;\nwindow.opener.document.refresh();\n}\n\n/****************************************************\nFuncion para manejar a traves del \"onkeyPress\" solo numeros y solo Char */\nvar nav4 = window.Event ? true : false;\nfunction acceptChar(evt){\n	 // NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57\n	var key = nav4 ? evt.which : evt.keyCode;\n	//alert(key);\n	return (key <= 13 || (key >= 32 && key <= 32) || (key >= 65 && key <= 90) || (key >34 && key < 37) || (key > 208 && key < 210) || (key >=97 && key <=122) || (key > 240 && key < 242));\n}\nfunction acceptNum(evt){\n	 // NOTE: Backspace = 8, Enter = 13, '0' = 48, '9' = 57\n	var key = nav4 ? evt.which : evt.keyCode;\n	return (key <= 13 || (key >= 48 && key <= 57));\n}\n/* Termino de Codigo para \"onkeyPress\"\n/*****************************************************/\n\n\ncheckRutField",
+			"elementbyid",
+			"tipo_documento",
+			"rut",
+			"cliente",
+			"tipo_documento",
+			"email_a",
+			"hoja",
+			"layer",
+			"iframe",
+			"select",
+			"cod_ins",
+			"formulario_oirs_mail",
+			"formulario_oirs_estado_envio",
+			"genero",
+			"JavaScript",
+			"ventanainstrumento",
+			"instrumen",
+			"boto",
+			"dvUTerritorialLeft",
+			"imputra",
+			"imp",
+			"dvUTerritorialLeft",
+			"mostrar_ficha_asignacion",
+			"mostrar_fic",
+			"cb_ana",
+			"lbuscar",
+			"inicializa",
+			"inicia",
+			"inicializa_formulario",
+			"id_evaluador",
+			"analista",
+			"filtro",
+			"observac",
+			"botones",
+			"totinst1",
+			"cantidad_do",
+			"form1",
+			"GDOCUMENTACION",
+			"form1.",
+			"doc1",
+			"form.",
+			"form",
+			"mpagin",
+			"acciones",
+			"cambia_instrumento2",
+			"dvHead",
+			"header",
+			"tipo_co",
+			"tipo_ficha",
+			"tipo_fi",
+			"EFEFEF",
+			"efefef",
+			"EFEFEF",
+			"dvhead",
+			"SNivelUbicacion",
+			"filtro",
+			"select-filtro",
+			"select-fil",
+			"select",
+			"fuentes y ",
+			"e_codig",
+			"ecodigo",
+			"interfa",
+			"valida_b",
+			"via_finan",
+			"asigna_datos_instrumento_otro",
+			"ListaInstrumento0",
+			"tree",
+			"iframe",
+			"seleccionar_u",
+			"selecciona",
+			"actualiza_seleccionados",
+			"mpagina",
+			"sc",
+			"scro",
+			"scrol",
+			"actualiza_seleccionados",
+			"obj",
+			"marcogrilla",
+			"asigna",
+			"submi",
+			"tipo_a",
+			"tipo_ate",
+			"ocupaci",
+			"tipo_u",
+			"#",
+			"menu",
+			"formulario_oirs_form_submit",
+			"submit",
+			"formulario_oirs_form_submit",
+			"submit",
+			"drupal_get_path",
+			"img",
+			"redirect",
+			"submit",
+			"email",
+			"ver solici",
+			"formulario_consulta_oirs_form_submit",
+			"submit",
+			"pagina",
+			"print",
+			"consulta",
+			"print",
+			"pagi",
+			"submi",
+			"WS_FORMULARIO",
+			"arg",
+			"submit",
+			"print_r",
+			"consulta",
+			"form",
+			"submit",
+			"arg",
+			"args",
+			"plot",
+			"char",
+			"submit",
+			"formulario_oirs_form_pagina",
+			"submi",
+			"submit"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "proyeccion/views.py",
+					"settings":
+					{
+						"buffer_size": 14637,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6543,
+								6543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2464.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "proyecta/templates/proyeccion/index.html",
+					"settings":
+					{
+						"buffer_size": 4511,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2178,
+								2178
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1151.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"output.phpdocumentor":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 233.0,
+	"status_bar_visible": true
+}
