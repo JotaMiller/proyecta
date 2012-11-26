@@ -82,6 +82,9 @@ def index(request):
     respuesta = ""
     path_grafico = ""
     cant_venta = []
+    periodos_fechas = ""
+    periodo_inicio = ""
+    periodo_fin = ""
     periodos = {}
     venta_maxima = 0
     query = request.POST.get('id_sucursal', '')
