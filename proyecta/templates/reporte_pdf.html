@@ -32,15 +32,17 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Temporada / Periodo</th>
+				<th>Periodo</th>
+				<th>Fecha</th>
 				<th>Productos</th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for can_venta in cant_ventas %}
+			{% for venta in detalle_ventas %}
 			<tr>
 				<td height="30px">{{ forloop.counter }}</td>
-				<td>{{ can_venta }}</td>
+				<td>{{ venta.fecha }}</td>
+				<td>{{ venta.cantidad }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>

@@ -287,7 +287,7 @@
 			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 14637,
+				"buffer_size": 14707,
 				"line_ending": "Unix"
 			}
 		},
@@ -308,7 +308,7 @@
 		[
 			[
 				"Package Control: ",
-				"Package Control: Remove Package"
+				"Package Control: Install Package"
 			],
 			[
 				"html",
@@ -319,7 +319,7 @@
 				"HTML: Encode Special Characters"
 			]
 		],
-		"width": 476.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -474,6 +474,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"periodo_inicio",
 			"periodos_fechas",
 			"datetime_on",
 			"periodo",
@@ -600,8 +601,7 @@
 			"char",
 			"submit",
 			"formulario_oirs_form_pagina",
-			"submi",
-			"submit"
+			"submi"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -620,7 +620,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -628,15 +628,15 @@
 					"file": "proyeccion/views.py",
 					"settings":
 					{
-						"buffer_size": 14637,
+						"buffer_size": 14707,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6543,
-								6543
+								2401,
+								2401
 							]
 						],
 						"settings":
@@ -646,7 +646,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2464.0,
+						"translation.y": 1166.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -663,8 +663,8 @@
 						"selection":
 						[
 							[
-								2178,
-								2178
+								2135,
+								2135
 							]
 						],
 						"settings":

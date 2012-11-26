@@ -87,6 +87,8 @@ def index(request):
     periodo_fin = ""
     periodos = {}
     venta_maxima = 0
+    informacion_ventas = ""
+    periodo_proyeccion = ""
     query = request.POST.get('id_sucursal', '')
     
     t_ventas= 1,
@@ -127,6 +129,7 @@ def index(request):
         
         ventas = detalle_ventas[0]
         periodos_fechas = detalle_ventas[2]
+        informacion_ventas = []
         
         ventas_ts = convert_ts(ventas, inicio, 01,12)
         
@@ -188,6 +191,7 @@ def index(request):
             # print 'periodo inicio: ' + str(periodo_inicio)
 
             cant_venta.append([fecha_time,t_venta_1])
+            informacion_ventas.append({'cantidad': t_venta_1, 'fecha': str(inicio_ano) + '-' + str(inicio_mes) })
 
             inicio_mes = inicio_mes +1
             if inicio_mes > 12:
@@ -205,6 +209,7 @@ def index(request):
             fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
 
             cant_venta.append([fecha_time,t_venta_2])
+            informacion_ventas.append({'cantidad': t_venta_2, 'fecha': str(inicio_ano) + '-' + str(inicio_mes) })
 
             inicio_mes = inicio_mes +1
             if inicio_mes > 12:
@@ -220,6 +225,7 @@ def index(request):
                 venta_maxima = t_venta_2
         
         # print cant_venta
+
 
         venta_maxima = int(venta_maxima)
         # Se envian los periodos de proyeccion para la gerenacion del grafico
@@ -244,6 +250,8 @@ def index(request):
         'periodos_fechas': periodos_fechas,
         'periodo_inicio': periodo_inicio,
         'periodo_fin': periodo_fin,
+        'informacion_ventas': informacion_ventas,
+        'periodo_proyeccion': periodo_proyeccion,
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -371,11 +379,28 @@ def generar_pdf(html):
 
 def reporte_pdf(request):
     # Vista que muestra el reporte generado
+    fecha_inicio = ""
     if request.method == 'POST':
         #Se obtienen los datos para realizar los calculos 
         cant_ventas     =   request.POST.getlist('cant_ventas')
+        fecha_inicio    =   request.POST['fecha_inicio']
         grafico         =   request.POST['grafico']
-    
+
+        print cant_ventas
+        
+        fecha_inicio = int(fecha_inicio) -2
+
+        detalle_ventas = []
+        mes = 1
+        ano = fecha_inicio
+
+        for venta in cant_ventas:
+            detalle_ventas.append({'fecha': str(ano) + '-' + str(mes), 'cantidad': venta })
+            mes = mes + 1
+
+            if mes > 12:
+                ano + 1
+                mes = 1
         
         libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
         usuario =   request.user
@@ -395,6 +420,7 @@ def reporte_pdf(request):
                                  'logo': path_logo,
                                  'cant_ventas': cant_ventas,
                                  'grafico': grafico,
+                                 'detalle_ventas': detalle_ventas,
                                  }, context_instance=RequestContext(request))
         return generar_pdf(html)
 

@@ -120,14 +120,16 @@
 				<thead>
 					<tr>
 						<th>Periodo</th>
+						<th>Fecha</th>
 						<th>Cantidad</th>
 					</tr>
 				</thead>
 				<tbody>
-					{% for venta in cant_venta %}
-					<tr>
+					{% for venta in informacion_ventas %}
+					<tr class="gradeA">
 						<td>{{ forloop.counter }}</td>
-						<td>{{ venta|floatformat:"0" }}</td>
+						<td>{{ venta.fecha }}</td>
+						<td>{{ venta.cantidad|floatformat:"0" }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -140,8 +142,9 @@
 				
 			<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
 				{% for valor in cant_venta %}
-				<input type="hidden" name="cant_ventas" value="{{ valor|floatformat:"0" }}"/>
+				<input type="hidden" name="cant_ventas" value="{{ valor.1|floatformat:"0" }}"/>
 				{% endfor %}
+				<input type="hidden" name="fecha_inicio" value="{{ periodo_proyeccion }}" >
 				<input type="hidden" name="grafico" value="{{ grafico }}" />
 				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
 			</form>
