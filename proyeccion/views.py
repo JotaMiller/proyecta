@@ -24,6 +24,7 @@ from django.contrib.auth.decorators import login_required
 from forms import UserForm
 
 from datetime import datetime
+import calendar
 
 from rpy2 import robjects
 from rpy2.robjects.packages import importr
@@ -79,6 +80,7 @@ def index(request):
     grafico = False
     ventas2 = False
     respuesta = ""
+    path_grafico = ""
     cant_venta = []
     periodos = {}
     venta_maxima = 0
@@ -90,16 +92,26 @@ def index(request):
         #Se obtienen los datos para realizar los calculos 
         id_producto     =   request.POST['producto']
         id_sucursal     =   request.POST['sucursal']
-        fecha_inicio    =   request.POST['fecha_inicio']
-        fecha_termino   =   request.POST['fecha_termino']
+        periodo_proyeccion = int(request.POST['periodo_proyeccion'])
+
+        # Se calculara la proyeccion con dos periodos antes a la fecha seleccionada
+        inicio          =   periodo_proyeccion - 2
+        termino         =   periodo_proyeccion - 1
+
+        fecha_inicio    =   datetime.strptime(str(inicio) + '-01-01', "%Y-%m-%d")
+        fecha_termino   =   datetime.strptime(str(termino) + '-12-31', "%Y-%m-%d")
+        
+        # anterior
+        #fecha_inicio    =   request.POST['fecha_inicio']
+        #fecha_termino   =   request.POST['fecha_termino']
         
         #Fecha utilizada para ser transformada y sepatara por año, mes y dia
-        fecha           =   datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
-        fecha           =   datetime.strptime(fecha,"%Y-%m-%d")
+        #fecha           =   datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        #fecha           =   datetime.strptime(fecha,"%Y-%m-%d")
         
         #Fecha utilizada para ser transformada y sepatara por año, mes y dia
-        f_termino       =   datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
-        f_termino       =   datetime.strptime(f_termino,"%Y-%m-%d")
+        #f_termino       =   datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        #f_termino       =   datetime.strptime(f_termino,"%Y-%m-%d")
         
         # se envia el nombre a la plantilla para ser mostrada
         # se utiliza el nombre de usuario y la fecha actual en formato unix
@@ -111,10 +123,12 @@ def index(request):
         detalle_ventas = total_ventas(id_producto, fecha_inicio, fecha_termino)
         
         ventas = detalle_ventas[0]
+        periodos_fechas = detalle_ventas[2]
         
-        ventas_ts = convert_ts(ventas, fecha.year, fecha.month,12)
+        ventas_ts = convert_ts(ventas, inicio, 01,12)
         
         print ventas_ts
+
         r('''
         calcular <- function(ventas_ts,path_grafico,inicio_periodo,fecha_inicio, fecha_termino, verbose=FALSE){
             
@@ -150,25 +164,60 @@ def index(request):
         
         # Se ejecuta la funcion de calculos de ventas
         # el grafico se guarda en formato png en el directorio graficos
-        respuesta       = calcular_ventas(ventas_ts,path_grafico, fecha.month, fecha.year, f_termino.year)
+        respuesta       = calcular_ventas(ventas_ts,path_grafico, 01, inicio, termino)
         
         # se prepara la lista con las ventas anteriores y las proyectadas
         periodo = 0
         venta_maxima = 0
+        inicio_ano = inicio
+        inicio_mes = 1
+        periodo_inicio = ""
+        periodo_fin = ""
+
         for t_venta_1 in ventas:
-            cant_venta.append( t_venta_1)
+            fecha_time = datetime.strptime(str(inicio_ano)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+            fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
             
+            # Se establece el inicio del periodo para el eje x
+            if periodo_inicio == "":
+                periodo_inicio = fecha_time
+            
+            # print 'periodo inicio: ' + str(periodo_inicio)
+
+            cant_venta.append([fecha_time,t_venta_1])
+
+            inicio_mes = inicio_mes +1
+            if inicio_mes > 12:
+                inicio_mes = 1
+                inicio_ano = inicio_ano +1
+                print 'un año mas'
+                print inicio_ano 
+
             periodo = periodo + 1
             if venta_maxima < t_venta_1:
                 venta_maxima = t_venta_1
             
         for t_venta_2 in respuesta:
-            cant_venta.append(t_venta_2)
-            periodo = periodo + 1
+            fecha_time = datetime.strptime(str(inicio_ano)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+            fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
+
+            cant_venta.append([fecha_time,t_venta_2])
+
+            inicio_mes = inicio_mes +1
+            if inicio_mes > 12:
+                inicio_mes = 1
+                inicio_ano = inicio_ano +1
+                print 'un año mas'
+                print inicio_ano 
+
+            # se establece el ultimo periodo para el eje x
+            periodo_fin = fecha_time
             
             if venta_maxima < t_venta_2:
                 venta_maxima = t_venta_2
         
+        # print cant_venta
+
         venta_maxima = int(venta_maxima)
         # Se envian los periodos de proyeccion para la gerenacion del grafico
         periodos = { 'inicio': 1, 'termino': periodo }
@@ -189,6 +238,9 @@ def index(request):
         'id_ventas': id_venta,
         'ids_sucursales': ids_sucursales,
         'grafico': path_grafico,
+        'periodos_fechas': periodos_fechas,
+        'periodo_inicio': periodo_inicio,
+        'periodo_fin': periodo_fin,
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -199,16 +251,17 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
     
     las ventas son devueltas en periodos de meses
     """
-    fecha_inicio = datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
-    fecha_termino = datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
-    fecha_inicio = datetime.strptime(fecha_inicio,"%Y-%m-%d") 
-    fecha_termino = datetime.strptime(fecha_termino,"%Y-%m-%d") 
+    # fecha_inicio = datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
+    # fecha_termino = datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
+    # fecha_inicio = datetime.strptime(fecha_inicio,"%Y-%m-%d") 
+    # fecha_termino = datetime.strptime(fecha_termino,"%Y-%m-%d") 
     
     id_producto = int(id_producto)
     tiempo = Tiempo.objects.filter( fecha__range = (fecha_inicio, fecha_termino)).order_by('fecha')
     ventas_ts = []
     ventas_detalle = []
     detalle_venta = ""
+    venta_time = []
     
     cont_ano    =   fecha_inicio.year
     cont_mes    =   fecha_inicio.month
@@ -233,14 +286,18 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
                     #venta_total_mes = venta_total_mes + fecha_venta.venta.total_venta
                     venta_total_mes = venta_total_mes + producto.stock 
                 
-            ventas_detalle.append({'cantidad': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano})
+            ventas_detalle.append({'cantidad': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano, 'fecha':  str(cont_ano) +'-'+str(cont_mes) })
+            
+            fecha_time = datetime.strptime(str(cont_ano)+'-'+str(cont_mes)+'-01',"%Y-%m-%d") 
+            venta_time.append([calendar.timegm(fecha_time.timetuple()) * 1000, venta_total_mes])
+            
             ventas_ts.append(venta_total_mes)
             cont_mes = cont_mes + 1
             
         cont_ano = cont_ano + 1
         cont_mes = 1
     
-    return ventas_ts, ventas_detalle
+    return ventas_ts, ventas_detalle, venta_time
 
 def convert_ts(time_series, start_year=2000, start_pd=1, freq=12):
      """

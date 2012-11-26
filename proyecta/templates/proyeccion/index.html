@@ -55,16 +55,12 @@
 				<div class="clear"></div>
 			</div>
 			<div class="formRow">
-				<label>Fecha Inicio:</label>
+				<label>Proyectar año</label>
 				<div class="formRight">
-					<input type="text" id="fecha_inicio" name="fecha_inicio" class="datepicker" />
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="formRow">
-				<label>fecha Término:</label>
-				<div class="formRight">
-					<input type="text" id="fecha_termino" name="fecha_termino" class="datepicker" />
+					<select name="periodo_proyeccion" id="periodo_proyeccion">
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+					</select>
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -83,7 +79,8 @@
     	var producto = [];
     
     	{% for venta in cant_venta  %}
-	        producto.push([ {{ forloop.counter }}, {{ venta }} ]);
+	        producto.push({{venta}});
+	        console.log({{venta}});
     	{% endfor %}
 
     var plot = $.plot($(".chart"),
@@ -94,53 +91,61 @@
                },
                grid: { hoverable: true, clickable: true },
                yaxis: { min: 1, max: {{ venta_maxima }} },
-			   xaxis: { min: {{ periodos.inicio }}, max: {{ periodos.termino }} }
+			   xaxis: { 
+			   	mode: 'time',
+			   	timeformat: "%Y - %b",
+			   	monthNames: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+			   	min: 1262304000000,
+			   	max: {{periodo_fin}}
+			   	// min: {{ periodos.inicio }}, 
+			   	// max: {{ periodos.termino }} 
+			   }
              });
 	});
 </script>
 {% if grafico %}
+<!-- Reporte y detalle ventas -->   
+
+<!-- Lines chart -->
+<div class="widget chartWrapper">
+	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
+	<div class="body"><div class="chart"></div></div>
+</div>
+
 <div class="widgets">
-	<div class="oneThree">
-	 <!-- Reporte y detalle ventas -->   
-	    <div class="widget">
-	            <div class="title"><img src="/assets/images/icons/dark/full2.png" alt="" class="titleIcon" /><h6>Detalle de Ventas por Periodos</h6></div>                          
-	            <table cellpadding="0" cellspacing="0" border="0" class="display dTable">
-	                <thead>
-	                    <tr>
-	                       	<th>Periodo</th>
-	                        <th>Cantidad</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-	                	{% for venta in cant_venta %}
-	                    <tr>
-	                        <td>{{ forloop.counter }}</td>
-	                        <td>{{ venta|floatformat:"0" }}</td>
-	                    </tr>
-	                    {% endfor %}
-	                </tbody>
-	            </table>
-	       </div>
+	<div class="oneTwo">
+		<div class="widget">
+			<div class="title"><img src="/assets/images/icons/dark/full2.png" alt="" class="titleIcon" /><h6>Detalle de Ventas por Periodos</h6></div>                          
+			<table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+				<thead>
+					<tr>
+						<th>Periodo</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for venta in cant_venta %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td>{{ venta|floatformat:"0" }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
-	
-	<div class="twoOne">
-	 <!-- Lines chart -->
-		<div class="widget chartWrapper">
-	    	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
-	        <div class="body"><div class="chart"></div></div>
-	    </div>
-	    <div class="widget">
-	    	<div class="title"><h6>Acciones</h6></div>
-	    	
-	    	<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
-	    		{% for valor in cant_venta %}
+	<div class="oneTwo">
+		<div class="widget">
+			<div class="title"><h6>Acciones</h6></div>
+				
+			<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
+				{% for valor in cant_venta %}
 				<input type="hidden" name="cant_ventas" value="{{ valor|floatformat:"0" }}"/>
 				{% endfor %}
 				<input type="hidden" name="grafico" value="{{ grafico }}" />
 				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
-	    	</form>
-
-	    </div>
+			</form>
+		</div>
 	</div>
 </div>
 {% endif %}
