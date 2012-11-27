@@ -5,3 +5,5 @@ proyecta/media/avatar/*.*
 proyecta/media/logos/*.*
 proyecta/media/graficos/*.*
 *.png
+*.sublime-project
+*.sublime-workspace
