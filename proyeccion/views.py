@@ -71,7 +71,6 @@ def index(request):
     
     # productos relacionados con las ventas de cada sucursal
     productos = Producto.objects.filter( venta_id__in = id_venta )
-    
 
     grdevices = importr('grDevices')
     forecast = importr('forecast')
