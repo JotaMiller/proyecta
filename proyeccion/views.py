@@ -89,6 +89,8 @@ def index(request):
     informacion_ventas = ""
     periodo_proyeccion = ""
     query = request.POST.get('id_sucursal', '')
+    id_sucursal     =   ""
+    id_producto     =   ""
     
     t_ventas= 1,
     
@@ -148,7 +150,7 @@ def index(request):
             
             png(path, width=600, height=600)
             
-            plot(ventas_ts, col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 20, type ="o", xlab="Periodo", ylab="Cantidad de productos", main="Proyección de ventas")
+            plot(c(ventas_ts,p2), col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 20, type ="o", xlab="Periodo", ylab="Cantidad de productos", main="Proyección de ventas")
             
              lines(fitted(m2)[,1], col = "blue", lwd =2)
             lines(p2, col="red", lwd=2)
@@ -251,6 +253,8 @@ def index(request):
         'periodo_fin': periodo_fin,
         'informacion_ventas': informacion_ventas,
         'periodo_proyeccion': periodo_proyeccion,
+        'id_sucursal': id_sucursal,
+        'id_producto': id_producto,
     })
     return render_to_response('proyeccion/index.html',c)
     
@@ -379,14 +383,19 @@ def generar_pdf(html):
 def reporte_pdf(request):
     # Vista que muestra el reporte generado
     fecha_inicio = ""
+    id_sucursal     =   ""
+    id_producto     =   ""
     if request.method == 'POST':
         #Se obtienen los datos para realizar los calculos 
         cant_ventas     =   request.POST.getlist('cant_ventas')
         fecha_inicio    =   request.POST['fecha_inicio']
         grafico         =   request.POST['grafico']
+        id_producto     =   request.POST['id_producto']
+        id_sucursal     =   request.POST['id_sucursal']
 
-        print cant_ventas
-        
+        sucursal        =   Sucursal.objects.get( id = id_sucursal )
+        producto        =   Producto.objects.get( id = id_producto )
+
         fecha_inicio = int(fecha_inicio) -2
 
         detalle_ventas = []
@@ -398,7 +407,7 @@ def reporte_pdf(request):
             mes = mes + 1
 
             if mes > 12:
-                ano + 1
+                ano = ano + 1
                 mes = 1
         
         libro = { 'titulo': 'prueba', 'descripcion': 'Descriocion jahf as' }
@@ -416,6 +425,8 @@ def reporte_pdf(request):
                                  'usuario': usuario,
                                  'fecha': fecha,
                                  'empresa': empresa,
+                                 'sucursal': sucursal,
+                                 'producto': producto,
                                  'logo': path_logo,
                                  'cant_ventas': cant_ventas,
                                  'grafico': grafico,
