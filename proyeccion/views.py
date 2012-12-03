@@ -296,9 +296,9 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
                 # Borrar comentario...
                 
                 for producto in productos:
-                #    if producto.id == id_producto:
+                    if producto.id == id_producto:
                     #venta_total_mes = venta_total_mes + fecha_venta.venta.total_venta
-                    venta_total_mes = venta_total_mes + producto.stock 
+                        venta_total_mes = venta_total_mes + producto.stock 
                 
             ventas_detalle.append({'cantidad': venta_total_mes, 'mes': cont_mes, 'ano': cont_ano, 'fecha':  str(cont_ano) +'-'+str(cont_mes) })
             

@@ -60,7 +60,7 @@ def chatHeartbeat(request):
 
 	chatBoxes = []
 
-	print request
+	print request.session
 	for chat in chats:
 		items = request.session['openChatBoxes']
 		# try:
