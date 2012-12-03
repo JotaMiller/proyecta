@@ -7,17 +7,13 @@
 #===============================================================================
 from django.db import models
 
-class Mensaje(models.Model):
+class Chat(models.Model):
     """
     Clase que guarda las conversaciones de los usuarios
     """
-    msg_from    =   models.CharField( max_length = 100 )
-    msg_to      =   models.CharField( max_length = 100 )
-    msg_text    =   models.CharField( max_length = 250 )
-    fecha       =   models.DateField()
+    message_from    =   models.CharField( max_length = 100 )
+    to              =   models.CharField( max_length = 100 )
+    message         =   models.TextField()
+    sent            =   models.DateTimeField()
+    recd            =   models.IntegerField()
     
-    def __str__(self):
-        """
-        devuelve el texto del mensaje
-        """
-        return self.msg_text

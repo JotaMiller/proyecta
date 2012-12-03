@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'proyecta.views.home', name='home'),
     # url(r'^proyecta/', include('proyecta.foo.urls')),
-
+    url(r'^chat/', include('minichat.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     
@@ -26,7 +26,6 @@ urlpatterns = patterns('',
     url(r'^usuarios/$', 'proyeccion.views.usuarios'),
     url(r'^usuario/(?P<id_usuario>\d+)/$', 'proyeccion.views.usuario'),
     # Exportar a PDF
-    url(r'^exportar_PDF/$','proyeccion.views.exportar_PDF'),
     url(r'^reporte_pdf/$','proyeccion.views.reporte_pdf'),
     
 #    url(r'^proyeccion/contact/$', 'proyeccion.views.contact'),
