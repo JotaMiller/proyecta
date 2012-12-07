@@ -4,12 +4,52 @@
 		"selected_items":
 		[
 			[
-				"start",
-				"startChatSession"
+				"cha",
+				"chatbox"
 			],
 			[
 				"chat",
-				"chatheartbeat"
+				"chatHistory"
+			],
+			[
+				"date",
+				"date_time"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"message",
+				"message_from"
+			],
+			[
+				"messa",
+				"message"
+			],
+			[
+				"chatbo",
+				"chatbox"
+			],
+			[
+				"chatbox",
+				"chatbox"
+			],
+			[
+				"chatb",
+				"chatbox"
+			],
+			[
+				"mes",
+				"message_from"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"start",
+				"startChatSession"
 			],
 			[
 				"try",
@@ -307,23 +347,23 @@
 			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 16157,
+				"buffer_size": 16160,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "minichat/models.py",
+			"file": "proyeccion/models.py",
 			"settings":
 			{
-				"buffer_size": 661,
+				"buffer_size": 2891,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "minichat/js/chat.js",
+			"file": "proyecta/assets/js/chat.js",
 			"settings":
 			{
-				"buffer_size": 12804,
+				"buffer_size": 12950,
 				"line_ending": "Windows"
 			}
 		},
@@ -331,19 +371,35 @@
 			"file": "minichat/views.py",
 			"settings":
 			{
-				"buffer_size": 1851,
+				"buffer_size": 6024,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "<?php\n\n/*\n\nCopyright (c) 2009 Anant Garg (anantgarg.com | inscripts.com)\n\nThis script may be used for non-commercial purposes only. For any\ncommercial purposes, please contact the author at \nanant.garg@inscripts.com\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\n*/\n\ndefine ('DBPATH','localhost');\ndefine ('DBUSER','root');\ndefine ('DBPASS','password');\ndefine ('DBNAME','chat');\n\nsession_start();\n\nglobal $dbh;\n$dbh = mysql_connect(DBPATH,DBUSER,DBPASS);\nmysql_selectdb(DBNAME,$dbh);\n\nif ($_GET['action'] == \"chatheartbeat\") { chatHeartbeat(); } \nif ($_GET['action'] == \"sendchat\") { sendChat(); } \nif ($_GET['action'] == \"closechat\") { closeChat(); } \nif ($_GET['action'] == \"startchatsession\") { startChatSession(); } \n\nif (!isset($_SESSION['chatHistory'])) {\n	$_SESSION['chatHistory'] = array();	\n}\n\nif (!isset($_SESSION['openChatBoxes'])) {\n	$_SESSION['openChatBoxes'] = array();	\n}\n\nfunction chatHeartbeat() {\n	\n	$sql = \"select * from chat where (chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' AND recd = 0) order by id ASC\";\n	$query = mysql_query($sql);\n	$items = '';\n\n	$chatBoxes = array();\n\n	while ($chat = mysql_fetch_array($query)) {\n\n		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {\n			$items = $_SESSION['chatHistory'][$chat['from']];\n		}\n\n		$chat['message'] = sanitize($chat['message']);\n\n		$items .= <<<EOD\n					   {\n								\"s\": \"0\",\n								\"f\": \"{$chat['from']}\",\n								\"m\": \"{$chat['message']}\"\n						   },\n					EOD;\n\n	if (!isset($_SESSION['chatHistory'][$chat['from']])) {\n		$_SESSION['chatHistory'][$chat['from']] = '';\n	}\n\n	$_SESSION['chatHistory'][$chat['from']] .= <<<EOD\n						   {\n			\"s\": \"0\",\n			\"f\": \"{$chat['from']}\",\n			\"m\": \"{$chat['message']}\"\n	   },\nEOD;\n		\n		unset($_SESSION['tsChatBoxes'][$chat['from']]);\n		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];\n	}\n\n	if (!empty($_SESSION['openChatBoxes'])) {\n	foreach ($_SESSION['openChatBoxes'] as $chatbox => $time) {\n		if (!isset($_SESSION['tsChatBoxes'][$chatbox])) {\n			$now = time()-strtotime($time);\n			$time = date('g:iA M dS', strtotime($time));\n\n			$message = \"Sent at $time\";\n			if ($now > 180) {\n				$items .= <<<EOD\n{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n\n	if (!isset($_SESSION['chatHistory'][$chatbox])) {\n		$_SESSION['chatHistory'][$chatbox] = '';\n	}\n\n	$_SESSION['chatHistory'][$chatbox] .= <<<EOD\n		{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n			$_SESSION['tsChatBoxes'][$chatbox] = 1;\n		}\n		}\n	}\n}\n\n	$sql = \"update chat set recd = 1 where chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' and recd = 0\";\n	$query = mysql_query($sql);\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\nheader('Content-type: application/json');\n?>\n{\n		\"items\": [\n			<?php echo $items;?>\n        ]\n}\n\n<?php\n			exit(0);\n}\n\nfunction chatBoxSession($chatbox) {\n	\n	$items = '';\n	\n	if (isset($_SESSION['chatHistory'][$chatbox])) {\n		$items = $_SESSION['chatHistory'][$chatbox];\n	}\n\n	return $items;\n}\n\nfunction startChatSession() {\n	$items = '';\n	if (!empty($_SESSION['openChatBoxes'])) {\n		foreach ($_SESSION['openChatBoxes'] as $chatbox => $void) {\n			$items .= chatBoxSession($chatbox);\n		}\n	}\n\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\n\nheader('Content-type: application/json');\n?>\n{\n		\"username\": \"<?php echo $_SESSION['username'];?>\",\n		\"items\": [\n			<?php echo $items;?>\n        ]\n}\n\n<?php\n\n\n	exit(0);\n}\n\nfunction sendChat() {\n	$from = $_SESSION['username'];\n	$to = $_POST['to'];\n	$message = $_POST['message'];\n\n	$_SESSION['openChatBoxes'][$_POST['to']] = date('Y-m-d H:i:s', time());\n	\n	$messagesan = sanitize($message);\n\n	if (!isset($_SESSION['chatHistory'][$_POST['to']])) {\n		$_SESSION['chatHistory'][$_POST['to']] = '';\n	}\n\n	$_SESSION['chatHistory'][$_POST['to']] .= <<<EOD\n					   {\n			\"s\": \"1\",\n			\"f\": \"{$to}\",\n			\"m\": \"{$messagesan}\"\n	   },\nEOD;\n\n\n	unset($_SESSION['tsChatBoxes'][$_POST['to']]);\n\n	$sql = \"insert into chat (chat.from,chat.to,message,sent) values ('\".mysql_real_escape_string($from).\"', '\".mysql_real_escape_string($to).\"','\".mysql_real_escape_string($message).\"',NOW())\";\n	$query = mysql_query($sql);\n	echo \"1\";\n	exit(0);\n}\n\nfunction closeChat() {\n\n	unset($_SESSION['openChatBoxes'][$_POST['chatbox']]);\n	\n	echo \"1\";\n	exit(0);\n}\n\nfunction sanitize($text) {\n	$text = htmlspecialchars($text, ENT_QUOTES);\n	$text = str_replace(\"\\n\\r\",\"\\n\",$text);\n	$text = str_replace(\"\\r\\n\",\"\\n\",$text);\n	$text = str_replace(\"\\n\",\"<br>\",$text);\n	return $text;\n}",
-			"file": "/home/jotamiller/Escritorio/chat/chat.php",
-			"file_size": 5111,
-			"file_write_time": 1242331612000000,
+			"file": "proyecta/templates/base.html",
 			"settings":
 			{
-				"buffer_size": 4917,
+				"buffer_size": 8957,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n\n/*\n\nCopyright (c) 2009 Anant Garg (anantgarg.com | inscripts.com)\n\nThis script may be used for non-commercial purposes only. For any\ncommercial purposes, please contact the author at \nanant.garg@inscripts.com\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\n*/\n\ndefine ('DBPATH','localhost');\ndefine ('DBUSER','root');\ndefine ('DBPASS','password');\ndefine ('DBNAME','chat');\n\nsession_start();\n\nglobal $dbh;\n$dbh = mysql_connect(DBPATH,DBUSER,DBPASS);\nmysql_selectdb(DBNAME,$dbh);\n\nif ($_GET['action'] == \"chatheartbeat\") { chatHeartbeat(); } \nif ($_GET['action'] == \"sendchat\") { sendChat(); } \nif ($_GET['action'] == \"closechat\") { closeChat(); } \nif ($_GET['action'] == \"startchatsession\") { startChatSession(); } \n\nif (!isset($_SESSION['chatHistory'])) {\n	$_SESSION['chatHistory'] = array();	\n}\n\nif (!isset($_SESSION['openChatBoxes'])) {\n	$_SESSION['openChatBoxes'] = array();	\n}\n\nfunction chatHeartbeat() {\n	\n	$sql = \"select * from chat where (chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' AND recd = 0) order by id ASC\";\n	$query = mysql_query($sql);\n	$items = '';\n\n	$chatBoxes = array();\n\n	while ($chat = mysql_fetch_array($query)) {\n\n		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {\n			$items = $_SESSION['chatHistory'][$chat['from']];\n		}\n\n		$chat['message'] = sanitize($chat['message']);\n\n		$items .= <<<EOD\n{\n	\"s\": \"0\",\n	\"f\": \"{$chat['from']}\",\n	\"m\": \"{$chat['message']}\"\n},\nEOD;\n\n	if (!isset($_SESSION['chatHistory'][$chat['from']])) {\n		$_SESSION['chatHistory'][$chat['from']] = '';\n	}\n\n	$_SESSION['chatHistory'][$chat['from']] .= <<<EOD\n						   {\n			\"s\": \"0\",\n			\"f\": \"{$chat['from']}\",\n			\"m\": \"{$chat['message']}\"\n	   },\nEOD;\n		\n		unset($_SESSION['tsChatBoxes'][$chat['from']]);\n		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];\n	}\n\n	if (!empty($_SESSION['openChatBoxes'])) {\n	\n	foreach ($_SESSION['openChatBoxes'] as $chatbox => $time) {\n\n		if (!isset($_SESSION['tsChatBoxes'][$chatbox])) {\n			$now = time()-strtotime($time);\n			$time = date('g:iA M dS', strtotime($time));\n\n			$message = \"Sent at $time\";\n			if ($now > 180) {\n				$items .= <<<EOD\n{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n\n			if (!isset($_SESSION['chatHistory'][$chatbox])) {\n				$_SESSION['chatHistory'][$chatbox] = '';\n			}\n\n			$_SESSION['chatHistory'][$chatbox] .= <<<EOD\n		{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n			$_SESSION['tsChatBoxes'][$chatbox] = 1;\n		}\n		}\n	}\n}\n\n	$sql = \"update chat set recd = 1 where chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' and recd = 0\";\n	$query = mysql_query($sql);\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\n	header('Content-type: application/json');\n	?>\n	{\n		\"items\": [\n			<?php echo $items;?>\n        ]\n	}\n\n	<?php\n			exit(0);\n}\n\nfunction chatBoxSession($chatbox) {\n	\n	$items = '';\n	\n	if (isset($_SESSION['chatHistory'][$chatbox])) {\n		$items = $_SESSION['chatHistory'][$chatbox];\n	}\n\n	return $items;\n}\n\nfunction startChatSession() {\n	$items = '';\n	if (!empty($_SESSION['openChatBoxes'])) {\n		foreach ($_SESSION['openChatBoxes'] as $chatbox => $void) {\n			$items .= chatBoxSession($chatbox);\n		}\n	}\n\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\n\nheader('Content-type: application/json');\n?>\n{\n		\"username\": \"<?php echo $_SESSION['username'];?>\",\n		\"items\": [\n			<?php echo $items;?>\n        ]\n}\n\n<?php\n\n\n	exit(0);\n}\n\nfunction sendChat() {\n	$from = $_SESSION['username'];\n	$to = $_POST['to'];\n	$message = $_POST['message'];\n\n	$_SESSION['openChatBoxes'][$_POST['to']] = date('Y-m-d H:i:s', time());\n	\n	$messagesan = sanitize($message);\n\n	if (!isset($_SESSION['chatHistory'][$_POST['to']])) {\n		$_SESSION['chatHistory'][$_POST['to']] = '';\n	}\n\n	$_SESSION['chatHistory'][$_POST['to']] .= <<<EOD\n					   {\n			\"s\": \"1\",\n			\"f\": \"{$to}\",\n			\"m\": \"{$messagesan}\"\n	   },\nEOD;\n\n\n	unset($_SESSION['tsChatBoxes'][$_POST['to']]);\n\n	$sql = \"insert into chat (chat.from,chat.to,message,sent) values ('\".mysql_real_escape_string($from).\"', '\".mysql_real_escape_string($to).\"','\".mysql_real_escape_string($message).\"',NOW())\";\n	$query = mysql_query($sql);\n	echo \"1\";\n	exit(0);\n}\n\nfunction closeChat() {\n\n	unset($_SESSION['openChatBoxes'][$_POST['chatbox']]);\n	\n	echo \"1\";\n	exit(0);\n}\n\nfunction sanitize($text) {\n	$text = htmlspecialchars($text, ENT_QUOTES);\n	$text = str_replace(\"\\n\\r\",\"\\n\",$text);\n	$text = str_replace(\"\\r\\n\",\"\\n\",$text);\n	$text = str_replace(\"\\n\",\"<br>\",$text);\n	return $text;\n}",
+			"file": "/home/jotamiller/Escritorio/chat/chat.php",
+			"file_size": 5093,
+			"file_write_time": 1354510105000000,
+			"settings":
+			{
+				"buffer_size": 4890,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/jotamiller/Escritorio/chat/samplea.php",
+			"settings":
+			{
+				"buffer_size": 1064,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -391,18 +447,24 @@
 	},
 	"file_history":
 	[
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
+		"/home/jotamiller/Trabajos/proyecta/minichat/views.py",
+		"/home/jotamiller/Trabajos/proyecta/minichat/models.py",
+		"/home/jotamiller/Trabajos/proyecta/minichat/js/chat.js",
+		"/home/jotamiller/.cache/.fr-0ZkUbA/script/4_tiempo.sql",
+		"/home/jotamiller/.cache/.fr-2hPuim/script/1_Sucursales.sql",
+		"/home/jotamiller/.cache/.fr-ehpTao/script/2_venta.sql",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/urls.py",
 		"/home/jotamiller/Descargas/AHS 2x07/American Horror Story 2x07.srt",
 		"/home/jotamiller/Descargas/AHS 2x07/American Horror Story 2x07 - Dark Cousin.srt",
 		"/home/jotamiller/Vídeos/series/American Horror Story/Asylum/American Horror Story - s02e07.es.srt",
 		"/home/jotamiller/Trabajos/proyecta/.gitignore",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/reporte_pdf.html",
 		"/home/jotamiller/Trabajos/proyecta/minichat/urls.py",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/urls.py",
 		"/home/jotamiller/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/jotamiller/Trabajos/proyecta/minichat/js/jquery.js",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/index.html",
 		"/home/jotamiller/Escritorio/crown/table_dynamic.html",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/views.py",
 		"/home/jotamiller/Trabajos/proyecta/mis_modelos.png",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/models.py",
@@ -512,17 +574,11 @@
 		"/home/jotamiller/Descargas/soapUI-x32-4.5.1.sh",
 		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/captcha/captcha.module",
 		"/home/jotamiller/Escritorio/examples/form_example/form_example_tutorial.inc",
-		"/home/jotamiller/Escritorio/examples/form_example/form_example.module",
-		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/recaptcha/README.txt",
-		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/captcha/README.txt",
-		"/home/jotamiller/Escritorio/examples/form_example/form_example.info",
-		"/opt/lampp/htdocs/drupal6/sites/default/settings.php",
-		"/opt/lampp/htdocs/drupal6/.htaccess",
-		"/tmp/fz3temp-1/<div class=\"contenido\">"
+		"/home/jotamiller/Escritorio/examples/form_example/form_example.module"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -536,6 +592,65 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chatbox_",
+			"rec",
+			"rect",
+			"chatHistory",
+			"openChatBoxes",
+			"scrollHeight",
+			"chatHistory",
+			"items[",
+			"items",
+			"items[",
+			"items",
+			"chatHeartbeat",
+			"openChatBoxes",
+			"closechat",
+			"sendchat",
+			"chatheartbeat",
+			"startchatsession",
+			"chatBoxSession",
+			"time",
+			"print",
+			"openChatBoxes",
+			"sendChat",
+			"hola",
+			"tsChatBoxes",
+			"prin",
+			"openChatBoxes",
+			"hola",
+			"openChatBoxes",
+			"print",
+			"upda",
+			"startChatSession",
+			"username",
+			"chatboxtitle",
+			"session['use",
+			"request.user",
+			"session['user",
+			"username",
+			"chat",
+			"username",
+			"checkChatBoxInputKey",
+			"sendChat",
+			"sendchat",
+			"chatheartbeat",
+			"startchatsession",
+			"chat.",
+			"chat",
+			"chatBoxSession",
+			"user",
+			"items",
+			"times",
+			"times\n",
+			"date",
+			"request.session['tsChatBoxes'][chatbox]",
+			"Enfriadores",
+			"tsChatBoxes",
+			"appe",
+			"push",
+			"reporte_pdf",
+			"exportar_PDF",
 			"_SESSION['openChatBoxes']",
 			"messahe",
 			"convert_ts",
@@ -604,66 +719,7 @@
 			"mpagin",
 			"acciones",
 			"cambia_instrumento2",
-			"dvHead",
-			"header",
-			"tipo_co",
-			"tipo_ficha",
-			"tipo_fi",
-			"EFEFEF",
-			"efefef",
-			"EFEFEF",
-			"dvhead",
-			"SNivelUbicacion",
-			"filtro",
-			"select-filtro",
-			"select-fil",
-			"select",
-			"fuentes y ",
-			"e_codig",
-			"ecodigo",
-			"interfa",
-			"valida_b",
-			"via_finan",
-			"asigna_datos_instrumento_otro",
-			"ListaInstrumento0",
-			"tree",
-			"iframe",
-			"seleccionar_u",
-			"selecciona",
-			"actualiza_seleccionados",
-			"mpagina",
-			"sc",
-			"scro",
-			"scrol",
-			"actualiza_seleccionados",
-			"obj",
-			"marcogrilla",
-			"asigna",
-			"submi",
-			"tipo_a",
-			"tipo_ate",
-			"ocupaci",
-			"tipo_u",
-			"#",
-			"menu",
-			"formulario_oirs_form_submit",
-			"submit",
-			"formulario_oirs_form_submit",
-			"submit",
-			"drupal_get_path",
-			"img",
-			"redirect",
-			"submit",
-			"email",
-			"ver solici",
-			"formulario_consulta_oirs_form_submit",
-			"submit",
-			"pagina",
-			"print",
-			"consulta",
-			"print",
-			"pagi",
-			"submi"
+			"dvHead"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -682,7 +738,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -690,15 +746,15 @@
 					"file": "proyeccion/views.py",
 					"settings":
 					{
-						"buffer_size": 16157,
+						"buffer_size": 16160,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4606,
-								4606
+								3280,
+								3280
 							]
 						],
 						"settings":
@@ -708,25 +764,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 459.0,
+						"translation.y": 1581.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "minichat/models.py",
+					"file": "proyeccion/models.py",
 					"settings":
 					{
-						"buffer_size": 661,
+						"buffer_size": 2891,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								70,
-								70
+								1098,
+								1098
 							]
 						],
 						"settings":
@@ -743,18 +799,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "minichat/js/chat.js",
+					"file": "proyecta/assets/js/chat.js",
 					"settings":
 					{
-						"buffer_size": 12804,
+						"buffer_size": 12950,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5102,
-								5102
+								5131,
+								5131
 							]
 						],
 						"settings":
@@ -763,7 +819,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2645.0,
+						"translation.y": 2935.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -773,15 +829,15 @@
 					"file": "minichat/views.py",
 					"settings":
 					{
-						"buffer_size": 1851,
+						"buffer_size": 6024,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1399,
-								1404
+								2858,
+								2858
 							]
 						],
 						"settings":
@@ -790,7 +846,34 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 561.0,
+						"translation.y": 1813.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "proyecta/templates/base.html",
+					"settings":
+					{
+						"buffer_size": 8957,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								791,
+								791
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -802,19 +885,19 @@
 			"sheets":
 			[
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "/home/jotamiller/Escritorio/chat/chat.php",
 					"settings":
 					{
-						"buffer_size": 4917,
+						"buffer_size": 4890,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3988,
-								3988
+								1507,
+								1507
 							]
 						],
 						"settings":
@@ -823,13 +906,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2594.0,
+						"translation.y": 392.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 6,
+					"file": "/home/jotamiller/Escritorio/chat/samplea.php",
+					"settings":
+					{
+						"buffer_size": 1064,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								804,
+								804
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "/home/jotamiller/Escritorio/chat/db.txt",
 					"settings":
 					{
@@ -885,7 +994,7 @@
 		"cols":
 		[
 			0.0,
-			0.4808995687,
+			0.503080714726,
 			1.0
 		],
 		"rows":
@@ -924,7 +1033,7 @@
 		],
 		"width": 380.0
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,

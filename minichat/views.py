@@ -6,6 +6,7 @@ import json
 import cgi
 
 import time
+from time import mktime
 from datetime import datetime
 # Modelo
 from minichat.models import Chat
@@ -23,18 +24,17 @@ def index(request):
  	try:
  		request.session['chatHistory']
  	except Exception, e:
- 		request.session['chatHistory'] = None
-
-	if request.session['chatHistory'] is None:
-		request.session['chatHistory'] = {}
+ 		request.session['chatHistory'] = {}
 
  	try:
  		request.session['openChatBoxes']
  	except Exception, e:
- 		request.session['openChatBoxes'] = None
+ 		request.session['openChatBoxes'] = {}
 
-	if request.session['openChatBoxes'] is None:
-		request.session['openChatBoxes'] = {}
+	try:
+		request.session['tsChatBoxes']
+	except Exception, e:
+		request.session['tsChatBoxes'] = {}
 
 	# Inicio Proceso	
 	action = request.GET.get('action', '')
@@ -43,13 +43,14 @@ def index(request):
 		return chatHeartbeat(request)
 	
 	if  action == 'sendchat':
-		return sendChat()
+		return sendChat(request)
 		
 	if  action == 'closechat':
-		return closeChat()
+		return closeChat(request)
 		
 	if  action == 'startchatsession':
-		return startChatSession()
+		return startChatSession(request)
+
 
 
 	return HttpResponse("Mini chat for Django :)")
@@ -58,8 +59,7 @@ def chatHeartbeat(request):
 	"""
 	"""
 
-	chats 	=	Chat.objects.filter( to=request.user, recd = 1 ).order_by('id')
-
+	chats 	=	Chat.objects.filter( to=request.user, recd = 0 ).order_by('id')
 	items = ""
 
 	chatBoxes = []
@@ -69,78 +69,84 @@ def chatHeartbeat(request):
 		try:
 			request.session['openChatBoxes'][chat.message_from]
 		except Exception, e:
-			request.session['openChatBoxes'][chat.message_from] = None
+			request.session['openChatBoxes'][chat.message_from] = ''
 
 		try:
 			request.session['chatHistory'][chat.message_from]
 		except Exception, e:
-			request.session['chatHistory'][chat.message_from] = None
+			request.session['chatHistory'][chat.message_from] = ''
 
 
-		if request.session['openChatBoxes'][chat.message_from] is None and request.session['chatHistory'][chat.message_from] != None:
+		if request.session['openChatBoxes'][chat.message_from] == '' and request.session['chatHistory'][chat.message_from] != '':
 			items = request.session['chatHistory'][chat.message_from]
 		
+		# print chat.message_from
 		# chat.message = sanitize(chat.message)
 
 		items = items + """
 { 
-	's': '0'
-	'f': '""" + chat.message_from + """'
-	'm': '""" + chat.message + """'
-},
-""" 
+	"s": "0",
+	"f": " """ + chat.message_from + """ ",
+	"m": " """ + chat.message + """ "
+},""" 
 
-		if request.session['chatHistory'][chat.message_from] is None:
-			request.session['chatHistory'][chat.message_from] = ''
+		# if request.session['chatHistory'][chat.message_from] == '':
+		# 	request.session['chatHistory'][chat.message_from] = ''
 		
-		request.session['chatHistory'][chat.message_from] = """
+		request.session['chatHistory'][chat.message_from] += """
 {
-	's': '0'
-	'f': '""" + chat.message_from + """'
-	'm': '""" + chat.message + """'
-},
-"""
+	"s": "0",
+	"f": " """ + chat.message_from + """ ",
+	"m": " """ + chat.message + """ "
+},"""
 	
 		try:
 			del request.session['tsChatBoxes'][chat.message_from]
+			# print 'borro tsChatBoxes'
 		except Exception, e:
 			pass
 
 		request.session['openChatBoxes'][chat.message_from] = chat.sent
 
-	if not request.session['openChatBoxes']:
-		for (chatbox, time) in request.session['openChatBoxes']:
+	# print request.session['openChatBoxes']
+
+	if  request.session['openChatBoxes'] :
+
+		for chatbox  in request.session['openChatBoxes']:
+
+			date_time = request.session['openChatBoxes'][chatbox]
 			try:
 				request.session['tsChatBoxes'][chatbox]
 			except Exception, e:
-				request.session['tsChatBoxes'][chatbox] = None
+				request.session['tsChatBoxes'][chatbox] = ''
+				pass
 
-			if request.session['tsChatBoxes'][chatbox] == None:
-				now =  datetime.today()
-				time = now
+			if request.session['tsChatBoxes'][chatbox] == '':
+				now =  time.time() - mktime(date_time.timetuple())+1e-6*date_time.microsecond
 
-				message = "Enviado el " + now
+				fecha = date_time.strftime("%a/%d %b - %H:%M")
+
+				message = "Enviado el " + str(fecha)
 
 				if now > 180:
-					items = items + """
+					items += """
 {
-	's': '2',
-	'f': '""" + chatbox +"""',
-	'm': '{""" + message +"""}'
-},
-"""
+	"s": "2",
+	"f": " """ + chatbox +""" ",
+	"m": "{""" + message +"""} "
+},"""
 				try:
 					request.session['chatHistory'][chatbox]
 				except Exception, e:
 					request.session['chatHistory'][chatbox] = ''
 				
-				request.session['chatHistory'][chatbox] = """
+				request.session['chatHistory'][chatbox] += """
 {
-	's': '2',
-	'f': '""" + chatbox +"""',
-	'm': '{""" + message +"""}'
-},
-"""
+	"s": "2",
+	"f": " """ + chatbox +""" ",
+	"m": "{""" + message +"""} "
+},"""
+				request.session['tsChatBoxes'][chatbox] = 1
 
 			pass
 		pass
@@ -148,13 +154,13 @@ def chatHeartbeat(request):
 	# Actualizar
 	Chat.objects.filter( to = request.user, recd = 0 ).update( recd=1 )
 	if items != '':
-		items = items[0:-1]
+		items = items[:-1]
 		pass
-	print items
-	print request.session['openChatBoxes']
+	# print items
+	# print request.session['openChatBoxes']
 
-
-	return HttpResponse(json.dumps(items), mimetype="application/json")
+	item_wrapper = '{ "items":['+ items +'] }'
+	return HttpResponse(item_wrapper, mimetype="application/json")
 
 def chatBoxSession(request, chatbox):
 	items = ""
@@ -170,32 +176,46 @@ def chatBoxSession(request, chatbox):
 
 def startChatSession(request):
 	items = ""
-	if not request.session['openChatBoxes']:
-		for (chatbox, void) in request.session['openChatBoxes']:
-			items = items + chatBoxSession(request, chatbox)
-			pass
-		pass
+	# print request.session['openChatBoxes']
+	# print 'fuera '
+	try:
+		request.session['openChatBoxes']
+	except Exception, e:
+		request.session['openChatBoxes'] = {}
 
-	if items != "":
+	print 'fuera openChatBoxes'
+	print request.session['openChatBoxes']
+	
+	if request.session['openChatBoxes']:
+		print 'dentro openChatBoxes'
+		for chatbox  in request.session['openChatBoxes']:
+			print 'dentro de start session'
+			print request.session['openChatBoxes']
+				
+			try:
+				item += request.session['chatHistory'][chatbox]
+				print 'agregando'
+			except Exception, e:
+				raise e
+				print 'no se pudo agregar'
+				# items +=  chatBoxSession(request, chatbox)
+
+	if items != '':
 		items = items[0:-1]
+		print items
 		pass
 
-	valores = """
-{
-	'username': '""" + request.user + """',
-	'items': [
-		""" + items + """
-	]
-}
-"""
-	return HttpResponse(json.dumps(valores), mimetype="application/json")
+	valores = '{ "username": "'+ str(request.user) +'","items": [' + items + ']}'
+
+	return HttpResponse(valores, mimetype="application/json")
 
 def sendChat(request):
-	message_from 	=	request.user
+	message_from 	=	str(request.user)
 	to 				= 	request.POST['to']
 	message 		=	request.POST['message']
 
-	request.session['openChatBoxes'][to] = datetime.now
+	request.session['openChatBoxes'][to] = datetime.now()
+	print request.session['openChatBoxes']
 
 	# messagesan = sanitize(message)
 	try:
@@ -205,25 +225,26 @@ def sendChat(request):
 	
 	request.session['chatHistory'][to] += """
 {
-	's': '1',
-	'f': '{""" + to + """}',
-	'm': '{""" + messagesan + """}'
-},
-"""
-	del request.session['tsChatBoxes'][to]
+	"s": "1",
+	"f": "{""" + to + """}",
+	"m": "{""" + message + """}"
+},"""
+	try:
+		del request.session['tsChatBoxes'][to]
+	except Exception, e:
+		pass
 
-	chat = Chat(message_from=message_from, to=to, message=message, sent= datetime.now)
+
+	chat = Chat(message_from=message_from, to=to, message=message, sent= datetime.now(), recd=0)
 	chat.save(force_insert=True)
 
 	return HttpResponse('1')
 
-def closeChat():
+def closeChat(request):
 
-	del request.session['openChatBoxes'][request.POST['chatbox']]
-
+	chatbox = request.POST['chatbox']
+	del request.session['openChatBoxes'][chatbox]
 	return HttpResponse('1')
-
-	pass
 
 def sanitize(text):
 	text = cgi.escape(text, True)
