@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block area_titulo %}
+	<div class="titleArea">
+		<div class="wrapper">
+			<div class="pageTitle">
+				<h5>Lista de Empresas</h5>
+				<span>sección en la cual puede ver la lista de Empresas actualmente registradas en el sitio</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_staff %}
+		<div class="widget">
+            <div class="title"><img src="/assets/images/icons/dark/frames.png" alt="" class="titleIcon" />
+            <h6>Lista de Empresas registradas</h6></div>
+            <table cellpadding="0" cellspacing="0" width="100%" class="sTable" id="res1">
+                <thead>
+                    <tr>
+                        <td class="sortCol"><div>Nombre<span></span></div></td>
+                        <td class="sortCol"><div>R.U.T.<span></span></div></td>
+                        <td class="sortCol"><div>Telefono<span></span></div></td>
+                        <td class="sortCol"><div>Acciones<span></span></div></td>
+                    </tr>
+                </thead>
+                <tbody>
+                	{% for empresa in empresas %}
+                    <tr>
+                        <td>{{ empresa.nombre }}</td>
+                        <td>{{ empresa.rut }}</td>
+                        <td>{{ empresa.telefono }}</td>
+                        <td><a href="/empresa/{{ empresa.id }}"><img src="/assets/images/icons/dark/pencil.png" /></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% else %}
+	No tiene permisos para ingresar a ésta sección
+{% endif %}
+
+{% endblock content %}

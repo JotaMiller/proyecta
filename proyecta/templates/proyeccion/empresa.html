@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block area_titulo %}
+	<div class="titleArea">
+		<div class="wrapper">
+			<div class="pageTitle">
+				<div class="titleIcon"><img src="/media/{{dato_empresa.logo}}" width="100px" /></div>
+			</div>
+			<div class="pageTitle">
+				<h5>{{ dato_empresa.nombre }}</h5>
+				<span>Datos de la Empresa {{dato_empresa.nombre}}.</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+{% endblock %}
+
+{% block content %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="nNote nInformation hideit">
+	            <p>{{ message }}</p>
+	        </div>
+        {% endfor %}
+	{% endif %}
+	 
+	<form action="." method="post" class="form" enctype="multipart/form-data">
+		<fieldset>
+			<div class="widget">
+				<div class="title"><img src="/assets/images/icons/dark/list.png" alt="" class="titleIcon" /><h6>Datos de la Empresa ({{ dato_empresa.nombre }})</h6>
+				</div>
+		        {{ form.id }}
+		        <div class="formRow">
+					<label>Nombre:</label>
+					<div class="formRight">
+						{{ form.nombre }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>R.U.T.:</label>
+					<div class="formRight">
+						{{ form.rut }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>Telefono:</label>
+					<div class="formRight">
+						{{ form.telefono }}
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="formRow">
+					<label>Logo:</label>
+					<div class="formRight">
+						{{ form.logo }}
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+	    	<input type="submit" value="Guardar cambios">
+	    </fieldset>
+	</form>
+
+{% endblock content %}

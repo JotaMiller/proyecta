@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
+from proyeccion.models import Empresa
 
 productos = Producto.objects.all()
 sucursales = Sucursal.objects.all()
@@ -27,3 +28,11 @@ class UserForm(forms.ModelForm):
                   'telefono',
                   'empresa'
                   )
+class EmpresaForm(forms.ModelForm):
+  class Meta:
+    model = Empresa
+    fields = ('nombre',
+              'rut',
+              'logo',
+              'telefono'
+              )

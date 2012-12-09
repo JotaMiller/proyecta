@@ -22,6 +22,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from forms import UserForm
+from forms import EmpresaForm
 
 from datetime import datetime
 import calendar
@@ -338,6 +339,22 @@ def usuarios(request):
     return render_to_response('proyeccion/usuarios.html',c)
 
 @login_required
+def empresas(request):
+    """
+    Lista de las empresas actualmente registradas en el sistema
+    """
+    user        =   request.user
+    empresas    =   Empresa.objects.all()
+    empresa     =   Empresa.objects.get( id = user.empresa.id )
+    
+    c = RequestContext(request, {
+        'user': user,
+        'empresas': empresas,
+        'empresa': empresa
+    })
+    return render_to_response('proyeccion/empresas.html',c)
+
+@login_required
 def usuario(request, id_usuario):
     user    =   request.user
     usuario =   User.objects.get( id=id_usuario )
@@ -373,6 +390,44 @@ def usuario(request, id_usuario):
         'empresa': empresa
     })
     return render_to_response('proyeccion/usuario.html',c)
+
+@login_required
+def empresa(request, id_empresa):
+    user    =   request.user
+
+    if user.empresa:
+        empresa = Empresa.objects.get(id=user.empresa.id)
+    else:
+        empresa = {"logo":"logos/sin_empresa.png"}
+    
+    dato_empresa = Empresa.objects.get( id=id_empresa )
+
+    if request.method == 'POST':
+        # formulario enviado
+        form = EmpresaForm(request.POST,request.FILES, instance=dato_empresa)
+
+        if form.is_valid():
+            # formulario validado correctamente
+            form.save()
+            c = RequestContext(request, {
+                'user': user,
+                'form': form
+            })
+            messages.success(request, 'La Empresa ha sido actualizada correctamente.')
+            return render_to_response('proyeccion/empresa.html',c)
+        else:
+            messages.error(request, 'Error al intentar editar la Empresa, Favor contacte con un administrador.')
+    else:
+        # formulario inicial
+        form = EmpresaForm(instance=dato_empresa)
+    
+    c = RequestContext(request, {
+        'user': user,
+        'form': form,
+        'empresa': empresa,
+        'dato_empresa': dato_empresa
+    })
+    return render_to_response('proyeccion/empresa.html',c)
           
 
 def generar_pdf(html):
