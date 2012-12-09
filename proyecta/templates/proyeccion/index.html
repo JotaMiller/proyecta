@@ -36,6 +36,7 @@
 				<label>Sucursal:</label>
 				<div class="formRight">
 					<select name="sucursal" id="id_sucursal">
+						<option value="0">-Seleccione-</option>
 						{% for sucursal in sucursales %}
 						<option value="{{ sucursal.id }}">{{ sucursal.nombre }}</option>
 						{% endfor %}
@@ -47,9 +48,7 @@
 				<label>Producto:</label>
 				<div class="formRight">
 					<select name="producto" id="id_producto">
-						{% for producto in productos %}
-						<option value="{{ producto.id }}">{{ producto.nombre }}</option>
-						{% endfor %}
+						<option value="0">-Seleccione-</option>
 					</select>
 				</div>
 				<div class="clear"></div>

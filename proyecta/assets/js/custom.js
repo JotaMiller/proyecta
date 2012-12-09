@@ -1,6 +1,16 @@
 $(function() {
 	
-	
+
+/* Filtro de productos por sucursal
+================================================== */
+	$('#id_sucursal').change( function(){
+		var id_sucursal = $('#id_sucursal').val();
+		carga_productos(id_sucursal);
+		$('#id_producto').val(0);
+	});
+
+/*
+================================================== */
     $(".pat1").click(function(){
         $("html").css('background','url(images/backgrounds/patterns/1.png) repeat');
         return false;
@@ -877,3 +887,25 @@ contextmenu : {
 
 	
 });
+
+function carga_productos(sucursal){
+	$('#id_producto option').remove();
+	$('#id_producto').append('<option value="0">-Seleccione-</option>');
+	$.ajax({
+		url: "get_productos/"+sucursal+"/",
+	  	cache: false,
+	  	dataType: "json",
+	  	success: function(data) {
+			$.each(data.productos, function(i,item){
+	  			console.log(item);
+				if (item){ 
+					id = $.trim(item.id);
+					nombre = $.trim(item.nombre);
+					$('#id_producto').append('<option value="'+id+'">'+nombre+'</option>');
+				}
+			});
+		$('#id_producto').val(0);
+		// $('#id_producto option[value="0"]').attr("selected","selected");
+	}});
+	// $('#id_producto option')
+}

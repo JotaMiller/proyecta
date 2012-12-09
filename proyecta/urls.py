@@ -16,6 +16,9 @@ urlpatterns = patterns('',
     url(r'^chat/', include('minichat.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    # Get productos por sucursal
+    url(r'^get_productos/(?P<id_sucursal>\d+)/$','proyeccion.views.get_productos'),
     
     # Enlace para portada del sitio
     

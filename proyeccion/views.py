@@ -452,3 +452,28 @@ def get_all_logged_in_users():
 
     # Query all logged in users based on id list
     return User.objects.filter(id__in=uid_list)
+
+def get_productos(request, id_sucursal):
+    """
+    Devuelte los productos de una respectiva sucursal
+    """
+    items = ""
+
+    if request.method == 'GET':
+        pass
+        ventas = Venta.objects.filter( sucursal = id_sucursal )
+        for venta in ventas:
+            productos = Producto.objects.filter( venta = venta.id )
+
+            for producto in productos:
+                items += """
+{
+    "id": " """ + str(producto.id) + """ ",
+    "nombre": " """ + producto.nombre + """ "
+},"""
+        if items != '':
+            items = items[:-1]
+
+        items = '{ "productos":['+ items +'] }'
+
+    return HttpResponse(items, mimetype="application/json")
