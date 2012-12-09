@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"Empresa",
+				"Empresa"
+			],
+			[
+				"id",
+				"id_producto"
+			],
+			[
+				"prod",
+				"productos"
+			],
+			[
+				"producto",
+				"producto_set"
+			],
+			[
+				"product",
+				"Producto"
+			],
+			[
 				"cha",
 				"chatbox"
 			],
@@ -344,18 +364,42 @@
 	"buffers":
 	[
 		{
-			"file": "proyeccion/views.py",
+			"file": "proyecta/templates/reporte_pdf.html",
 			"settings":
 			{
-				"buffer_size": 16160,
+				"buffer_size": 1691,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "proyeccion/models.py",
+			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 2891,
+				"buffer_size": 19129,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/templates/proyeccion/empresa.html",
+			"settings":
+			{
+				"buffer_size": 1691,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/templates/proyeccion/usuarios.html",
+			"settings":
+			{
+				"buffer_size": 1954,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/templates/proyeccion/usuario.html",
+			"settings":
+			{
+				"buffer_size": 2224,
 				"line_ending": "Unix"
 			}
 		},
@@ -363,24 +407,8 @@
 			"file": "proyecta/assets/js/chat.js",
 			"settings":
 			{
-				"buffer_size": 12950,
+				"buffer_size": 12952,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "minichat/views.py",
-			"settings":
-			{
-				"buffer_size": 6024,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "proyecta/templates/base.html",
-			"settings":
-			{
-				"buffer_size": 8957,
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -447,27 +475,42 @@
 	},
 	"file_history":
 	[
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/models.py",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/forms.py",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/empresas.html",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/index.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/urls.py",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/custom.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/chat.js",
 		"/home/jotamiller/Trabajos/proyecta/minichat/views.py",
+		"/home/jotamiller/Escritorio/crown/forms.html",
+		"/home/jotamiller/Trabajos/proyecta/minichat/urls.py",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/css/chat.css",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/minichat.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/templatetags/logged_in_user_list.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/settings.py",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/css/main.css",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/templatetags/logged_in_user_list.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/templatetags/template_usuarios.py",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/templatetags/template_usuarios.py",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/templatetags/__init__.py",
+		"/home/jotamiller/Trabajos/proyecta/proyeccion/__init__.py",
 		"/home/jotamiller/Trabajos/proyecta/minichat/models.py",
 		"/home/jotamiller/Trabajos/proyecta/minichat/js/chat.js",
 		"/home/jotamiller/.cache/.fr-0ZkUbA/script/4_tiempo.sql",
 		"/home/jotamiller/.cache/.fr-2hPuim/script/1_Sucursales.sql",
 		"/home/jotamiller/.cache/.fr-ehpTao/script/2_venta.sql",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/urls.py",
 		"/home/jotamiller/Descargas/AHS 2x07/American Horror Story 2x07.srt",
 		"/home/jotamiller/Descargas/AHS 2x07/American Horror Story 2x07 - Dark Cousin.srt",
 		"/home/jotamiller/Vídeos/series/American Horror Story/Asylum/American Horror Story - s02e07.es.srt",
 		"/home/jotamiller/Trabajos/proyecta/.gitignore",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/reporte_pdf.html",
-		"/home/jotamiller/Trabajos/proyecta/minichat/urls.py",
 		"/home/jotamiller/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/jotamiller/Trabajos/proyecta/minichat/js/jquery.js",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/index.html",
 		"/home/jotamiller/Escritorio/crown/table_dynamic.html",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/views.py",
 		"/home/jotamiller/Trabajos/proyecta/mis_modelos.png",
-		"/home/jotamiller/Trabajos/proyecta/proyeccion/models.py",
 		"/home/jotamiller/Escritorio/Funciones JS",
 		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.css",
 		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.module",
@@ -536,7 +579,6 @@
 		"/home/jotamiller/Escritorio/telefono maji.txt",
 		"/home/jotamiller/Escritorio/crown/js/charts/hBar.js",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/chart.js",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/custom.js",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/bar.js",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/charts/updating.js",
 		"/home/jotamiller/Escritorio/prueba.coffee",
@@ -560,21 +602,7 @@
 		"/host/Users/pc/Desktop/VPN ServicioCivil.txt",
 		"/home/jotamiller/Escritorio/ip servicio civil",
 		"/tmp/fz3temp-1/intellego_pais.module",
-		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP 2.php",
-		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP.php",
-		"/home/jotamiller/Escritorio/respaldo_pagina1_1_4.php.",
-		"/home/jotamiller/Escritorio/pagina1_1_4.php",
-		"/home/jotamiller/Escritorio/Crear usuarios MYSQL",
-		"/tmp/fz3temp-1/chileindicaSOAP.php",
-		"/home/jotamiller/Escritorio/examples/ahah_example/simplest_ahah.inc",
-		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/formulario_oirs.info",
-		"/home/jotamiller/.cache/.fr-pboIXl/download link.txt",
-		"/home/jotamiller/Escritorio/examples/form_example/form_example_elements.inc",
-		"/opt/lampp/htdocs/drupal6/sites/all/modules/custom/formulario_oirs/lib/changelog",
-		"/home/jotamiller/Descargas/soapUI-x32-4.5.1.sh",
-		"/opt/lampp/htdocs/drupal6/sites/all/modules/contrib/captcha/captcha.module",
-		"/home/jotamiller/Escritorio/examples/form_example/form_example_tutorial.inc",
-		"/home/jotamiller/Escritorio/examples/form_example/form_example.module"
+		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP 2.php"
 	],
 	"find":
 	{
@@ -592,6 +620,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chat/",
+			"chat",
+			"Empresa",
+			"empresa",
+			"empres",
+			"usuario",
+			"ajax",
+			"get",
+			"function",
+			"post",
+			"venta",
+			"z-index",
+			"chatbox",
+			"selec",
+			"f99d39",
+			".chatboxhead",
+			"media que",
+			"media",
+			"openChatBoxes",
+			"print",
+			"close",
+			"send",
 			"chatbox_",
 			"rec",
 			"rect",
@@ -697,29 +747,7 @@
 			"imp",
 			"dvUTerritorialLeft",
 			"mostrar_ficha_asignacion",
-			"mostrar_fic",
-			"cb_ana",
-			"lbuscar",
-			"inicializa",
-			"inicia",
-			"inicializa_formulario",
-			"id_evaluador",
-			"analista",
-			"filtro",
-			"observac",
-			"botones",
-			"totinst1",
-			"cantidad_do",
-			"form1",
-			"GDOCUMENTACION",
-			"form1.",
-			"doc1",
-			"form.",
-			"form",
-			"mpagin",
-			"acciones",
-			"cambia_instrumento2",
-			"dvHead"
+			"mostrar_fic"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -738,133 +766,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "proyeccion/views.py",
+					"file": "proyecta/templates/reporte_pdf.html",
 					"settings":
 					{
-						"buffer_size": 16160,
+						"buffer_size": 1691,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3280,
-								3280
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1581.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "proyeccion/models.py",
-					"settings":
-					{
-						"buffer_size": 2891,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1098,
-								1098
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "proyecta/assets/js/chat.js",
-					"settings":
-					{
-						"buffer_size": 12950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5131,
-								5131
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2935.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "minichat/views.py",
-					"settings":
-					{
-						"buffer_size": 6024,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2858,
-								2858
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1813.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "proyecta/templates/base.html",
-					"settings":
-					{
-						"buffer_size": 8957,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								791,
-								791
+								839,
+								839
 							]
 						],
 						"settings":
@@ -877,6 +795,116 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "proyeccion/views.py",
+					"settings":
+					{
+						"buffer_size": 19129,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15183,
+								15183
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6447.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "proyecta/templates/proyeccion/empresa.html",
+					"settings":
+					{
+						"buffer_size": 1691,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								880,
+								880
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "proyecta/templates/proyeccion/usuarios.html",
+					"settings":
+					{
+						"buffer_size": 1954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "proyecta/templates/proyeccion/usuario.html",
+					"settings":
+					{
+						"buffer_size": 2224,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1848,
+								1848
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 408.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		},
@@ -886,6 +914,45 @@
 			[
 				{
 					"buffer": 5,
+					"file": "proyecta/assets/js/chat.js",
+					"settings":
+					{
+						"buffer_size": 12952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5154,
+								5154
+							],
+							[
+								6922,
+								6922
+							],
+							[
+								8477,
+								8477
+							],
+							[
+								9571,
+								9571
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4582.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "/home/jotamiller/Escritorio/chat/chat.php",
 					"settings":
 					{
@@ -896,8 +963,8 @@
 						"selection":
 						[
 							[
-								1507,
-								1507
+								1321,
+								1321
 							]
 						],
 						"settings":
@@ -906,13 +973,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 392.0,
+						"translation.y": 3044.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "/home/jotamiller/Escritorio/chat/samplea.php",
 					"settings":
 					{
@@ -938,7 +1005,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "/home/jotamiller/Escritorio/chat/db.txt",
 					"settings":
 					{
@@ -994,7 +1061,7 @@
 		"cols":
 		[
 			0.0,
-			0.503080714726,
+			0.548675292668,
 			1.0
 		],
 		"rows":

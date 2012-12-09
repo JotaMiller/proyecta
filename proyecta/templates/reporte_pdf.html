@@ -25,7 +25,7 @@
 			<td><h1>Empresa: {{ empresa.nombre }}</h1>
 			    <p>Product Manager: <u>{{ usuario.first_name }} {{ usuario.last_name }}</u></p>
 			    <p>Fecha del Reporte: <u>{{ fecha }}</u></p>
-			    <p>Periodo utilizado: <u>Periodo</u></p>
+			    <p>Periodo utilizado: <u>{{ periodo }}</u></p>
 			    <p>Periodo a proyectar: <u>12 Meses</u></p>
 			</td>
 		</tr>
@@ -34,14 +34,14 @@
 	</table>
 	<hr>
 	<br>
-	<p>La sigueine información es una proyección realizada por {{usuario.first_name}} {{ usuario.last_name }} la cual indica la estimación de ventas para el producto {{ producto }} en la sucursal {{ sucursal }} de la empresa {{ empresa }}, la estimacion es a 12 meses.</p>
+	<p>La siguiente información es una proyección realizada por {{usuario.first_name}} {{ usuario.last_name }} la cual indica la estimación de ventas para el producto {{ producto }} en la sucursal {{ sucursal }} de la empresa {{ empresa }}, la estimacion es a 12 meses.</p>
 	<br>
 	<hr>
 	<h2>Grafico estadístico que muestra las ventas más la proyección a 12 meses</h2>
 		<img src="{{ grafico }}" > 
 		
 	<div class="break"> </div>
-	<br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
 	<h2>A continuación se lista el detalle de ventas por productos:</h2>
 	<table>
 		<thead>

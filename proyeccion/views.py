@@ -450,6 +450,7 @@ def reporte_pdf(request):
         grafico         =   request.POST['grafico']
         id_producto     =   request.POST['id_producto']
         id_sucursal     =   request.POST['id_sucursal']
+        periodo         =   fecha_inicio
 
         sucursal        =   Sucursal.objects.get( id = id_sucursal )
         producto        =   Producto.objects.get( id = id_producto )
@@ -489,6 +490,7 @@ def reporte_pdf(request):
                                  'cant_ventas': cant_ventas,
                                  'grafico': grafico,
                                  'detalle_ventas': detalle_ventas,
+                                 'periodo': periodo,
                                  }, context_instance=RequestContext(request))
         return generar_pdf(html)
 
