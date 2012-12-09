@@ -79,5 +79,11 @@
 	    	<input type="submit" value="Guardar cambios">
 	    </fieldset>
 	</form>
-
+{% if not user.is_staff %}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#id_empresa').attr('disabled','disabled');
+	});
+</script>
+{% endif %}
 {% endblock content %}

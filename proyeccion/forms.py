@@ -19,15 +19,18 @@ for sucursal in sucursales:
     LISTA_SUCURSALES.append(sucursal_obj)
     
 class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 
-                  'last_name', 
-                  'email',
-                  'avatar',
-                  'telefono',
-                  'empresa'
-                  )
+  # empresa = forms.CharField(
+  #   widget=forms.TextInput(attrs={'readonly':'readonly'})
+  # )
+  class Meta:
+    model = User
+    fields = ('first_name', 
+              'last_name', 
+              'email',
+              'avatar',
+              'telefono',
+              'empresa'
+              )
 class EmpresaForm(forms.ModelForm):
   class Meta:
     model = Empresa
