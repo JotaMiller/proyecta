@@ -30,6 +30,9 @@ from rpy2 import robjects
 from rpy2.robjects.packages import importr
 #from rpy2.robjects.lib import forecast
 
+from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
+
 from proyeccion.models import Venta
 from proyeccion.models import Producto
 from proyeccion.models import Sucursal
@@ -434,3 +437,18 @@ def reporte_pdf(request):
                                  }, context_instance=RequestContext(request))
         return generar_pdf(html)
 
+def get_all_logged_in_users():
+    """
+    Retorna la lista de usuarios conectados actualmente en el sitio
+    """
+    # Query all non-expired sessions
+    sessions = Session.objects.filter(expire_date__gte=datetime.now())
+    uid_list = []
+
+    # Build a list of user ids from that query
+    for session in sessions:
+        data = session.get_decoded()
+        uid_list.append(data.get('_auth_user_id', None))
+
+    # Query all logged in users based on id list
+    return User.objects.filter(id__in=uid_list)

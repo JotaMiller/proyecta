@@ -10,10 +10,10 @@
 		<link href="/assets/css/main.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="/assets/css/minichat.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="/assets/css/chat.css">
-		<link rel="stylesheet" type="text/css" href="/assets/css/screen.css">
-		<link rel="stylesheet" type="text/css" href="/assets/css/screen_ie.css">
+		<!-- <link rel="stylesheet" type="text/css" href="/assets/css/screen.css"> -->
+		<!-- <link rel="stylesheet" type="text/css" href="/assets/css/screen_ie.css"> -->
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+		<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
 		<script src="/assets/js/minichat.js" type="text/javascript" charset="utf-8"></script>
 
 
@@ -187,9 +187,8 @@
 					  <div class="descripcion"><p>Lista de los Administradores disponibles para poder dar respuestas a sus inquietudes</p></div>
 					  <div class="lista">
 					  	<ul>
-					  		<li><a href="javascript:void(0)" title="Admin demo"><img src="/assets/images/icons/topnav/profile.png" alt="" /><span>Demo 1</span></a></li>
-					  		<li><a href="javascript:void(0)" onclick="javascript:chatWith('henux')">Chat con henux</a></li>
-					  		<li><a href="javascript:void(0)" onclick="javascript:chatWith('admin')">Chat con Admin</a></li>
+					  		{% load template_usuarios %}
+							{% render_logged_in_user_list %}
 					  	</ul>
 					  </div>
 					  

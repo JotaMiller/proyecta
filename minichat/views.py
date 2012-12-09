@@ -124,7 +124,7 @@ def chatHeartbeat(request):
 			if request.session['tsChatBoxes'][chatbox] == '':
 				now =  time.time() - mktime(date_time.timetuple())+1e-6*date_time.microsecond
 
-				fecha = date_time.strftime("%a/%d %b - %H:%M")
+				fecha = date_time.strftime("%d %b - %H:%M")
 
 				message = "Enviado el " + str(fecha)
 
@@ -182,27 +182,18 @@ def startChatSession(request):
 		request.session['openChatBoxes']
 	except Exception, e:
 		request.session['openChatBoxes'] = {}
-
-	print 'fuera openChatBoxes'
-	print request.session['openChatBoxes']
 	
 	if request.session['openChatBoxes']:
-		print 'dentro openChatBoxes'
 		for chatbox  in request.session['openChatBoxes']:
-			print 'dentro de start session'
-			print request.session['openChatBoxes']
 				
 			try:
 				item += request.session['chatHistory'][chatbox]
-				print 'agregando'
 			except Exception, e:
 				raise e
-				print 'no se pudo agregar'
 				# items +=  chatBoxSession(request, chatbox)
 
 	if items != '':
 		items = items[0:-1]
-		print items
 		pass
 
 	valores = '{ "username": "'+ str(request.user) +'","items": [' + items + ']}'
@@ -214,8 +205,8 @@ def sendChat(request):
 	to 				= 	request.POST['to']
 	message 		=	request.POST['message']
 
+
 	request.session['openChatBoxes'][to] = datetime.now()
-	print request.session['openChatBoxes']
 
 	# messagesan = sanitize(message)
 	try:
@@ -243,7 +234,11 @@ def sendChat(request):
 def closeChat(request):
 
 	chatbox = request.POST['chatbox']
+	print request.POST['chatbox']
+	print chatbox
+	
 	del request.session['openChatBoxes'][chatbox]
+	
 	return HttpResponse('1')
 
 def sanitize(text):
