@@ -1,0 +1,9 @@
+{% if users %}
+    {% for user in users %}
+    	{% if user.is_staff %}
+    		<li>
+    			<a href="javascript:void(0)" onclick="javascript:chatWith('{{user}}')">{{ user }}</a>
+    		</li>
+    	{% endif %}
+    {% endfor %}
+{% endif %}
