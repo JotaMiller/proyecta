@@ -367,7 +367,7 @@
 			"file": "proyecta/templates/reporte_pdf.html",
 			"settings":
 			{
-				"buffer_size": 1691,
+				"buffer_size": 1705,
 				"line_ending": "Unix"
 			}
 		},
@@ -375,7 +375,7 @@
 			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 19129,
+				"buffer_size": 19223,
 				"line_ending": "Unix"
 			}
 		},
@@ -401,6 +401,14 @@
 			{
 				"buffer_size": 2224,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/assets/js/custom.js",
+			"settings":
+			{
+				"buffer_size": 21609,
+				"line_ending": "Windows"
 			}
 		},
 		{
@@ -766,7 +774,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -774,15 +782,15 @@
 					"file": "proyecta/templates/reporte_pdf.html",
 					"settings":
 					{
-						"buffer_size": 1691,
+						"buffer_size": 1705,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								839,
-								839
+								806,
+								806
 							]
 						],
 						"settings":
@@ -791,7 +799,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -801,15 +809,15 @@
 					"file": "proyeccion/views.py",
 					"settings":
 					{
-						"buffer_size": 19129,
+						"buffer_size": 19223,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15183,
-								15183
+								16380,
+								16380
 							]
 						],
 						"settings":
@@ -819,7 +827,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6447.0,
+						"translation.y": 7518.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -905,6 +913,33 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "proyecta/assets/js/custom.js",
+					"settings":
+					{
+						"buffer_size": 21609,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								21013,
+								21013
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 14883.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		},
@@ -913,7 +948,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 5,
+					"buffer": 6,
 					"file": "proyecta/assets/js/chat.js",
 					"settings":
 					{
@@ -952,7 +987,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "/home/jotamiller/Escritorio/chat/chat.php",
 					"settings":
 					{
@@ -979,7 +1014,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "/home/jotamiller/Escritorio/chat/samplea.php",
 					"settings":
 					{
@@ -1005,7 +1040,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "/home/jotamiller/Escritorio/chat/db.txt",
 					"settings":
 					{

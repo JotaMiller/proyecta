@@ -334,7 +334,8 @@ def usuarios(request):
     c = RequestContext(request, {
         'user': user,
         'usuarios': usuarios,
-        'empresa': empresa
+        'empresa': empresa,
+        'usuario': request.user,
     })
     return render_to_response('proyeccion/usuarios.html',c)
 
@@ -350,7 +351,8 @@ def empresas(request):
     c = RequestContext(request, {
         'user': user,
         'empresas': empresas,
-        'empresa': empresa
+        'empresa': empresa,
+        'usuario': request.user,
     })
     return render_to_response('proyeccion/empresas.html',c)
 
@@ -373,7 +375,8 @@ def usuario(request, id_usuario):
             c = RequestContext(request, {
                 'user': user,
                 'usuario': usuario,
-                'form': form
+                'form': form,
+                'empresa': empresa
             })
             messages.success(request, 'El usuario ha sido actualizado correctamente.')
             return render_to_response('proyeccion/usuario.html',c)
@@ -411,7 +414,10 @@ def empresa(request, id_empresa):
             form.save()
             c = RequestContext(request, {
                 'user': user,
-                'form': form
+                'form': form,
+                'usuario': request.user,
+                'empresa': empresa,
+                'dato_empresa': dato_empresa
             })
             messages.success(request, 'La Empresa ha sido actualizada correctamente.')
             return render_to_response('proyeccion/empresa.html',c)
