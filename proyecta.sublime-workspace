@@ -375,7 +375,7 @@
 			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 19223,
+				"buffer_size": 19450,
 				"line_ending": "Unix"
 			}
 		},
@@ -409,6 +409,22 @@
 			{
 				"buffer_size": 21609,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "proyecta/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 8492,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proyecta/settings.py",
+			"settings":
+			{
+				"buffer_size": 6527,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -774,7 +790,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -809,15 +825,15 @@
 					"file": "proyeccion/views.py",
 					"settings":
 					{
-						"buffer_size": 19223,
+						"buffer_size": 19450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16380,
-								16380
+								15024,
+								15024
 							]
 						],
 						"settings":
@@ -827,7 +843,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7518.0,
+						"translation.y": 6600.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -926,8 +942,8 @@
 						"selection":
 						[
 							[
-								21013,
-								21013
+								20976,
+								20976
 							]
 						],
 						"settings":
@@ -940,6 +956,61 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "proyecta/templates/base.html",
+					"settings":
+					{
+						"buffer_size": 8492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6989,
+								6989
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2009.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "proyecta/settings.py",
+					"settings":
+					{
+						"buffer_size": 6527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4718,
+								4718
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2040.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		},
@@ -948,7 +1019,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "proyecta/assets/js/chat.js",
 					"settings":
 					{
@@ -987,7 +1058,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "/home/jotamiller/Escritorio/chat/chat.php",
 					"settings":
 					{
@@ -1014,7 +1085,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "/home/jotamiller/Escritorio/chat/samplea.php",
 					"settings":
 					{
@@ -1040,7 +1111,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "/home/jotamiller/Escritorio/chat/db.txt",
 					"settings":
 					{
