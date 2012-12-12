@@ -64,6 +64,7 @@ class Sucursal(models.Model):
     
 def validarRut(value):
     rut_ing = value.replace(".", "");
+    rut_ing = rut_ing.upper()
     numero = rut_ing.split("-")
 
     if not numero[0].isnumeric():
