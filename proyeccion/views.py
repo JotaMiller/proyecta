@@ -688,6 +688,7 @@ def estadistica(request):
         venta_maxima = 0
         inicio_ano = inicio
         inicio_mes = 1
+        inicio_mes2 = 1
         periodo_inicio = ""
         periodo_fin = ""
 
@@ -717,10 +718,15 @@ def estadistica(request):
           
 
         for t_ventas_reales in ventas_reales:
-            fecha_time = datetime.strptime(str(fecha_estadistica)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+            fecha_time = datetime.strptime(str(fecha_estadistica)+ '-'+ str(inicio_mes2) +'-01',"%Y-%m-%d") 
             fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
 
+            print fecha_termino
             cant_venta_real.append([fecha_time,t_ventas_reales])
+
+            inicio_mes2 = inicio_mes2 +1
+            if inicio_mes2 > 12:
+                inicio_mes2 = 1
         # 
         # Datos de venta proyectados
         # 

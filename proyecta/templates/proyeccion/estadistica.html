@@ -80,6 +80,7 @@
     
     	{% for venta in cant_venta  %}
 	        ventas_proyectadas.push({{ venta }});
+	        ventas_reales.push({{ venta }});
     	{% endfor %}
     	{% for venta_real in ventas_reales %}
 	        ventas_reales.push({{ venta_real }});
@@ -113,10 +114,10 @@
 
 <!-- Lines chart -->
 <div class="widget chartWrapper">
-	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
+	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Estadística de las ventas Proyectadas v/s las Realizadas</h6></div>
 	<div class="body"><div class="chart"></div></div>
 </div>
-
+<!-- 
 <div class="widgets">
 	<div class="oneTwo">
 		<div class="widget">
@@ -141,23 +142,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="oneTwo">
-		<div class="widget">
-			<div class="title"><h6>Acciones</h6></div>
-				
-			<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
-				{% for valor in cant_venta %}
-				<input type="hidden" name="cant_ventas" value="{{ valor.1|floatformat:"0" }}"/>
-				{% endfor %}
-				<input type="hidden" name="fecha_inicio" value="{{ periodo_proyeccion }}" >
-				<input type="hidden" name="grafico" value="{{ grafico }}" />
-				<input type="hidden" name="id_producto" value="{{ id_producto }}" >
-				<input type="hidden" name="id_sucursal" value="{{ id_sucursal }}" >
-				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
-			</form>
-		</div>
-	</div>
-</div>
+</div> -->
 {% endif %}
 {% endblock content %}
 
