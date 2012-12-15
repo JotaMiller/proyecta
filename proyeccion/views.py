@@ -90,6 +90,7 @@ def index(request):
     periodo_fin = ""
     periodos = {}
     venta_maxima = 0
+    venta_minima = 1
     informacion_ventas = ""
     periodo_proyeccion = ""
     query = request.POST.get('id_sucursal', '')
@@ -208,6 +209,9 @@ def index(request):
             periodo = periodo + 1
             if venta_maxima < t_venta_1:
                 venta_maxima = t_venta_1
+
+            if venta_minima > t_venta_1:
+                venta_minima = t_venta_1
             
         for t_venta_2 in respuesta:
             fecha_time = datetime.strptime(str(inicio_ano)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
