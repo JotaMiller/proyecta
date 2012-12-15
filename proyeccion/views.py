@@ -138,7 +138,7 @@ def index(request):
         
         ventas_ts = convert_ts(ventas, inicio, 01,12)
         
-        print ventas_ts
+        # print ventas_ts
 
         r('''
         calcular <- function(ventas_ts,path_grafico,inicio_periodo,fecha_inicio, fecha_termino, verbose=FALSE){
@@ -202,8 +202,8 @@ def index(request):
             if inicio_mes > 12:
                 inicio_mes = 1
                 inicio_ano = inicio_ano +1
-                print 'un año mas'
-                print inicio_ano 
+                # print 'un año mas'
+                # print inicio_ano 
 
             periodo = periodo + 1
             if venta_maxima < t_venta_1:
@@ -220,8 +220,8 @@ def index(request):
             if inicio_mes > 12:
                 inicio_mes = 1
                 inicio_ano = inicio_ano +1
-                print 'un año mas'
-                print inicio_ano 
+                # print 'un año mas'
+                # print inicio_ano 
 
             # se establece el ultimo periodo para el eje x
             periodo_fin = fecha_time
@@ -286,6 +286,7 @@ def total_ventas(id_producto, fecha_inicio, fecha_termino):
     final_mes   =   12
     
     while ( cont_ano <= fecha_termino.year ):
+        print 'añooooo' + str(fecha_inicio)
         if cont_ano == fecha_termino.year:
             final_mes = fecha_termino.month
         while ( cont_mes <= final_mes ):
@@ -540,3 +541,241 @@ def get_productos(request, id_sucursal):
         items = '{ "productos":['+ items +'] }'
 
     return HttpResponse(items, mimetype="application/json")
+
+def estadistica(request):
+    """
+    Realiza la estadistica del sitio comparando una proyeccion con
+    datos de ventas reales para el año seleccionadp
+    """
+    #PROJECT_PATH = os.path.relpath(os.path.dirname(__file__),'../../')
+
+    user = request.user
+    if user.empresa:
+        empresa = Empresa.objects.get(id=user.empresa.id)
+        sucursales = Sucursal.objects.filter( empresa_id = empresa.id )
+    else:
+        empresa = {"logo":"logos/sin_empresa.png", "id": "0"}
+        sucursales = Sucursal.objects.filter( empresa_id = empresa['id'] )
+
+    
+    ids_sucursales = []
+    for sucursal in sucursales:
+        ids_sucursales.append(sucursal.id)
+    
+    # se listan solo las ventas realizadas en las sucursal
+    # con sus productos relacionados
+    ventas = Venta.objects.filter( sucursal__in = ids_sucursales )
+    
+    id_venta = []
+    for venta in ventas:
+        id_venta.append(venta.id)
+    
+    # productos relacionados con las ventas de cada sucursal
+    productos = Producto.objects.filter( venta_id__in = id_venta )
+
+    grdevices = importr('grDevices')
+    forecast = importr('forecast')
+    r = robjects.r
+    
+    grafico = False
+    ventas2 = False
+    respuesta = ""
+    path_grafico = ""
+    cant_venta = []
+    cant_venta_real = []
+    periodos_fechas = ""
+    periodo_inicio = ""
+    periodo_fin = ""
+    periodos = {}
+    venta_maxima = 0
+    informacion_ventas = ""
+    periodo_proyeccion = ""
+    query = request.POST.get('id_sucursal', '')
+    id_sucursal     =   ""
+    id_producto     =   ""
+    
+    t_ventas= 1,
+    
+    if request.method == 'POST':
+        #Se obtienen los datos para realizar los calculos 
+        id_producto     =   request.POST['producto']
+        id_sucursal     =   request.POST['sucursal']
+        periodo_proyeccion = int(request.POST['periodo_proyeccion'])
+
+        # Se calculara la proyeccion con dos periodos antes a la fecha seleccionada
+        inicio          =   periodo_proyeccion - 2
+        termino         =   periodo_proyeccion - 1
+        fecha_estadistica = periodo_proyeccion;
+
+        fecha_inicio    =   datetime.strptime(str(inicio) + '-01-01', "%Y-%m-%d")
+        fecha_termino   =   datetime.strptime(str(termino) + '-12-31', "%Y-%m-%d")
+
+        fecha_inicio_estadistica    =   datetime.strptime(str(fecha_estadistica) + '-01-01', "%Y-%m-%d")
+        fecha_termino_estadistica   =   datetime.strptime(str(fecha_estadistica) + '-12-31', "%Y-%m-%d")
+        
+        # anterior
+        #fecha_inicio    =   request.POST['fecha_inicio']
+        #fecha_termino   =   request.POST['fecha_termino']
+        
+        #Fecha utilizada para ser transformada y sepatara por año, mes y dia
+        #fecha           =   datetime.strptime(fecha_inicio,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        #fecha           =   datetime.strptime(fecha,"%Y-%m-%d")
+        
+        #Fecha utilizada para ser transformada y sepatara por año, mes y dia
+        #f_termino       =   datetime.strptime(fecha_termino,"%d-%m-%Y").strftime("%Y-%m-%d") 
+        #f_termino       =   datetime.strptime(f_termino,"%Y-%m-%d")
+        
+        # se envia el nombre a la plantilla para ser mostrada
+        # se utiliza el nombre de usuario y la fecha actual en formato unix
+        grafico = user.username+'_' + str(time.time()) + '.png'
+        
+        # Se genera la ruta en la cual se guardara el grafico
+        path_grafico = settings.PROJECT_PATH + '/media/graficos/' + grafico
+    
+        detalle_ventas = total_ventas(id_producto, fecha_inicio, fecha_termino)
+        ventas = detalle_ventas[0]
+        periodos_fechas = detalle_ventas[2]
+       
+        ventas_reales_periodo = total_ventas(id_producto, fecha_inicio_estadistica, fecha_termino_estadistica)
+        ventas_reales = ventas_reales_periodo[0]
+
+
+        informacion_ventas = []
+        
+        ventas_ts = convert_ts(ventas, inicio, 01,12)
+        
+        # print ventas_ts
+
+        r('''
+        calcular <- function(ventas_ts,path_grafico,inicio_periodo,fecha_inicio, fecha_termino, verbose=FALSE){
+            
+            yfit <- window(ventas_ts, start=fecha_inicio, end=c(fecha_termino,12))
+        
+            m2 <- HoltWinters(yfit)
+            
+            # Prediccion de las ventas, Se establece a 12 meses
+            p2 <- predict(m2, n.ahead = 12)
+            
+            path <- paste(path_grafico)
+            
+            png(path, width=600, height=600)
+            
+            plot(c(ventas_ts,p2), col="black", ylim = range(c(ventas_ts, p2)), lwd =1, pch = 20, type ="o", xlab="Periodo", ylab="Cantidad de productos", main="Proyección de ventas")
+            
+             lines(fitted(m2)[,1], col = "blue", lwd =2)
+            lines(p2, col="red", lwd=2)
+            
+            # Muestra la grilla para el grafico
+            grid()
+            
+            # Linea divisora para mostrar la diferencia entre la proyeccion y lo real
+            abline(v=(fecha_termino+11/12), col="red")
+            dev.off()
+            
+            return(p2)
+        }
+        
+        ''')
+        # Funcion directamente de R quien se encarga de realizar los calculos
+        calcular_ventas = r['calcular']
+        
+        # Se ejecuta la funcion de calculos de ventas
+        # el grafico se guarda en formato png en el directorio graficos
+        respuesta       = calcular_ventas(ventas_ts,path_grafico, 01, inicio, termino)
+        
+        # se prepara la lista con las ventas anteriores y las proyectadas
+        periodo = 0
+        venta_maxima = 0
+        inicio_ano = inicio
+        inicio_mes = 1
+        periodo_inicio = ""
+        periodo_fin = ""
+
+        # for t_venta_1 in ventas:
+        #     fecha_time = datetime.strptime(str(inicio_ano)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+        #     fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
+            
+        #     # Se establece el inicio del periodo para el eje x
+        #     if periodo_inicio == "":
+        #         periodo_inicio = fecha_time
+            
+        #     # print 'periodo inicio: ' + str(periodo_inicio)
+
+        #     cant_venta.append([fecha_time,t_venta_1])
+        #     informacion_ventas.append({'cantidad': t_venta_1, 'fecha': str(inicio_ano) + '-' + str(inicio_mes) })
+
+        #     inicio_mes = inicio_mes +1
+        #     if inicio_mes > 12:
+        #         inicio_mes = 1
+        #         inicio_ano = inicio_ano +1
+        #         print 'un año mas'
+        #         print inicio_ano 
+
+        #     periodo = periodo + 1
+        #     if venta_maxima < t_venta_1:
+        #         venta_maxima = t_venta_1
+          
+
+        for t_ventas_reales in ventas_reales:
+            fecha_time = datetime.strptime(str(fecha_estadistica)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+            fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
+
+            cant_venta_real.append([fecha_time,t_ventas_reales])
+        # 
+        # Datos de venta proyectados
+        # 
+        for t_venta_2 in respuesta:
+            fecha_time = datetime.strptime(str(fecha_estadistica)+ '-'+ str(inicio_mes) +'-01',"%Y-%m-%d") 
+            fecha_time = calendar.timegm(fecha_time.timetuple()) * 1000
+            if periodo_inicio == "":
+                periodo_inicio = fecha_time
+
+            cant_venta.append([fecha_time,t_venta_2])
+            informacion_ventas.append({'cantidad': t_venta_2, 'fecha': str(inicio_ano) + '-' + str(inicio_mes) })
+
+            inicio_mes = inicio_mes +1
+            if inicio_mes > 12:
+                inicio_mes = 1
+                inicio_ano = inicio_ano +1
+                # print 'un año mas'
+                # print inicio_ano 
+
+            # se establece el ultimo periodo para el eje x
+            periodo_fin = fecha_time
+            
+            if venta_maxima < t_venta_2:
+                venta_maxima = t_venta_2
+        
+        # print cant_venta
+
+
+        venta_maxima = int(venta_maxima)
+        # Se envian los periodos de proyeccion para la gerenacion del grafico
+        periodos = { 'inicio': 1, 'termino': periodo }
+        messages.success(request, 'La proyección se realizó correctamente, la puede ver en la parte inferior de la página.')
+    
+    c = RequestContext(request, {
+        'ventas': ventas,
+        'ventas_reales': cant_venta_real,
+        'cant_venta': cant_venta,
+        'periodos': periodos,
+        'venta_maxima': venta_maxima,
+        'productos': productos,
+        'sucursales': sucursales,
+        'grafico': grafico,
+        't_ventas': t_ventas,
+        'empresa': empresa,
+        'usuario': request.user,
+        'id_ventas': id_venta,
+        'ids_sucursales': ids_sucursales,
+        'grafico': path_grafico,
+        'periodos_fechas': periodos_fechas,
+        'periodo_inicio': periodo_inicio,
+        'periodo_fin': periodo_fin,
+        'informacion_ventas': informacion_ventas,
+        'periodo_proyeccion': periodo_proyeccion,
+        'id_sucursal': id_sucursal,
+        'id_producto': id_producto,
+    })
+    return render_to_response('proyeccion/estadistica.html',c)
+

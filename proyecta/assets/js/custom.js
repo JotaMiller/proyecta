@@ -8,6 +8,11 @@ $(function() {
 		carga_productos(id_sucursal);
 		$('#id_producto').val(0);
 	});
+	$('#id_sucursal2').change( function(){
+		var id_sucursal = $('#id_sucursal2').val();
+		carga_productos2(id_sucursal);
+		$('#id_producto2').val(0);
+	});
 
 /*
 ================================================== */
@@ -893,6 +898,27 @@ function carga_productos(sucursal){
 	$('#id_producto').append('<option value="0">-Seleccione-</option>');
 	$.ajax({
 		url: "get_productos/"+sucursal+"/",
+	  	cache: false,
+	  	dataType: "json",
+	  	success: function(data) {
+			$.each(data.productos, function(i,item){
+	  			console.log(item);
+				if (item){ 
+					id = $.trim(item.id);
+					nombre = $.trim(item.nombre);
+					$('#id_producto').append('<option value="'+id+'">'+nombre+'</option>');
+				}
+			});
+		$('#id_producto').val(0);
+		// $('#id_producto option[value="0"]').attr("selected","selected");
+	}});
+	// $('#id_producto option')
+}
+function carga_productos2(sucursal){
+	$('#id_producto option').remove();
+	$('#id_producto').append('<option value="0">-Seleccione-</option>');
+	$.ajax({
+		url: "../get_productos/"+sucursal+"/",
 	  	cache: false,
 	  	dataType: "json",
 	  	success: function(data) {

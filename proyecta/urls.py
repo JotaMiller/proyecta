@@ -33,7 +33,8 @@ urlpatterns = patterns('',
     url(r'^empresa/(?P<id_empresa>\d+)/$', 'proyeccion.views.empresa'),
     # Exportar a PDF
     url(r'^reporte_pdf/$','proyeccion.views.reporte_pdf'),
-    
+    # Ver estadisticas
+    url(r'^estadistica/$','proyeccion.views.estadistica'),
 #    url(r'^proyeccion/contact/$', 'proyeccion.views.contact'),
 #    url(r'^proyeccion/(?P<proyeccion_id>\d+)/results/$', 'proyeccion.views.results'),
     url(r'^accounts/login/$',  login),

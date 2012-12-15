@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"rut",
+				"rut_ing"
+			],
+			[
+				"ca",
+				"cantidad_vendida"
+			],
+			[
+				"vali",
+				"validators"
+			],
+			[
+				"valida",
+				"validarRut"
+			],
+			[
+				"Validar",
+				"ValidationError"
+			],
+			[
 				"Empresa",
 				"Empresa"
 			],
@@ -288,10 +308,6 @@
 				"is_numeric"
 			],
 			[
-				"valida",
-				"hook_validate"
-			],
-			[
 				"print",
 				"print_r"
 			],
@@ -364,42 +380,18 @@
 	"buffers":
 	[
 		{
-			"file": "proyecta/templates/reporte_pdf.html",
-			"settings":
-			{
-				"buffer_size": 1705,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "proyeccion/views.py",
 			"settings":
 			{
-				"buffer_size": 19450,
+				"buffer_size": 27682,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "proyecta/templates/proyeccion/empresa.html",
+			"file": "proyecta/templates/proyeccion/estadistica.html",
 			"settings":
 			{
-				"buffer_size": 1691,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "proyecta/templates/proyeccion/usuarios.html",
-			"settings":
-			{
-				"buffer_size": 1954,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "proyecta/templates/proyeccion/usuario.html",
-			"settings":
-			{
-				"buffer_size": 2224,
+				"buffer_size": 4864,
 				"line_ending": "Unix"
 			}
 		},
@@ -407,58 +399,7 @@
 			"file": "proyecta/assets/js/custom.js",
 			"settings":
 			{
-				"buffer_size": 21609,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "proyecta/templates/base.html",
-			"settings":
-			{
-				"buffer_size": 8492,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "proyecta/settings.py",
-			"settings":
-			{
-				"buffer_size": 6527,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "proyecta/assets/js/chat.js",
-			"settings":
-			{
-				"buffer_size": 12952,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<?php\n\n/*\n\nCopyright (c) 2009 Anant Garg (anantgarg.com | inscripts.com)\n\nThis script may be used for non-commercial purposes only. For any\ncommercial purposes, please contact the author at \nanant.garg@inscripts.com\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\n*/\n\ndefine ('DBPATH','localhost');\ndefine ('DBUSER','root');\ndefine ('DBPASS','password');\ndefine ('DBNAME','chat');\n\nsession_start();\n\nglobal $dbh;\n$dbh = mysql_connect(DBPATH,DBUSER,DBPASS);\nmysql_selectdb(DBNAME,$dbh);\n\nif ($_GET['action'] == \"chatheartbeat\") { chatHeartbeat(); } \nif ($_GET['action'] == \"sendchat\") { sendChat(); } \nif ($_GET['action'] == \"closechat\") { closeChat(); } \nif ($_GET['action'] == \"startchatsession\") { startChatSession(); } \n\nif (!isset($_SESSION['chatHistory'])) {\n	$_SESSION['chatHistory'] = array();	\n}\n\nif (!isset($_SESSION['openChatBoxes'])) {\n	$_SESSION['openChatBoxes'] = array();	\n}\n\nfunction chatHeartbeat() {\n	\n	$sql = \"select * from chat where (chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' AND recd = 0) order by id ASC\";\n	$query = mysql_query($sql);\n	$items = '';\n\n	$chatBoxes = array();\n\n	while ($chat = mysql_fetch_array($query)) {\n\n		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {\n			$items = $_SESSION['chatHistory'][$chat['from']];\n		}\n\n		$chat['message'] = sanitize($chat['message']);\n\n		$items .= <<<EOD\n{\n	\"s\": \"0\",\n	\"f\": \"{$chat['from']}\",\n	\"m\": \"{$chat['message']}\"\n},\nEOD;\n\n	if (!isset($_SESSION['chatHistory'][$chat['from']])) {\n		$_SESSION['chatHistory'][$chat['from']] = '';\n	}\n\n	$_SESSION['chatHistory'][$chat['from']] .= <<<EOD\n						   {\n			\"s\": \"0\",\n			\"f\": \"{$chat['from']}\",\n			\"m\": \"{$chat['message']}\"\n	   },\nEOD;\n		\n		unset($_SESSION['tsChatBoxes'][$chat['from']]);\n		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];\n	}\n\n	if (!empty($_SESSION['openChatBoxes'])) {\n	\n	foreach ($_SESSION['openChatBoxes'] as $chatbox => $time) {\n\n		if (!isset($_SESSION['tsChatBoxes'][$chatbox])) {\n			$now = time()-strtotime($time);\n			$time = date('g:iA M dS', strtotime($time));\n\n			$message = \"Sent at $time\";\n			if ($now > 180) {\n				$items .= <<<EOD\n{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n\n			if (!isset($_SESSION['chatHistory'][$chatbox])) {\n				$_SESSION['chatHistory'][$chatbox] = '';\n			}\n\n			$_SESSION['chatHistory'][$chatbox] .= <<<EOD\n		{\n\"s\": \"2\",\n\"f\": \"$chatbox\",\n\"m\": \"{$message}\"\n},\nEOD;\n			$_SESSION['tsChatBoxes'][$chatbox] = 1;\n		}\n		}\n	}\n}\n\n	$sql = \"update chat set recd = 1 where chat.to = '\".mysql_real_escape_string($_SESSION['username']).\"' and recd = 0\";\n	$query = mysql_query($sql);\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\n	header('Content-type: application/json');\n	?>\n	{\n		\"items\": [\n			<?php echo $items;?>\n        ]\n	}\n\n	<?php\n			exit(0);\n}\n\nfunction chatBoxSession($chatbox) {\n	\n	$items = '';\n	\n	if (isset($_SESSION['chatHistory'][$chatbox])) {\n		$items = $_SESSION['chatHistory'][$chatbox];\n	}\n\n	return $items;\n}\n\nfunction startChatSession() {\n	$items = '';\n	if (!empty($_SESSION['openChatBoxes'])) {\n		foreach ($_SESSION['openChatBoxes'] as $chatbox => $void) {\n			$items .= chatBoxSession($chatbox);\n		}\n	}\n\n\n	if ($items != '') {\n		$items = substr($items, 0, -1);\n	}\n\nheader('Content-type: application/json');\n?>\n{\n		\"username\": \"<?php echo $_SESSION['username'];?>\",\n		\"items\": [\n			<?php echo $items;?>\n        ]\n}\n\n<?php\n\n\n	exit(0);\n}\n\nfunction sendChat() {\n	$from = $_SESSION['username'];\n	$to = $_POST['to'];\n	$message = $_POST['message'];\n\n	$_SESSION['openChatBoxes'][$_POST['to']] = date('Y-m-d H:i:s', time());\n	\n	$messagesan = sanitize($message);\n\n	if (!isset($_SESSION['chatHistory'][$_POST['to']])) {\n		$_SESSION['chatHistory'][$_POST['to']] = '';\n	}\n\n	$_SESSION['chatHistory'][$_POST['to']] .= <<<EOD\n					   {\n			\"s\": \"1\",\n			\"f\": \"{$to}\",\n			\"m\": \"{$messagesan}\"\n	   },\nEOD;\n\n\n	unset($_SESSION['tsChatBoxes'][$_POST['to']]);\n\n	$sql = \"insert into chat (chat.from,chat.to,message,sent) values ('\".mysql_real_escape_string($from).\"', '\".mysql_real_escape_string($to).\"','\".mysql_real_escape_string($message).\"',NOW())\";\n	$query = mysql_query($sql);\n	echo \"1\";\n	exit(0);\n}\n\nfunction closeChat() {\n\n	unset($_SESSION['openChatBoxes'][$_POST['chatbox']]);\n	\n	echo \"1\";\n	exit(0);\n}\n\nfunction sanitize($text) {\n	$text = htmlspecialchars($text, ENT_QUOTES);\n	$text = str_replace(\"\\n\\r\",\"\\n\",$text);\n	$text = str_replace(\"\\r\\n\",\"\\n\",$text);\n	$text = str_replace(\"\\n\",\"<br>\",$text);\n	return $text;\n}",
-			"file": "/home/jotamiller/Escritorio/chat/chat.php",
-			"file_size": 5093,
-			"file_write_time": 1354510105000000,
-			"settings":
-			{
-				"buffer_size": 4890,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/home/jotamiller/Escritorio/chat/samplea.php",
-			"settings":
-			{
-				"buffer_size": 1064,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jotamiller/Escritorio/chat/db.txt",
-			"settings":
-			{
-				"buffer_size": 346,
+				"buffer_size": 22398,
 				"line_ending": "Windows"
 			}
 		}
@@ -499,21 +440,28 @@
 	},
 	"file_history":
 	[
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/index.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/models.py",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/empresa.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/reporte_pdf.html",
+		"/home/jotamiller/Escritorio/chat/db.txt",
+		"/home/jotamiller/Escritorio/chat/samplea.php",
+		"/home/jotamiller/Escritorio/chat/chat.php",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/chat.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/usuarios.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/usuario.html",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/custom.js",
+		"/home/jotamiller/Trabajos/proyecta/proyecta/settings.py",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/forms.py",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/empresas.html",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/base.html",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/proyeccion/index.html",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/urls.py",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/custom.js",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/chat.js",
 		"/home/jotamiller/Trabajos/proyecta/minichat/views.py",
 		"/home/jotamiller/Escritorio/crown/forms.html",
 		"/home/jotamiller/Trabajos/proyecta/minichat/urls.py",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/css/chat.css",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/js/minichat.js",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/templatetags/logged_in_user_list.html",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/settings.py",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/assets/css/main.css",
 		"/home/jotamiller/Trabajos/proyecta/proyeccion/templatetags/logged_in_user_list.html",
 		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/templatetags/template_usuarios.py",
@@ -529,7 +477,6 @@
 		"/home/jotamiller/Descargas/AHS 2x07/American Horror Story 2x07 - Dark Cousin.srt",
 		"/home/jotamiller/Vídeos/series/American Horror Story/Asylum/American Horror Story - s02e07.es.srt",
 		"/home/jotamiller/Trabajos/proyecta/.gitignore",
-		"/home/jotamiller/Trabajos/proyecta/proyecta/templates/reporte_pdf.html",
 		"/home/jotamiller/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/jotamiller/Trabajos/proyecta/minichat/js/jquery.js",
 		"/home/jotamiller/Escritorio/crown/table_dynamic.html",
@@ -620,13 +567,7 @@
 		"/tmp/fz3temp-1/pagina1_1_4_asignar.php",
 		"/tmp/fz3temp-1/pagina1_1_4_grilla3.php",
 		"/tmp/fz3temp-1/pagina1_1_4_grilla1.php",
-		"/home/jotamiller/Escritorio/examples/ahah_example/dependent_dropdown.inc",
-		"/home/jotamiller/Escritorio/examples/ahah_example/ahah_example.module",
-		"/home/jotamiller/Escritorio/hs_tutorial/hs_tutorial.module",
-		"/host/Users/pc/Desktop/VPN ServicioCivil.txt",
-		"/home/jotamiller/Escritorio/ip servicio civil",
-		"/tmp/fz3temp-1/intellego_pais.module",
-		"/tmp/fz3temp-1/pagina1_1_4_ficha_BIP 2.php"
+		"/home/jotamiller/Escritorio/examples/ahah_example/dependent_dropdown.inc"
 	],
 	"find":
 	{
@@ -644,6 +585,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"periodo_inicio",
 			"chat/",
 			"chat",
 			"Empresa",
@@ -770,8 +712,7 @@
 			"imputra",
 			"imp",
 			"dvUTerritorialLeft",
-			"mostrar_ficha_asignacion",
-			"mostrar_fic"
+			"mostrar_ficha_asignacion"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -790,160 +731,78 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "proyecta/templates/reporte_pdf.html",
+					"file": "proyeccion/views.py",
 					"settings":
 					{
-						"buffer_size": 1705,
+						"buffer_size": 27682,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								806,
-								806
+								24526,
+								24532
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 102.0,
+						"translation.y": 9965.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "proyeccion/views.py",
+					"file": "proyecta/templates/proyeccion/estadistica.html",
 					"settings":
 					{
-						"buffer_size": 19450,
+						"buffer_size": 4864,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15024,
-								15024
+								2914,
+								2914
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 6600.0,
+						"translation.y": 1224.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "proyecta/templates/proyeccion/empresa.html",
-					"settings":
-					{
-						"buffer_size": 1691,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								880,
-								880
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "proyecta/templates/proyeccion/usuarios.html",
-					"settings":
-					{
-						"buffer_size": 1954,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "proyecta/templates/proyeccion/usuario.html",
-					"settings":
-					{
-						"buffer_size": 2224,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1848,
-								1848
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 408.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "proyecta/assets/js/custom.js",
 					"settings":
 					{
-						"buffer_size": 21609,
+						"buffer_size": 22398,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20976,
-								20976
+								21926,
+								21926
 							]
 						],
 						"settings":
@@ -952,186 +811,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 14883.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "proyecta/templates/base.html",
-					"settings":
-					{
-						"buffer_size": 8492,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6989,
-								6989
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2009.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "proyecta/settings.py",
-					"settings":
-					{
-						"buffer_size": 6527,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4718,
-								4718
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2040.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 8,
-					"file": "proyecta/assets/js/chat.js",
-					"settings":
-					{
-						"buffer_size": 12952,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5154,
-								5154
-							],
-							[
-								6922,
-								6922
-							],
-							[
-								8477,
-								8477
-							],
-							[
-								9571,
-								9571
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4582.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/home/jotamiller/Escritorio/chat/chat.php",
-					"settings":
-					{
-						"buffer_size": 4890,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1321,
-								1321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3044.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "/home/jotamiller/Escritorio/chat/samplea.php",
-					"settings":
-					{
-						"buffer_size": 1064,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								804,
-								804
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "/home/jotamiller/Escritorio/chat/db.txt",
-					"settings":
-					{
-						"buffer_size": 346,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								346,
-								346
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 14076.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1156,18 +836,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.548675292668,
 			1.0
 		],
 		"rows":

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block area_titulo %}
+	<div class="titleArea">
+		<div class="wrapper">
+			<div class="pageTitle">
+				<h5>Estadísticas</h5>
+				<span>En esta sección podra realizar la comparación entre las proyeciones realizadas y las ventas efectivamente concretadas.</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+{% if messages %}
+		{% for message in messages %}
+			<div class="nNote nInformation hideit">
+	            <p>{{ message }}</p>
+	        </div>
+        {% endfor %}
+	{% endif %}
+<script type="text/javascript">
+	function submitform(){
+	    document.forms["form"].submit();
+	}
+	function submitform_pdf(){
+	    document.forms["form_pdf"].submit();
+	}
+</script>
+<form action="." id="form" method="POST" class="form">
+	<fieldset>
+		<div class="widget">
+			<div class="title"><img src="/assets/images/icons/dark/list.png" alt="" class="titleIcon" /><h6>Ingrese los parametros de consulta</h6>
+			</div>
+			<div class="formRow">
+				<label>Sucursal:</label>
+				<div class="formRight">
+					<select name="sucursal" id="id_sucursal2">
+						<option value="0">-Seleccione-</option>
+						{% for sucursal in sucursales %}
+						<option value="{{ sucursal.id }}">{{ sucursal.nombre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="formRow">
+				<label>Producto:</label>
+				<div class="formRight">
+					<select name="producto" id="id_producto">
+						<option value="0">-Seleccione-</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="formRow">
+				<label>Comparar año</label>
+				<div class="formRight">
+					<select name="periodo_proyeccion" id="periodo_proyeccion">
+						<option value="2012">2012</option>
+						<option value="2013">2013</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<a href="javascript:submitform()" title="Generar Reporte y mostrarlo debajo" class="wButton orangewB m10 tipS"><span>Generar Reporte</span></a>
+		
+	</fieldset>
+</form>
+
+{% if grafico %}
+	<!-- <img src="/media/graficos/{{ grafico }}" /> -->
+{% endif %}
+
+<script>
+	$(function () {
+    	var ventas_proyectadas  = 	[];
+    	var ventas_reales 		=	[];
+    
+    	{% for venta in cant_venta  %}
+	        ventas_proyectadas.push({{ venta }});
+    	{% endfor %}
+    	{% for venta_real in ventas_reales %}
+	        ventas_reales.push({{ venta_real }});
+	    {% endfor %}
+	        console.log({{ cant_venta }});
+	        console.log({{ ventas_reales }});
+
+    var plot = $.plot($(".chart"),
+           [ { data: ventas_proyectadas, label: "Ventas proyectadas"},
+           	{ data: ventas_reales, label: "Ventas Reales"} ], {
+               series: {
+                   lines: { show: true },
+                   points: { show: true }
+               },
+               grid: { hoverable: true, clickable: true },
+               yaxis: { min: 1, max: {{ venta_maxima }} },
+			   xaxis: { 
+			   	mode: 'time',
+			   	timeformat: "%Y - %b",
+			   	monthNames: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+			   	min: {{ periodo_inicio }},
+			   	max: {{ periodo_fin }}
+			   	// min: {{ periodos.inicio }}, 
+			   	// max: {{ periodos.termino }} 
+			   }
+             });
+	});
+</script>
+{% if grafico %}
+<!-- Reporte y detalle ventas -->   
+
+<!-- Lines chart -->
+<div class="widget chartWrapper">
+	<div class="title"><img src="/assets/images/icons/dark/graph.png" alt="" class="titleIcon" /><h6>Proyección de Venta</h6></div>
+	<div class="body"><div class="chart"></div></div>
+</div>
+
+<div class="widgets">
+	<div class="oneTwo">
+		<div class="widget">
+			<div class="title"><img src="/assets/images/icons/dark/full2.png" alt="" class="titleIcon" /><h6>Detalle de Ventas por Periodos</h6></div>                          
+			<table cellpadding="0" cellspacing="0" border="0" class="display dTable">
+				<thead>
+					<tr>
+						<th>Periodo</th>
+						<th>Fecha</th>
+						<th>Cantidad</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for venta in informacion_ventas %}
+					<tr class="gradeA">
+						<td>{{ forloop.counter }}</td>
+						<td>{{ venta.fecha }}</td>
+						<td>{{ venta.cantidad|floatformat:"0" }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="oneTwo">
+		<div class="widget">
+			<div class="title"><h6>Acciones</h6></div>
+				
+			<form action="/reporte_pdf/" id="form_pdf" method="POST" class="form">
+				{% for valor in cant_venta %}
+				<input type="hidden" name="cant_ventas" value="{{ valor.1|floatformat:"0" }}"/>
+				{% endfor %}
+				<input type="hidden" name="fecha_inicio" value="{{ periodo_proyeccion }}" >
+				<input type="hidden" name="grafico" value="{{ grafico }}" />
+				<input type="hidden" name="id_producto" value="{{ id_producto }}" >
+				<input type="hidden" name="id_sucursal" value="{{ id_sucursal }}" >
+				<a href="javascript:submitform_pdf()" target="_blank" title="Exportar el actual reporte a PDF" class="wButton redwB ml15 m10 tipS"><span>Exportar a PDF</span></a>
+			</form>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock content %}
+
