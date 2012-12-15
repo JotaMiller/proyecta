@@ -84,7 +84,7 @@
     	{% for venta_real in ventas_reales %}
 	        ventas_reales.push({{ venta_real }});
 	    {% endfor %}
-	    
+
 	        console.log({{ cant_venta }});
 	        console.log({{ ventas_reales }});
 
@@ -96,7 +96,7 @@
                    points: { show: true }
                },
                grid: { hoverable: true, clickable: true },
-               yaxis: { min: {{ venta_minima }}, max: {{ venta_maxima }} },
+               yaxis: { min: 0, max: {{ venta_maxima }} },
 			   xaxis: { 
 			   	mode: 'time',
 			   	timeformat: "%Y - %b",
