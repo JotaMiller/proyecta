@@ -588,6 +588,7 @@ def estadistica(request):
     periodo_fin = ""
     periodos = {}
     venta_maxima = 0
+    venta_minima = 1
     informacion_ventas = ""
     periodo_proyeccion = ""
     query = request.POST.get('id_sucursal', '')
