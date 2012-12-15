@@ -686,6 +686,7 @@ def estadistica(request):
         # se prepara la lista con las ventas anteriores y las proyectadas
         periodo = 0
         venta_maxima = 0
+        venta_minima = 1
         inicio_ano = inicio
         inicio_mes = 1
         inicio_mes2 = 1
@@ -730,6 +731,9 @@ def estadistica(request):
 
             if venta_maxima < t_ventas_reales:
                 venta_maxima = t_ventas_reales
+
+            if venta_minima > t_ventas_reales:
+                venta_minima = t_ventas_reales
         # 
         # Datos de venta proyectados
         # 
@@ -754,6 +758,9 @@ def estadistica(request):
             
             if venta_maxima < t_venta_2:
                 venta_maxima = t_venta_2
+
+            if venta_minima > t_venta_2:
+                venta_minima = t_venta_2
         
         # print cant_venta
 
@@ -769,6 +776,7 @@ def estadistica(request):
         'cant_venta': cant_venta,
         'periodos': periodos,
         'venta_maxima': venta_maxima,
+        'venta_minima': venta_minima,
         'productos': productos,
         'sucursales': sucursales,
         'grafico': grafico,
