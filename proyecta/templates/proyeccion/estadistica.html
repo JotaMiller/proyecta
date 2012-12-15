@@ -80,7 +80,6 @@
     
     	{% for venta in cant_venta  %}
 	        ventas_proyectadas.push({{ venta }});
-	        ventas_reales.push({{ venta }});
     	{% endfor %}
     	{% for venta_real in ventas_reales %}
 	        ventas_reales.push({{ venta_real }});

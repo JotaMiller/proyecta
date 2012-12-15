@@ -727,6 +727,9 @@ def estadistica(request):
             inicio_mes2 = inicio_mes2 +1
             if inicio_mes2 > 12:
                 inicio_mes2 = 1
+
+            if venta_maxima < t_ventas_reales:
+                venta_maxima = t_ventas_reales
         # 
         # Datos de venta proyectados
         # 
