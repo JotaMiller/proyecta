@@ -40,4 +40,4 @@ Rpy2 - Conector para python con R-project
 5) Listo, ahora solo queda probar y utilizar proyecta en su sistema!!! :D
 
 6) Para reportar fallas, o sugerencias, las puedes hacer via Github por medio
-de los issues o al correo marmota@jotamiller.com.
+de los issues o al correo hola@jotamiller.cl.
